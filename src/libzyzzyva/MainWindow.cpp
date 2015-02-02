@@ -93,8 +93,8 @@ using namespace Defs;
 MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f)
     : QMainWindow(parent, f), splashScreen(splash),
       wordEngine(new WordEngine()), settingsDialog(new SettingsDialog(this)),
-      aboutDialog(new AboutDialog(this)),
-      helpDialog(new HelpDialog(QString(), this))
+      aboutDialog(new AboutDialog(this))//,
+      //helpDialog(new HelpDialog(QString(), this))
 {
     setSplashMessage("Creating interface...");
 
@@ -381,8 +381,8 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
     if (MainSettings::getDisplayWelcome())
         newIntroForm();
 
-    connect(helpDialog, SIGNAL(error(const QString&)),
-            SLOT(helpDialogError(const QString&)));
+//    connect(helpDialog, SIGNAL(error(const QString&)),
+//            SLOT(helpDialogError(const QString&)));
 
     splashScreen = 0;
     QTimer::singleShot(0, this, SLOT(displayLexiconError()));
@@ -1006,7 +1006,7 @@ MainWindow::displayAbout()
 void
 MainWindow::displayHelp()
 {
-    helpDialog->showPage(Auxil::getHelpDir() + "/index.html");
+    //helpDialog->showPage(Auxil::getHelpDir() + "/index.html");
 }
 
 //---------------------------------------------------------------------------
@@ -1890,7 +1890,7 @@ MainWindow::updateSettings()
         QList<LexiconStyle> addStyles;
 
         addStyle.lexicon = Defs::LEXICON_CSW12;
-        addStyle.compareLexicon = Defs::LEXICON_OWL2;
+        addStyle.compareLexicon = Defs::LEXICON_OWL14;
         addStyle.inCompareLexicon = false;
         addStyle.symbol = "#";
         addStyles.append(addStyle);
@@ -2078,6 +2078,7 @@ MainWindow::importLexicon(const QString& lexicon)
         prefixMap[LEXICON_OWL] = "/North-American/OWL";
         prefixMap[LEXICON_OWL2] = "/North-American/OWL2";
         prefixMap[LEXICON_OWL2_1] = "/North-American/OWL2.1";
+        prefixMap[LEXICON_OWL14] = "/North-American/OWL14";
         prefixMap[LEXICON_OSPD4] = "/North-American/OSPD4";
         prefixMap[LEXICON_OSPD4_1] = "/North-American/OSPD4.1";
         prefixMap[LEXICON_WWF] = "/North-American/WWF";

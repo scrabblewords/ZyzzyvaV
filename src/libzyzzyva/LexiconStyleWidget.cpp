@@ -73,6 +73,7 @@ LexiconStyleWidget::LexiconStyleWidget(QWidget* parent, Qt::WindowFlags f)
     validLexicons.append(LEXICON_OWL);
     validLexicons.append(LEXICON_OWL2);
     validLexicons.append(LEXICON_OWL2_1);
+    validLexicons.append(LEXICON_OWL14);
     validLexicons.append(LEXICON_WWF);
     validLexicons.append(LEXICON_VOLOST);
     qSort(validLexicons.begin(), validLexicons.end(),
@@ -81,7 +82,7 @@ LexiconStyleWidget::LexiconStyleWidget(QWidget* parent, Qt::WindowFlags f)
     QString defaultLexicon = MainSettings::getDefaultLexicon();
     int defaultIndex = validLexicons.indexOf(defaultLexicon);
     if (defaultIndex < 0)
-        defaultIndex = validLexicons.indexOf(LEXICON_OWL2);
+        defaultIndex = validLexicons.indexOf(LEXICON_OWL14);
 
     lexiconCombo = new QComboBox;
     Q_CHECK_PTR(lexiconCombo);

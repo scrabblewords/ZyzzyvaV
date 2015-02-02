@@ -148,7 +148,7 @@ class MainWindow : public QMainWindow
 
     SettingsDialog* settingsDialog;
     AboutDialog*    aboutDialog;
-    HelpDialog*     helpDialog;
+    //HelpDialog*     helpDialog;
 
     QString lexiconError;
     QMap<QString, int> dbErrors;
