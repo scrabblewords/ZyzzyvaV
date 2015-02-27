@@ -48,12 +48,12 @@ class WordEngineTest : public QObject
 
 };
 
-QString TEST_LEXICON = Defs::LEXICON_OWL14;
+QString TEST_LEXICON = Defs::LEXICON_WJ2;
 
 //---------------------------------------------------------------------------
 //  tryImport
 //
-//! Try to import OWL14 lexicon into the WordEngine.
+//! Try to import WJ2 lexicon into the WordEngine.
 //---------------------------------------------------------------------------
 void
 WordEngineTest::tryImport()
@@ -62,13 +62,13 @@ WordEngineTest::tryImport()
         return;
 
     bool ok = engine.importDawgFile(Auxil::getWordsDir() +
-                                    "/north-american/owl14.dwg",
+                                    "/north-american/wj2.dwg",
                                     Defs::LEXICON_CUSTOM, false);
     if (!ok)
         return;
 
     ok = engine.importDawgFile(Auxil::getWordsDir() +
-                               "/north-american/owl14-r.dwg",
+                               "/north-american/wj2-r.dwg",
                                Defs::LEXICON_CUSTOM, true);
     if (!ok)
         return;
@@ -104,7 +104,7 @@ WordEngineTest::testSearch_data()
     QTest::newRow("subanagram-aeiprs") << "subanagram-aeiprs";
     QTest::newRow("4s-take-A-prefix") << "4s-take-A-prefix";
     QTest::newRow("3s-8s-take-X-suffix") << "3s-8s-take-X-suffix";
-    QTest::newRow("Q-no-U-new-in-owl14") << "Q-no-U-new-in-owl14";
+    QTest::newRow("Q-no-U-new-in-wj2") << "Q-no-U-new-in-wj2";
     QTest::newRow("8s-with-5-vowels") << "8s-with-5-vowels";
     QTest::newRow("8s-with-7-anagrams") << "8s-with-7-anagrams";
     QTest::newRow("8s-prob-1001-2000") << "8s-prob-1001-2000";
