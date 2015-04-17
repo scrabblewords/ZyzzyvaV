@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QHelpCollectionProject version="1.0">
+    <assistant>
+        <title>Zyzzyva Help</title>
+        <startPage>qthelp://spuriouscomputing.com/2.3.0/./index.html</startPage>
+        <aboutMenuText>
+            <text>About Zyzzyva</text>
+        </aboutMenuText>
+        <aboutDialog>
+            <file>./about.html</file>
+        </aboutDialog>
+        <cacheDirectory>.Zyzzyva</cacheDirectory>
+    </assistant>
+    <docFiles>
+        <generate>
+            <file>
+                <input>zyzzyva.qhp</input>
+                <output>zyzzyva.qch</output>
+            </file>
+        </generate>
+        <register>
+            <file>zyzzyva.qch</file>
+        </register>
+    </docFiles>
+</QHelpCollectionProject>
