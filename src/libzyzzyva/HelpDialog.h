@@ -25,13 +25,13 @@
 #ifndef ZYZZYVA_HELP_DIALOG_H
 #define ZYZZYVA_HELP_DIALOG_H
 
-//#include <QAssistantClient>
+#include <QAssistantClient>
 
-//class HelpDialog : public QAssistantClient
-//{
-//    Q_OBJECT
-//    public:
-//    HelpDialog(const QString& path, QObject* parent = 0);
-//};
+class HelpDialog : public QAssistantClient
+{
+    Q_OBJECT
+    public:
+    HelpDialog(const QString& path, QObject* parent = 0);
+};
 
 #endif // ZYZZYVA_HELP_DIALOG_H

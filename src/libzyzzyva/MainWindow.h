@@ -79,7 +79,7 @@ class MainWindow : public QMainWindow
     void displayAbout();
     void displayHelp();
     void displayLexiconError();
-    void helpDialogError(const QString& message);
+    //void helpDialogError(const QString& message);
     void closeCurrentTab();
     void currentTabChanged(int index);
     void tabTitleChanged(const QString& title);

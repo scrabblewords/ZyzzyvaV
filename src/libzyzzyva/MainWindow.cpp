@@ -31,7 +31,7 @@
 #include "DatabaseRebuildDialog.h"
 #include "DefinitionDialog.h"
 #include "DefineForm.h"
-#include "HelpDialog.h"
+//#include "HelpDialog.h"
 #include "IntroForm.h"
 #include "JudgeDialog.h"
 #include "JudgeSelectDialog.h"
@@ -55,6 +55,7 @@
 #include <QLabel>
 #include <QMenuBar>
 #include <QMessageBox>
+#include <QProcess>
 #include <QProgressDialog>
 #include <QSignalMapper>
 #include <QStatusBar>
@@ -1006,7 +1007,17 @@ MainWindow::displayAbout()
 void
 MainWindow::displayHelp()
 {
-    //helpDialog->showPage(Auxil::getHelpDir() + "/index.html");
+//    helpDialog->showPage(Auxil::getHelpDir() + "/index.html");
+    QProcess *process = new QProcess;
+    QStringList args;
+    args << QLatin1String("-collectionFile")
+        << (Auxil::getHelpDir() + QLatin1String("/zyzzyva.qhc"))
+        << QLatin1String("-showUrl")
+        << QLatin1String("qthelp://spuriouscomputing.com/2.3.0/index.html")
+        << QLatin1String("-enableRemoteControl");
+    process->start(QLatin1String("assistant"), args);
+    if (!process->waitForStarted())
+        return;
 }
 
 //---------------------------------------------------------------------------
@@ -1038,12 +1049,12 @@ MainWindow::displayLexiconError()
 //
 //! @param message the error message
 //---------------------------------------------------------------------------
-void
-MainWindow::helpDialogError(const QString& message)
-{
-    QString caption = "Help Display Error";
-    QMessageBox::warning(this, caption, Auxil::dialogWordWrap(message));
-}
+//void
+//MainWindow::helpDialogError(const QString& message)
+//{
+//    QString caption = "Help Display Error";
+//    QMessageBox::warning(this, caption, Auxil::dialogWordWrap(message));
+//}
 
 //---------------------------------------------------------------------------
 //  closeCurrentTab
