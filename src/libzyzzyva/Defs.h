@@ -59,7 +59,7 @@ namespace Defs {
     const QString LEXICON_OWL = "OWL";
     const QString LEXICON_OWL2 = "OWL2";
     const QString LEXICON_OWL2_1 = "OWL2.1";
-    const QString LEXICON_WJ2 = "WJ2";
+    const QString LEXICON_OWL14 = "OWL14";
     const QString LEXICON_WWF = "WWF";
     const QString LEXICON_VOLOST = "Volost";
     const QString LEXICON_ZINGA = "ZINGA";

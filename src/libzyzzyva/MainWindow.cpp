@@ -67,7 +67,7 @@
 
 MainWindow* MainWindow::instance = 0;
 
-const QString APPLICATION_TITLE = "Zyzzyva";
+const QString APPLICATION_TITLE = "Free Zyzzyva";
 
 const QString IMPORT_FAILURE_TITLE = "Load Failed";
 const QString IMPORT_COMPLETE_TITLE = "Load Complete";
@@ -1901,7 +1901,7 @@ MainWindow::updateSettings()
         QList<LexiconStyle> addStyles;
 
         addStyle.lexicon = Defs::LEXICON_CSW12;
-        addStyle.compareLexicon = Defs::LEXICON_WJ2;
+        addStyle.compareLexicon = Defs::LEXICON_OWL14;
         addStyle.inCompareLexicon = false;
         addStyle.symbol = "#";
         addStyles.append(addStyle);
@@ -2089,7 +2089,7 @@ MainWindow::importLexicon(const QString& lexicon)
         prefixMap[LEXICON_OWL] = "/North-American/OWL";
         prefixMap[LEXICON_OWL2] = "/North-American/OWL2";
         prefixMap[LEXICON_OWL2_1] = "/North-American/OWL2.1";
-        prefixMap[LEXICON_WJ2] = "/North-American/WJ2";
+        prefixMap[LEXICON_OWL14] = "/North-American/OWL14";
         prefixMap[LEXICON_OSPD4] = "/North-American/OSPD4";
         prefixMap[LEXICON_OSPD4_1] = "/North-American/OSPD4.1";
         prefixMap[LEXICON_WWF] = "/North-American/WWF";

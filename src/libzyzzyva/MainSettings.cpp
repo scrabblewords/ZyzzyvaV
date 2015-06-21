@@ -102,7 +102,7 @@ const QString SETTINGS_LETTER_DISTRIBUTION = "letter_distribution";
 const QString SETTINGS_JUDGE_SAVE_LOG = "judge_save_log";
 
 const bool    DEFAULT_AUTO_IMPORT = true;
-const QString DEFAULT_DEFAULT_LEXICON = Defs::LEXICON_WJ2;
+const QString DEFAULT_DEFAULT_LEXICON = Defs::LEXICON_OWL14;
 const bool    DEFAULT_DISPLAY_WELCOME = true;
 const QString DEFAULT_USER_DATA_DIR = Auxil::getHomeDir() + "/Free_Zyzzyva";
 const bool    DEFAULT_USE_TILE_THEME = true;
@@ -148,12 +148,12 @@ const QString DEFAULT_LEXICON_STYLES = QString(
     "%15 and not %16: symbol ^\n"
     "%17 and not %18: symbol +\n"
     "%19 and not %20: symbol +")
-    .arg(Defs::LEXICON_WJ2).arg(Defs::LEXICON_OWL2)
-    .arg(Defs::LEXICON_WJ2).arg(Defs::LEXICON_OSPD4)
+    .arg(Defs::LEXICON_OWL14).arg(Defs::LEXICON_OWL2)
+    .arg(Defs::LEXICON_OWL14).arg(Defs::LEXICON_OSPD4)
     .arg(Defs::LEXICON_OWL2_1).arg(Defs::LEXICON_OWL)
     .arg(Defs::LEXICON_OWL2_1).arg(Defs::LEXICON_OSPD4_1)
     .arg(Defs::LEXICON_CSW07).arg(Defs::LEXICON_OWL2)
-    .arg(Defs::LEXICON_CSW12).arg(Defs::LEXICON_WJ2)
+    .arg(Defs::LEXICON_CSW12).arg(Defs::LEXICON_OWL14)
     .arg(Defs::LEXICON_CSW12).arg(Defs::LEXICON_CSW07)
     .arg(Defs::LEXICON_CSW07).arg(Defs::LEXICON_CSW12)
     .arg(Defs::LEXICON_CSW07).arg(Defs::LEXICON_OSWI)
