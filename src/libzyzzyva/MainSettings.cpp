@@ -154,7 +154,7 @@ const QString DEFAULT_LEXICON_STYLES = QString(
     .arg(Defs::LEXICON_OWL2_1).arg(Defs::LEXICON_OSPD4_1)
     .arg(Defs::LEXICON_CSW07).arg(Defs::LEXICON_OWL2)
     .arg(Defs::LEXICON_CSW12).arg(Defs::LEXICON_OWL14)
-    .arg(Defs::LEXICON_CSW12).arg(Defs::LEXICON_CSW07)
+    .arg(Defs::LEXICON_CSW15).arg(Defs::LEXICON_CSW12)
     .arg(Defs::LEXICON_CSW07).arg(Defs::LEXICON_CSW12)
     .arg(Defs::LEXICON_CSW07).arg(Defs::LEXICON_OSWI)
     .arg(Defs::LEXICON_ODS5).arg(Defs::LEXICON_ODS4);

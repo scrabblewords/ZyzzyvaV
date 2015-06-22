@@ -62,6 +62,7 @@ LexiconStyleWidget::LexiconStyleWidget(QWidget* parent, Qt::WindowFlags f)
     validLexicons.append(LEXICON_CD);
     validLexicons.append(LEXICON_CSW07);
     validLexicons.append(LEXICON_CSW12);
+    validLexicons.append(LEXICON_CSW15);
     validLexicons.append(LEXICON_CUSTOM);
     validLexicons.append(LEXICON_ODS4);
     validLexicons.append(LEXICON_ODS5);

@@ -443,6 +443,7 @@ Auxil::getLexiconPrefix(const QString& lexicon)
         pmap[LEXICON_OSWI] = "/British/OSWI";
         pmap[LEXICON_CSW07] = "/British/CSW07";
         pmap[LEXICON_CSW12] = "/British/CSW12";
+        pmap[LEXICON_CSW15] = "/British/CSW15";
         pmap[LEXICON_CD] = "/British/CD";
         pmap[LEXICON_ODS4] = "/French/ODS4";
         pmap[LEXICON_ODS5] = "/French/ODS5";
@@ -1358,6 +1359,8 @@ Auxil::lexiconToOrigin(const QString& lexicon)
         return "British (WESPA HarperCollins copyright 2007)";
     if (lexicon == LEXICON_CSW12)
         return "British (WESPA HarperCollins copyright 2011)";
+    if (lexicon == LEXICON_CSW15)
+        return "British (© HarperCollins 2015, see T&Cs)";
     if (lexicon == LEXICON_CD)
         return "British (Contest)";
     if (lexicon == LEXICON_ODS4)
@@ -1404,6 +1407,8 @@ Auxil::lexiconToDate(const QString& lexicon)
         return QDate(2007, 5, 15);
     if (lexicon == LEXICON_CSW12)
         return QDate(2012, 1, 1);
+    if (lexicon == LEXICON_CSW15)
+        return QDate(2015, 9, 1);
     if (lexicon == LEXICON_CD)
         return QDate(2010, 1, 1);
     if (lexicon == LEXICON_ODS4)
@@ -1436,6 +1441,10 @@ Auxil::lexiconToDetails(const QString& lexicon)
     }
     if (lexicon == LEXICON_CSW12) {
         return "The WESPA HarperCollins copyright 2011 word list (CSW12) "
+            "is copyright of HarperCollins and used with permission.";
+    }
+    if (lexicon == LEXICON_CSW15) {
+        return "The HarperCollins copyright 2015 word list (CSW15) "
             "is copyright of HarperCollins and used with permission.";
     }
     return QString();
@@ -1473,6 +1482,7 @@ Auxil::getUpdatedLexiconName(const QString& oldLexiconName)
              (oldLexiconName == LEXICON_WWF) ||
              (oldLexiconName == LEXICON_CSW07) ||
              (oldLexiconName == LEXICON_CSW12) ||
+             (oldLexiconName == LEXICON_CSW15) ||
              (oldLexiconName == LEXICON_CD) ||
              (oldLexiconName == LEXICON_OSPD4) ||
              (oldLexiconName == LEXICON_OSPD4_1) ||
