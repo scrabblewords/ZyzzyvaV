@@ -1891,7 +1891,7 @@ MainWindow::updateSettings()
     if (prevVersion == currVersion)
         return;
 
-    // Add default CSW12 lexicon styles in 2.1.3
+    // Add default CSW15 lexicon styles in 2.1.3
     if (Auxil::lessThanVersion(prevVersion, "2.1.3") &&
        ((currVersion == "2.1.3") ||
         Auxil::lessThanVersion("2.1.3", currVersion)))
@@ -1900,22 +1900,10 @@ MainWindow::updateSettings()
         LexiconStyle addStyle;
         QList<LexiconStyle> addStyles;
 
-        addStyle.lexicon = Defs::LEXICON_CSW12;
-        addStyle.compareLexicon = Defs::LEXICON_OWL14;
-        addStyle.inCompareLexicon = false;
-        addStyle.symbol = "#";
-        addStyles.append(addStyle);
-
-        addStyle.lexicon = Defs::LEXICON_CSW12;
-        addStyle.compareLexicon = Defs::LEXICON_CSW07;
-        addStyle.inCompareLexicon = false;
-        addStyle.symbol = "+";
-        addStyles.append(addStyle);
-
-        addStyle.lexicon = Defs::LEXICON_CSW07;
+        addStyle.lexicon = Defs::LEXICON_CSW15;
         addStyle.compareLexicon = Defs::LEXICON_CSW12;
         addStyle.inCompareLexicon = false;
-        addStyle.symbol = "^";
+        addStyle.symbol = "+";
         addStyles.append(addStyle);
 
         // ### Create addStyleToList(bool overwrite) or something similar
@@ -1965,12 +1953,12 @@ MainWindow::makeUserDirs()
                        Auxil::getSearchDir() + "/predefined");
     }
 
-    renameLexicon(LEXICON_OLD_OWL, LEXICON_OWL);
-    renameLexicon(LEXICON_OLD_OWL2, LEXICON_OWL2);
-    renameLexicon(LEXICON_OLD_OSPD4, LEXICON_OSPD4);
-    renameLexicon(LEXICON_OLD_SOWPODS, LEXICON_OSWI);
-    renameLexicon(LEXICON_OLD_ODS, LEXICON_ODS4);
-    renameLexicon(LEXICON_OLD_CSW, LEXICON_CSW07);
+//    renameLexicon(LEXICON_OLD_OWL, LEXICON_OWL);
+//    renameLexicon(LEXICON_OLD_OWL2, LEXICON_OWL2);
+//    renameLexicon(LEXICON_OLD_OSPD4, LEXICON_OSPD4);
+//    renameLexicon(LEXICON_OLD_SOWPODS, LEXICON_OSWI);
+//    renameLexicon(LEXICON_OLD_ODS, LEXICON_ODS4);
+//    renameLexicon(LEXICON_OLD_CSW, LEXICON_CSW07);
 
     dir.mkpath(Auxil::getQuizDir() + "/saved");
     dir.mkpath(Auxil::getSearchDir() + "/saved");
@@ -2086,23 +2074,9 @@ MainWindow::importLexicon(const QString& lexicon)
             return true;
 
         QMap<QString, QString> prefixMap;
-        prefixMap[LEXICON_OWL] = "/North-American/OWL";
-        prefixMap[LEXICON_OWL2] = "/North-American/OWL2";
-        prefixMap[LEXICON_OWL2_1] = "/North-American/OWL2.1";
-        prefixMap[LEXICON_OWL14] = "/North-American/OWL14";
-        prefixMap[LEXICON_OSPD4] = "/North-American/OSPD4";
-        prefixMap[LEXICON_OSPD4_1] = "/North-American/OSPD4.1";
-        prefixMap[LEXICON_WWF] = "/North-American/WWF";
         prefixMap[LEXICON_VOLOST] = "/Antarctic/Volost";
-        prefixMap[LEXICON_OSWI] = "/British/OSWI";
-        prefixMap[LEXICON_CSW07] = "/British/CSW07";
         prefixMap[LEXICON_CSW12] = "/British/CSW12";
         prefixMap[LEXICON_CSW15] = "/British/CSW15";
-        prefixMap[LEXICON_CD] = "/British/CD";
-        prefixMap[LEXICON_ODS4] = "/French/ODS4";
-        prefixMap[LEXICON_ODS5] = "/French/ODS5";
-        prefixMap[LEXICON_FISE2009] = "/Spanish/FISE2009";
-        prefixMap[LEXICON_ZINGA] = "/Italian/ZINGA";
 
         if (prefixMap.contains(lexicon)) {
             QString prefix = Auxil::getWordsDir() + prefixMap.value(lexicon);

@@ -48,12 +48,12 @@ class WordEngineTest : public QObject
 
 };
 
-QString TEST_LEXICON = Defs::LEXICON_OWL14;
+QString TEST_LEXICON = Defs::LEXICON_CSW15;
 
 //---------------------------------------------------------------------------
 //  tryImport
 //
-//! Try to import OWL14 lexicon into the WordEngine.
+//! Try to import CSW15 lexicon into the WordEngine.
 //---------------------------------------------------------------------------
 void
 WordEngineTest::tryImport()
@@ -62,21 +62,21 @@ WordEngineTest::tryImport()
         return;
 
     bool ok = engine.importDawgFile(Auxil::getWordsDir() +
-                                    "/North-American/OWL14.dwg",
+                                    "/British/CSW15.dwg",
                                     Defs::LEXICON_CUSTOM, false);
     if (!ok)
         return;
 
     ok = engine.importDawgFile(Auxil::getWordsDir() +
-                               "/North-American/OWL14-R.dwg",
+                               "/British/CSW15-R.dwg",
                                Defs::LEXICON_CUSTOM, true);
     if (!ok)
         return;
 
     engine.importStems(TEST_LEXICON, Auxil::getWordsDir() +
-                       "/north-american/6-letter-stems.txt");
+                       "/North-American/6-letter-stems.txt");
     engine.importStems(TEST_LEXICON, Auxil::getWordsDir() +
-                       "/north-american/7-letter-stems.txt");
+                       "/North-American/7-letter-stems.txt");
 
     MainSettings::setLetterDistribution("A:9 B:2 C:2 D:4 E:12 F:2 G:3 H:2 "
                                         "I:9 J:1 K:1 L:4 M:2 N:6 O:8 P:2 "
@@ -104,7 +104,7 @@ WordEngineTest::testSearch_data()
     QTest::newRow("subanagram-aeiprs") << "subanagram-aeiprs";
     QTest::newRow("4s-take-A-prefix") << "4s-take-A-prefix";
     QTest::newRow("3s-8s-take-X-suffix") << "3s-8s-take-X-suffix";
-    QTest::newRow("Q-no-U-new-in-OWL14") << "Q-no-U-new-in-OWL14";
+    QTest::newRow("Q-no-U-new-in-CSW15") << "Q-no-U-new-in-CSW15";
     QTest::newRow("8s-with-5-vowels") << "8s-with-5-vowels";
     QTest::newRow("8s-with-7-anagrams") << "8s-with-7-anagrams";
     QTest::newRow("8s-prob-1001-2000") << "8s-prob-1001-2000";

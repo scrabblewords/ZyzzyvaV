@@ -87,23 +87,9 @@ LexiconSelectDialog::LexiconSelectDialog(QWidget* parent, Qt::WindowFlags f)
     mainGlay->addWidget(dateHeaderLabel, 0, 4, Qt::AlignHCenter);
 
     QStringList validLexicons;
-    validLexicons.append(LEXICON_OWL2);
-    validLexicons.append(LEXICON_OWL2_1);
-    validLexicons.append(LEXICON_OWL14);
-    validLexicons.append(LEXICON_OSPD4);
-    validLexicons.append(LEXICON_OSPD4_1);
     validLexicons.append(LEXICON_CSW12);
     validLexicons.append(LEXICON_CSW15);
-    validLexicons.append(LEXICON_CSW07);
-    validLexicons.append(LEXICON_WWF);
-    validLexicons.append(LEXICON_CD);
-    validLexicons.append(LEXICON_ODS5);
-    validLexicons.append(LEXICON_FISE2009);
-    validLexicons.append(LEXICON_ZINGA);
     validLexicons.append(LEXICON_VOLOST);
-    validLexicons.append(LEXICON_ODS4);
-    validLexicons.append(LEXICON_OWL);
-    validLexicons.append(LEXICON_OSWI);
     validLexicons.append(LEXICON_CUSTOM);
 
     QStringListIterator it (validLexicons);
