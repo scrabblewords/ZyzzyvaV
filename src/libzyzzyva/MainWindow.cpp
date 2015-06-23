@@ -2163,8 +2163,8 @@ int
 MainWindow::importStems(const QString& lexicon)
 {
     QStringList stemFiles;
-    stemFiles << (Auxil::getWordsDir() + "/North-American/6-letter-stems.txt");
-    stemFiles << (Auxil::getWordsDir() + "/North-American/7-letter-stems.txt");
+    stemFiles << (Auxil::getWordsDir() + "/British/6-letter-stems.txt");
+    stemFiles << (Auxil::getWordsDir() + "/British/7-letter-stems.txt");
 
     QString err;
     QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
