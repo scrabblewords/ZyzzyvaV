@@ -67,7 +67,7 @@
 
 MainWindow* MainWindow::instance = 0;
 
-const QString APPLICATION_TITLE = "Free Zyzzyva";
+const QString APPLICATION_TITLE = "Collins Zyzzyva";
 
 const QString IMPORT_FAILURE_TITLE = "Load Failed";
 const QString IMPORT_COMPLETE_TITLE = "Load Complete";
@@ -362,6 +362,9 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
     detailsLabel = new QLabel;
     Q_CHECK_PTR(detailsLabel);
     detailsLabel->setFont(detailsFont);
+    detailsLabel->setTextFormat(Qt::RichText);
+    detailsLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    detailsLabel->setOpenExternalLinks(true);
     statusBar()->addWidget(detailsLabel);
 
     fixTrolltechConfig();

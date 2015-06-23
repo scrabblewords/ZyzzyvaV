@@ -145,6 +145,9 @@ LexiconSelectDialog::LexiconSelectDialog(QWidget* parent, Qt::WindowFlags f)
                 QLabel* originLabel = new QLabel;
                 Q_CHECK_PTR(originLabel);
                 originLabel->setText(lexiconOrigin);
+                originLabel->setTextFormat(Qt::RichText);
+                originLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+                originLabel->setOpenExternalLinks(true);
                 mainGlay->addWidget(originLabel, row, 3);
             }
 
