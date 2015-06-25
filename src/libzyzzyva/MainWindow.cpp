@@ -98,6 +98,13 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
       //helpDialog(new HelpDialog(QString(), this))
 {
     setSplashMessage("Creating interface...");
+    //printf("%d\n", qApp->cursorFlashTime());
+    // (JGM) Hack to properly display the cursor on Windows (7-specific?) when cursor blink is turned
+    // off.  Qt 5.4/5.5 thinks the value is -2ms instead of 0ms, causing inconsistent cursor display
+    // across different GUI events.  Blinkophiles won't notice a 2ms difference in the blink rate when
+    // using this application.
+    qApp->setCursorFlashTime(qApp->cursorFlashTime() + 2);
+    //printf("%d\n", qApp->cursorFlashTime());
 
     // File Menu
     QMenu* fileMenu = menuBar()->addMenu("&File");
