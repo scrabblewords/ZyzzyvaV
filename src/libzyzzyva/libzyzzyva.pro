@@ -102,7 +102,8 @@ SOURCES = \
     WordValidator.cpp \
     WordVariationDialog.cpp \
     ZApplication.cpp \
-    ZPushButton.cpp
+    ZPushButton.cpp \
+    ../simplecrypt/simplecrypt.cpp
 
 # Header files that must be run through moc
 HEADERS = \
@@ -154,4 +155,5 @@ HEADERS = \
     WordValidator.h \
     WordVariationDialog.h \
     ZApplication.h \
-    ZPushButton.h
+    ZPushButton.h \
+    ../simplecrypt/simplecrypt.h

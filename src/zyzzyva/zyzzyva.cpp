@@ -29,9 +29,9 @@
 #include <QPixmap>
 #include <QSplashScreen>
 
-const QString SETTINGS_ORGANIZATION_NAME = "Spurious Computing";
-const QString SETTINGS_DOMAIN_NAME = "spuriouscomputing.com";
-const QString SETTINGS_APPLICATION_NAME = "Free Zyzzyva";
+const QString SETTINGS_ORGANIZATION_NAME = "Twilight Century Computing";
+const QString SETTINGS_DOMAIN_NAME = "twilightcenturycomputing.com";
+const QString SETTINGS_APPLICATION_NAME = "Zyzzyva V";
 
 int main(int argc, char** argv)
 {
