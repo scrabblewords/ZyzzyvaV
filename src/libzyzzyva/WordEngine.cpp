@@ -26,11 +26,13 @@
 #include "LetterBag.h"
 #include "Auxil.h"
 #include "Defs.h"
+#include "../simplecrypt/simplecrypt.h"
 #include <QApplication>
 #include <QFile>
 #include <QRegExp>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QTextStream>
 #include <QVariant>
 #include <QVector>
 
@@ -194,6 +196,85 @@ WordEngine::importTextFile(const QString& lexicon, const QString& filename,
     }
 
     delete[] buffer;
+    return imported;
+}
+
+//---------------------------------------------------------------------------
+//  importBinaryFile
+//
+//! Import words from an encrypted/obfuscated binary file.  The file, once
+//! converted, is assumed to be in plain text format, containing one word per
+//! line.
+//! ** IMPORTANT ** This is very weak security, since the key is hardcoded
+//! here and this project is open source.  Prevents only casual snooping of
+//! binary file.
+//
+//! @param lexicon the name of the lexicon
+//! @param filename the name of the file to import
+//! @param loadDefinitions whether to load word definitions
+//! @param errString returns the error string in case of error
+//! @return the number of words imported
+//---------------------------------------------------------------------------
+int
+WordEngine::importBinaryFile(const QString& lexicon, const QString& filename,
+                           bool loadDefinitions, QString* errString)
+{
+    // Delete old word graph if it exists
+    if (lexiconData.contains(lexicon))
+        delete lexiconData[lexicon]->graph;
+    else
+        lexiconData[lexicon] = new LexiconData;
+
+    WordGraph* graph = new WordGraph;
+    lexiconData[lexicon]->graph = graph;
+    lexiconData[lexicon]->lexiconFile = filename;
+
+    QFile file (filename);
+    if (!file.open(QIODevice::ReadOnly)) {
+        if (errString) {
+            *errString = "Can't open file '" + filename + "': " +
+                file.errorString();
+        }
+        return 0;
+    }
+
+    QByteArray *fileBlob = new QByteArray(file.readAll());
+    file.close();
+
+    SimpleCrypt crypto(Q_UINT64_C(0x56414a415a7a4c45));
+    QByteArray *plaintextData = new QByteArray(crypto.decryptToByteArray(*fileBlob));
+    delete fileBlob;
+//    if (!crypto.lastError() == SimpleCrypt::ErrorNoError) {
+//      // check why we have an error, use the error code from crypto.lastError() for that.
+//      delete plaintextData;
+//      return;
+//    }
+    QTextStream s(plaintextData, QIODevice::ReadOnly);
+
+    int imported = 0;
+    QString buffer = new char[MAX_INPUT_LINE_LEN];
+    while (!s.atEnd()) {
+        buffer = s.readLine(MAX_INPUT_LINE_LEN);
+        QString line (buffer);
+        line = line.simplified();
+        if (!line.length() || (line.at(0) == '#'))
+            continue;
+        QString word = line.section(' ', 0, 0).toUpper();
+
+        if (!graph->containsWord(word)) {
+            QString alpha = Auxil::getAlphagram(word);
+            ++lexiconData[lexicon]->numAnagramsMap[alpha];
+        }
+
+        graph->addWord(word);
+        if (loadDefinitions) {
+            QString definition = line.section(' ', 1);
+            addDefinition(lexicon, word, definition);
+        }
+        ++imported;
+    }
+
+    delete plaintextData;
     return imported;
 }
 

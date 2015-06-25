@@ -101,6 +101,8 @@ class WordEngine : public QObject
     bool databaseIsConnected(const QString& lexicon) const;
     int importTextFile(const QString& lexicon, const QString& filename, bool
                        loadDefinitions = true, QString* errString = 0);
+    int importBinaryFile(const QString& lexicon, const QString& filename, bool
+                       loadDefinitions = true, QString* errString = 0);
     bool importDawgFile(const QString& lexicon, const QString& filename, bool
                         reverse = false, QString* errString = 0, quint16*
                         expectedChecksum = 0);

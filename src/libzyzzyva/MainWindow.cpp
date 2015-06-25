@@ -2151,8 +2151,13 @@ MainWindow::importLexicon(const QString& lexicon)
 int
 MainWindow::importText(const QString& lexicon, const QString& file)
 {
+    int imported;
+
     QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-    int imported = wordEngine->importTextFile(lexicon, file, true);
+    if (QString::localeAwareCompare(lexicon, "CSW15") == 0)
+        imported = wordEngine->importBinaryFile(lexicon, file, true);
+    else
+        imported = wordEngine->importTextFile(lexicon, file, true);
     QApplication::restoreOverrideCursor();
     return imported;
 }
