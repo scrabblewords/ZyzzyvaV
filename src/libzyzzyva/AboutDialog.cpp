@@ -31,7 +31,7 @@
 #include <QTabWidget>
 #include <QVBoxLayout>
 
-const QString DIALOG_CAPTION = "About Zyzzyva";
+const QString DIALOG_CAPTION = "About Zyzzyva V";
 
 using namespace Defs;
 
@@ -65,7 +65,7 @@ AboutDialog::AboutDialog(QWidget* parent, Qt::WindowFlags f)
     aboutLabel->setAlignment(Qt::AlignHCenter);
     aboutLabel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
     aboutLabel->setText(Auxil::getAboutString());
-    tabStack->addTab(aboutLabel, "Zyzzyva");
+    tabStack->addTab(aboutLabel, "Zyzzyva V");
 
     QLabel* thanksLabel = new QLabel;
     Q_CHECK_PTR(thanksLabel);

@@ -67,12 +67,12 @@
 
 MainWindow* MainWindow::instance = 0;
 
-const QString APPLICATION_TITLE = "Collins Zyzzyva";
+const QString APPLICATION_TITLE = "Zyzzyva V";
 
 const QString IMPORT_FAILURE_TITLE = "Load Failed";
 const QString IMPORT_COMPLETE_TITLE = "Load Complete";
 
-const QString SETTINGS_MAIN = "/Zyzzyva";
+const QString SETTINGS_MAIN = "/Zyzzyva V";
 const QString SETTINGS_GEOMETRY = "/geometry";
 const QString SETTINGS_GEOMETRY_X = "/x";
 const QString SETTINGS_GEOMETRY_Y = "/y";

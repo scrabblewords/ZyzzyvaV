@@ -846,7 +846,7 @@ JudgeDialog::createTitleWidget()
 	QString programName = "NSSC Word Judge";
 	QString pixmapName = ":/nssc-128x128";
 #else
-	QString programName = "Zyzzyva Word Judge";
+    QString programName = "Zyzzyva V Word Judge";
 	QString pixmapName = ":/zyzzyva-128x128";
 #endif
 

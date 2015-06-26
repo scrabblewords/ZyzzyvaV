@@ -42,7 +42,7 @@ const QString MainSettings::JUDGE_PREFS_GROUP = "Word Judge";
 const QString MainSettings::FONT_PREFS_GROUP = "Fonts";
 const QString MainSettings::WORD_LIST_PREFS_GROUP = "Word Tables";
 
-const QString SETTINGS_MAIN = "Zyzzyva";
+const QString SETTINGS_MAIN = "Zyzzyva V";
 const QString SETTINGS_PROGRAM_VERSION = "program_version";
 const QString SETTINGS_MAIN_WINDOW_POS = "main_window_pos";
 const QString SETTINGS_MAIN_WINDOW_SIZE = "main_window_size";
@@ -104,7 +104,7 @@ const QString SETTINGS_JUDGE_SAVE_LOG = "judge_save_log";
 const bool    DEFAULT_AUTO_IMPORT = true;
 const QString DEFAULT_DEFAULT_LEXICON = Defs::LEXICON_CSW15;
 const bool    DEFAULT_DISPLAY_WELCOME = true;
-const QString DEFAULT_USER_DATA_DIR = Auxil::getHomeDir() + "/Free_Zyzzyva";
+const QString DEFAULT_USER_DATA_DIR = Auxil::getHomeDir() + "/.zyzzyvav";
 const bool    DEFAULT_USE_TILE_THEME = true;
 const QString DEFAULT_TILE_THEME = "tan-with-border";
 const bool    DEFAULT_SEARCH_SELECT_INPUT = true;
