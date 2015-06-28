@@ -28,6 +28,7 @@
 #include "WordEngine.h"
 #include "Auxil.h"
 #include "Defs.h"
+#include "../simplecrypt/simplecrypt.h"
 #include <QtSql>
 
 const int MAX_DEFINITION_LINKS = 3;
@@ -498,7 +499,16 @@ CreateDatabaseThread::updateProbabilityOrder(QSqlDatabase& db, int& stepNum)
 //---------------------------------------------------------------------------
 //  updateDefinitions
 //
-//! Update definitions of words in the database.
+//! Update definitions of words in the database, from either an encrypted/
+//! obfuscated binary file, or a text file.
+//!
+//! (JGM) Assumes:
+//!     * An encrypted .bin associated with a db has CRLF line endings. *
+//!     The file has a single header line if the lexicon is not Custom.
+//!
+//! ** IMPORTANT ** For encrypted lexicon files, this is very weak security,
+//! since the key is hardcoded here and this project is open source.
+//! Prevents only casual snooping of the binary file.
 //
 //! @param db the database
 //! @param stepNum the current step number
@@ -513,7 +523,111 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
 
     QMap<QString, QString> definitionMap;
     QFile definitionFile (definitionFilename);
-    if (definitionFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+
+      // (JGM)
+//    QFile debugFile (definitionFilename + "-debug.txt");
+//    debugFile.open(QIODevice::WriteOnly);
+
+    if (definitionFilename.section(".", -1, -1) == "bin") {   // (JGM) definitionFile is encrypted.
+        if (!definitionFile.open(QIODevice::ReadOnly)) {
+            return;
+        }
+        QByteArray *fileBlob = new QByteArray(definitionFile.readAll());
+        definitionFile.close();
+
+        // (JGM) Discard header line if appropriate.
+        if (lexiconName != LEXICON_CUSTOM)
+            *fileBlob = fileBlob->remove(0, fileBlob->indexOf('\n') + 1);
+
+        SimpleCrypt crypto(Q_UINT64_C(0x56414a415a7a4c45));
+        QByteArray *plaintextBlob = new QByteArray(crypto.decryptToByteArray(*fileBlob));
+        delete fileBlob;
+
+        // (JGM) Decrypted definition file assumptions:
+        // If first line is a header, it should be stripped.
+        char *plaintext = new char[plaintextBlob->size() + 1];
+        strcpy(plaintext, plaintextBlob->constData());
+        delete plaintextBlob;
+
+        char *buffer;
+        int lineLength;
+        char *nextNewline;
+        bool readNewline = true;
+        while (1) {
+            nextNewline = strchr(plaintext, '\n');
+            if (!nextNewline) break;
+
+            lineLength = nextNewline - plaintext + 1;
+            if (lineLength <= MAX_INPUT_LINE_LEN - 1) {
+                buffer = new char[lineLength + 1];
+                memcpy(buffer, plaintext, (lineLength) * sizeof(char));
+                buffer[lineLength] = '\0';
+                plaintext = nextNewline + 1;
+            }
+            else {
+                buffer = new char[MAX_INPUT_LINE_LEN];
+                memcpy(buffer, plaintext, (MAX_INPUT_LINE_LEN - 1) * sizeof(char));
+                buffer[MAX_INPUT_LINE_LEN - 1] = '\0';
+                plaintext += (MAX_INPUT_LINE_LEN - 1);
+            }
+            QString line(buffer);
+
+            // If first line didn't contain newline, skip subsequent reads
+            // until we see a newline (effectively truncating long lines)
+            bool skip = !readNewline;
+            readNewline = line.endsWith("\n");
+            if (skip) {
+                delete buffer;
+                continue;
+            }
+
+            line = line.simplified();
+            if (!line.length() || (line.at(0) == '#')) {
+                if ((stepNum % PROGRESS_STEP) == 0) {
+                    if (cancelled) {
+                        transactionQuery.exec("END TRANSACTION");
+                        delete buffer;
+                        delete plaintext;
+                        definitionFile.close();
+                        return;
+                    }
+                    emit progress(stepNum);
+                }
+                ++stepNum;
+                delete buffer;
+                continue;
+            }
+            QString word = line.section(' ', 0, 0).toUpper();
+            QString definition = line.section(' ', 1);
+
+            query.bindValue(0, definition);
+            query.bindValue(1, word);
+            query.exec();
+
+            if ((stepNum % PROGRESS_STEP) == 0) {
+                if (cancelled) {
+                    transactionQuery.exec("END TRANSACTION");
+                    delete buffer;
+                    delete plaintext;
+                    definitionFile.close();
+                    return;
+                }
+                emit progress(stepNum);
+            }
+            ++stepNum;
+            delete buffer;
+        }
+        delete plaintext;
+    }
+    else {   // (JGM) definitionFile is in plain text.
+        if (!definitionFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            return;
+        }
+
+        // (JGM) Discard header line if appropriate.
+        if (lexiconName != LEXICON_CUSTOM)
+            definitionFile.readLine();
+
         bool readNewline = true;
         char* buffer = new char[MAX_INPUT_LINE_LEN * 2 + 1];
         while (definitionFile.readLine(buffer, MAX_INPUT_LINE_LEN) > 0) {
@@ -532,6 +646,7 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
                     if (cancelled) {
                         transactionQuery.exec("END TRANSACTION");
                         delete buffer;
+                        definitionFile.close();
                         return;
                     }
                     emit progress(stepNum);
@@ -550,6 +665,7 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
                 if (cancelled) {
                     transactionQuery.exec("END TRANSACTION");
                     delete buffer;
+                    definitionFile.close();
                     return;
                 }
                 emit progress(stepNum);
@@ -559,6 +675,7 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
         delete buffer;
     }
 
+    definitionFile.close();
     transactionQuery.exec("END TRANSACTION");
 }
 

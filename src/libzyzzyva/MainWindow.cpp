@@ -1377,7 +1377,7 @@ MainWindow::rebuildDatabase(const QString& lexicon)
     }
     else {
         definitionFilename = Auxil::getWordsDir() +
-            Auxil::getLexiconPrefix(lexicon) + ".txt";
+            Auxil::getLexiconPrefix(lexicon) + (lexicon == LEXICON_CSW15 ? ".bin" : ".txt");
     }
 
     QFileInfo fileInfo (dbFilename);
@@ -2131,6 +2131,7 @@ MainWindow::importLexicon(const QString& lexicon)
         ok = ok && importDawg(lexicon, reverseImportFile, true, &lexiconError,
                               &expectedReverseChecksum);
     }
+    // (JGM) ??? importFile = a custom lexicon's autoimportFile - what is that?
     else
         ok = importText(lexicon, importFile);
 
@@ -2154,7 +2155,8 @@ MainWindow::importText(const QString& lexicon, const QString& file)
     int imported;
 
     QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-    if (QString::localeAwareCompare(lexicon, "CSW15") == 0)
+
+    if (file.section(".", -1, -1) == "bin")
         imported = wordEngine->importBinaryFile(lexicon, file, true);
     else
         imported = wordEngine->importTextFile(lexicon, file, true);

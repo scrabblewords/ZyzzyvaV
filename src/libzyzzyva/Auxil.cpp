@@ -1326,7 +1326,7 @@ QString
 Auxil::lexiconToOrigin(const QString& lexicon)
 {
     if (lexicon == LEXICON_CSW12)
-        return "<a href=\"http://corporate.harpercollins.co.uk/legal/terms-and-conditions\">British (WESPA © HarperCollins 2011, see T&Cs)</a>";
+        return "<a href=\"http://corporate.harpercollins.co.uk/legal/terms-and-conditions\">British (© HarperCollins 2011, see T&Cs)</a>";
     if (lexicon == LEXICON_CSW15)
         return "<a href=\"http://corporate.harpercollins.co.uk/legal/terms-and-conditions\">British (© HarperCollins 2015, see T&Cs)</a>";
     if (lexicon == LEXICON_VOLOST)
@@ -1366,12 +1366,12 @@ QString
 Auxil::lexiconToDetails(const QString& lexicon)
 {
     if (lexicon == LEXICON_CSW12) {
-        return "<a href=\"http://corporate.harpercollins.co.uk/legal/terms-and-conditions\">The WESPA © HarperCollins 2011 word list (CSW12) "
-            "is copyright of HarperCollins and used with permission.</a>";
+        return "<a href=\"http://corporate.harpercollins.co.uk/legal/terms-and-conditions\">The © HarperCollins 2012 word list (CSW12) "
+            "is copyright of HarperCollins 2011 and used with permission.</a>";
     }
     if (lexicon == LEXICON_CSW15) {
         return "<a href=\"http://corporate.harpercollins.co.uk/legal/terms-and-conditions\">The © HarperCollins 2015 word list (CSW15) "
-            "is copyright of HarperCollins and used with permission.</a>";
+            "is copyright of HarperCollins 2015 and used with permission.</a>";
     }
     return QString();
 }
