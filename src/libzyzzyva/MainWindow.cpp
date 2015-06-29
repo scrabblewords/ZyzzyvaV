@@ -2093,7 +2093,7 @@ MainWindow::importLexicon(const QString& lexicon)
             importFile =        prefix + ".dwg";
             reverseImportFile = prefix + "-R.dwg";
             checksumFile =      prefix + "-Checksums.txt";
-            playabilityFile =   prefix + "-Playability.txt";
+            playabilityFile =   prefix + (lexicon == LEXICON_CSW15 ? "-Playability.bin" : "-Playability.txt");
         }
     }
 
@@ -2156,7 +2156,7 @@ MainWindow::importText(const QString& lexicon, const QString& file)
 
     QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 
-    if (file.section(".", -1, -1) == "bin")
+    if (lexicon == LEXICON_CSW15)
         imported = wordEngine->importBinaryFile(lexicon, file, true);
     else
         imported = wordEngine->importTextFile(lexicon, file, true);
