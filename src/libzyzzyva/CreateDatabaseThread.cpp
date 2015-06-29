@@ -245,7 +245,7 @@ CreateDatabaseThread::insertWords(QSqlDatabase& db, int& stepNum)
 
     QMap<QString, qint64> playabilityMap;
     QString playabilityFile = Auxil::getWordsDir() +
-        Auxil::getLexiconPrefix(lexiconName) + "-Playability.txt";
+        Auxil::getLexiconPrefix(lexiconName) + (lexiconName == LEXICON_CSW15 ? "-Playability.bin" : "-Playability.txt");
     importPlayability(playabilityFile, playabilityMap);
 
     QSqlQuery transactionQuery ("BEGIN TRANSACTION", db);
