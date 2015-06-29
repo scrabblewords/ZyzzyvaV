@@ -47,6 +47,6 @@ macx {
 }
 
 #BUILD += nssc
-contains(BUILD, nssc) {
-    DEFINES += Z_NSSC
-}
+#contains(BUILD, nssc) {
+#    DEFINES += Z_NSSC
+#}

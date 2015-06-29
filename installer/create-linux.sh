@@ -25,8 +25,10 @@
 
 set -e
 
-QTVER=4.3.2
+#QTVER=4.3.2
+QTVER=5.4\mingw491_32
 INSTDIR=installer
+QTDIR=E:\Qt\$QTVER
 
 if [ "$QTDIR" = "" ]; then
     QTDIR=/usr/local/Trolltech/Qt-$QTVER

@@ -842,13 +842,13 @@ JudgeDialog::createTitleWidget()
     QHBoxLayout* titleHlay = new QHBoxLayout(widget);
     Q_CHECK_PTR(titleHlay);
 
-#if defined Z_NSSC
-	QString programName = "NSSC Word Judge";
-	QString pixmapName = ":/nssc-128x128";
-#else
+//#if defined Z_NSSC
+//	QString programName = "NSSC Word Judge";
+//	QString pixmapName = ":/nssc-128x128";
+//#else
     QString programName = "Zyzzyva V Word Judge";
 	QString pixmapName = ":/zyzzyva-128x128";
-#endif
+//#endif
 
     QLabel* programLabel = new QLabel(programName + "\n"
                                       "Version " + ZYZZYVA_VERSION);

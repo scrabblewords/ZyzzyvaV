@@ -24,8 +24,8 @@ rem -------------------------------------------------------------------------
 
 setlocal
 
-set QTVER=4.3.2
-set QTDIR=C:\Qt\%QTVER%
+set QTVER=5.4\mingw491_32
+set QTDIR=E:\Qt\%QTVER%
 set INSTDIR=installer
 set PLATFORM=windows
 set OUTDIR=%INSTDIR%\%PLATFORM%
@@ -43,11 +43,20 @@ copy %QTDIR%\bin\QtGui4.dll %OUTDIR%
 copy %QTDIR%\bin\QtNetwork4.dll %OUTDIR%
 copy %QTDIR%\bin\QtSql4.dll %OUTDIR%
 copy %QTDIR%\bin\QtXml4.dll %OUTDIR%
-copy %QTDIR%\bin\mingwm10.dll %OUTDIR%
+rem copy %QTDIR%\bin\mingwm10.dll %OUTDIR%
+rem copy %QTDIR%\bin\assistant.exe %OUTDIR%
+rem copy %QTDIR%\bin\QtAssistantClient4.dll %OUTDIR%
+rem copy %QTDIR%\bin\Qt5Core.dll %OUTDIR%
+rem copy %QTDIR%\bin\Qt5Gui.dll %OUTDIR%
+rem copy %QTDIR%\bin\Qt5Network.dll %OUTDIR%
+rem copy %QTDIR%\bin\Qt5Sql.dll %OUTDIR%
+remcopy %QTDIR%\bin\Qt5Xml.dll %OUTDIR%
+rem copy %QTDIR%\bin\mingwm10.dll %OUTDIR%
 
 rem Copy Qt plugins
 mkdir %OUTDIR%\sqldrivers
-copy %QTDIR%\plugins\sqldrivers\qsqlite4.dll %OUTDIR%\sqldrivers
+rem copy %QTDIR%\plugins\sqldrivers\qsqlite4.dll %OUTDIR%\sqldrivers
+copy E:\Qt\%QTDIR%\plugins\sqldrivers\qsqlit4.dll %OUTDIR%\sqldrivers
 
 rem Copy Zyzzyva images
 mkdir %OUTDIR%\images
