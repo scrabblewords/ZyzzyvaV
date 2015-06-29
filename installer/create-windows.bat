@@ -64,7 +64,7 @@ copy images\Zyzzyva.ico %OUTDIR%\images
 
 rem Copy Zyzzyva stuff
 copy bin\zyzzyva.exe %OUTDIR%
-copy bin\zyzzyva2.dll %OUTDIR%
+copy bin\zyzzyva5.dll %OUTDIR%
 copy zyzzyva.top %OUTDIR%
 copy AUTHORS %OUTDIR%\AUTHORS.txt
 copy CHANGES %OUTDIR%\CHANGES.txt
