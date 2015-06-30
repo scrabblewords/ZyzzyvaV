@@ -3,6 +3,7 @@
 //
 // A dialog for displaying variations of a word, such as hooks, anagrams, etc.
 //
+// Copyright 2015 Twilight Century Computing.
 // Copyright 2005-2012 Boshvark Software, LLC.
 //
 // This file is part of Zyzzyva.

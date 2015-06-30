@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QHelpCollectionProject version="1.0">
     <assistant>
-        <title>Zyzzyva Help</title>
-        <startPage>qthelp://spuriouscomputing.com/2.3.0/./index.html</startPage>
+        <title>Zyzzyva V Help</title>
+        <startPage>qthelp://twilightcenturycomputing.com/5.5.0/index.html</startPage>
         <aboutMenuText>
-            <text>About Zyzzyva</text>
+            <text>About Zyzzyva V</text>
         </aboutMenuText>
         <aboutDialog>
             <file>./about.html</file>
         </aboutDialog>
-        <cacheDirectory>.Zyzzyva</cacheDirectory>
+        <cacheDirectory>.ZyzzyvaV</cacheDirectory>
     </assistant>
     <docFiles>
         <generate>

@@ -4,6 +4,7 @@
 // A full-screen dialog for Word Judge functionality, in which the user can
 // very easily judge the validity of one or more words.
 //
+// Copyright 2015 Twilight Century Computing.
 // Copyright 2006-2012 Boshvark Software, LLC.
 //
 // This file is part of Zyzzyva.

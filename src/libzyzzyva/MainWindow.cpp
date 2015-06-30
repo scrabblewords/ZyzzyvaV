@@ -3,6 +3,7 @@
 //
 // The main window for the word study application.
 //
+// Copyright 2015 Twilight Century Computing.
 // Copyright 2004-2012 Boshvark Software, LLC.
 //
 // This file is part of Zyzzyva.
@@ -1023,7 +1024,7 @@ MainWindow::displayHelp()
     args << QLatin1String("-collectionFile")
         << (Auxil::getHelpDir() + QLatin1String("/zyzzyva.qhc"))
         << QLatin1String("-showUrl")
-        << QLatin1String("qthelp://spuriouscomputing.com/2.3.0/index.html")
+        << QLatin1String("qthelp://twilightcenturycomputing.com/5.0.0/index.html")
         << QLatin1String("-enableRemoteControl");
     process->start(QLatin1String("assistant"), args);
     if (!process->waitForStarted())

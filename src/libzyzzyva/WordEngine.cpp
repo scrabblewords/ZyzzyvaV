@@ -3,6 +3,7 @@
 //
 // A class to handle the loading and searching of words.
 //
+// Copyright 2015 Twilight Century Computing.
 // Copyright 2004-2012 Boshvark Software, LLC.
 //
 // This file is part of Zyzzyva.

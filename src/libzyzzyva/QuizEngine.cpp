@@ -4,6 +4,7 @@
 // The engine for generating quizzes and keeping track of the user's
 // performance on each quiz.
 //
+// Copyright 2015 Twilight Century Computing.
 // Copyright 2004-2012 Boshvark Software, LLC.
 //
 // This file is part of Zyzzyva.

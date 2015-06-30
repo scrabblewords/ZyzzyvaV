@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QtHelpProject version="1.0">
-    <namespace>spuriouscomputing.com</namespace>
-    <virtualFolder>2.3.0</virtualFolder>
+    <namespace>twilightcenturycomputing.com</namespace>
+    <virtualFolder>5.0.0</virtualFolder>
     <filterSection>
         <toc>
-            <section title="Zyzzyva Help" ref="index.html">
+            <section title="Zyzzyva V Help" ref="index.html">
                 <section title="Quick Start" ref="quickstart.html"/>
                 <section title="Searching for Words" ref="search.html">
                     <section title="Search Conditions" ref="search.html#search-conditions">

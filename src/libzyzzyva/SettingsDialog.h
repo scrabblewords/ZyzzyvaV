@@ -3,6 +3,7 @@
 //
 // The settings dialog for the word study application.
 //
+// Copyright 2015 Twilight Century Computing.
 // Copyright 2004-2012 Boshvark Software, LLC.
 //
 // This file is part of Zyzzyva.

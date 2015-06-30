@@ -3,6 +3,7 @@
 //
 // A form for specifying a search condition.
 //
+// Copyright 2015 Twilight Century Computing.
 // Copyright 2005-2012 Boshvark Software, LLC.
 //
 // This file is part of Zyzzyva.

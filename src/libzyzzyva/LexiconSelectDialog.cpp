@@ -3,6 +3,7 @@
 //
 // A dialog for selecting the lexicons to be loaded and used.
 //
+// Copyright 2015 Twilight Century Computing.
 // Copyright 2008-2012 Boshvark Software, LLC.
 //
 // This file is part of Zyzzyva.
@@ -33,7 +34,7 @@
 
 const QString DIALOG_CAPTION = "Select Lexicons";
 const QString INSTRUCTION_TEXT = "Select the lexicons to be loaded each time "
-    "the program is started, and the default lexicon to be used.";
+    "the programme is started, and the default lexicon to be used.";
 
 using namespace Defs;
 

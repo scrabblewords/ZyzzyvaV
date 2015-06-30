@@ -3,6 +3,7 @@
 //
 // A class derived from QVGroupBox, used to display word definitions.
 //
+// Copyright 2015 Twilight Century Computing.
 // Copyright 2004-2012 Boshvark Software, LLC.
 //
 // This file is part of Zyzzyva.
