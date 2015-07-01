@@ -24,6 +24,8 @@ rem -------------------------------------------------------------------------
 
 setlocal
 
+cd ..
+
 set QTVER=5.4\mingw491_32
 set QTDIR=E:\Qt\%QTVER%
 set INSTDIR=installer
@@ -36,27 +38,63 @@ CALL mingw32-make
 mkdir %OUTDIR%
 
 rem Copy Qt libraries
-copy %QTDIR%\bin\assistant.exe %OUTDIR%
-copy %QTDIR%\bin\QtAssistantClient4.dll %OUTDIR%
-copy %QTDIR%\bin\QtCore4.dll %OUTDIR%
-copy %QTDIR%\bin\QtGui4.dll %OUTDIR%
-copy %QTDIR%\bin\QtNetwork4.dll %OUTDIR%
-copy %QTDIR%\bin\QtSql4.dll %OUTDIR%
-copy %QTDIR%\bin\QtXml4.dll %OUTDIR%
-rem copy %QTDIR%\bin\mingwm10.dll %OUTDIR%
 rem copy %QTDIR%\bin\assistant.exe %OUTDIR%
 rem copy %QTDIR%\bin\QtAssistantClient4.dll %OUTDIR%
-rem copy %QTDIR%\bin\Qt5Core.dll %OUTDIR%
-rem copy %QTDIR%\bin\Qt5Gui.dll %OUTDIR%
-rem copy %QTDIR%\bin\Qt5Network.dll %OUTDIR%
-rem copy %QTDIR%\bin\Qt5Sql.dll %OUTDIR%
-remcopy %QTDIR%\bin\Qt5Xml.dll %OUTDIR%
+rem copy %QTDIR%\bin\QtCore4.dll %OUTDIR%
+rem copy %QTDIR%\bin\QtGui4.dll %OUTDIR%
+rem copy %QTDIR%\bin\QtNetwork4.dll %OUTDIR%
+rem copy %QTDIR%\bin\QtSql4.dll %OUTDIR%
+rem copy %QTDIR%\bin\QtXml4.dll %OUTDIR%
 rem copy %QTDIR%\bin\mingwm10.dll %OUTDIR%
+copy %QTDIR%\bin\assistant.exe %OUTDIR%
+rem copy %QTDIR%\bin\QtAssistantClient5.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5Core.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5Gui.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5Network.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5Sql.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5Xml.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5Widgets.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5PrintSupport.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5Help.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5WebKit.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5WebKitWidgets.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5CLucene.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5Qml.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5Quick.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5QuickWidgets.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5Positioning.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5Multimedia.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5MultimediaQuick_p.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5MultimediaWidgets.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5Sensors.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5WebChannel.dll %OUTDIR%
+rem Following Qt5 .dlls added preemptively.  They may not be necessary. (JGM).
+copy %QTDIR%\bin\Qt5Concurrent.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5DBus.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5Declarative.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5Designer.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5DesignerComponents.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5Location.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5OpenGL.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5Script.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5ScriptTools.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5WinExtras.dll %OUTDIR%
+copy %QTDIR%\bin\Qt5XmlPatterns.dll %OUTDIR%
+rem copy %QTDIR%\bin\mingwm10.dll %OUTDIR%
+copy %QTDIR%\bin\libgcc_s_dw2-1.dll %OUTDIR%
+copy %QTDIR%\bin\libstdc++-6.dll %OUTDIR%
+copy %QTDIR%\bin\libwinpthread-1.dll %OUTDIR%
+copy %QTDIR%\bin\icuuc53.dll %OUTDIR%
+copy %QTDIR%\bin\icuin53.dll %OUTDIR%
+copy %QTDIR%\bin\icudt53.dll %OUTDIR%
+
+mkdir %OUTDIR%\platforms
+copy %QTDIR%\plugins\platforms\qwindows.dll %OUTDIR%\platforms
 
 rem Copy Qt plugins
 mkdir %OUTDIR%\sqldrivers
 rem copy %QTDIR%\plugins\sqldrivers\qsqlite4.dll %OUTDIR%\sqldrivers
-copy E:\Qt\%QTDIR%\plugins\sqldrivers\qsqlit4.dll %OUTDIR%\sqldrivers
+copy %QTDIR%\plugins\sqldrivers\qsqlite.dll %OUTDIR%\sqldrivers
 
 rem Copy Zyzzyva images
 mkdir %OUTDIR%\images

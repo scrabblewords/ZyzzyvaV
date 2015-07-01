@@ -542,11 +542,11 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
 
         SimpleCrypt crypto(Q_UINT64_C(0x56414a415a7a4c45));
         QByteArray *plaintextBlob = new QByteArray(crypto.decryptToByteArray(*fileBlob));
-        delete fileBlob;
+        delete fileBlob; fileBlob = 0;
 
         char *plaintext = new char[plaintextBlob->size() + 1];
         strcpy(plaintext, plaintextBlob->constData());
-        delete plaintextBlob;
+        delete plaintextBlob; plaintextBlob = 0;
 
         char *buffer;
         int lineLength;
@@ -576,7 +576,7 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
             bool skip = !readNewline;
             readNewline = line.endsWith("\n");
             if (skip) {
-                delete[] buffer;
+                delete[] buffer; buffer = 0;
                 continue;
             }
 
@@ -585,15 +585,15 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
                 if ((stepNum % PROGRESS_STEP) == 0) {
                     if (cancelled) {
                         transactionQuery.exec("END TRANSACTION");
-                        delete[] buffer;
-                        delete[] plaintext;
+                        delete[] buffer; buffer = 0;
+                        delete[] plaintext; plaintext = 0;
                         definitionFile.close();
                         return;
                     }
                     emit progress(stepNum);
                 }
                 ++stepNum;
-                delete[] buffer;
+                delete[] buffer; buffer = 0;
                 continue;
             }
             QString word = line.section(' ', 0, 0).toUpper();
@@ -606,17 +606,17 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
             if ((stepNum % PROGRESS_STEP) == 0) {
                 if (cancelled) {
                     transactionQuery.exec("END TRANSACTION");
-                    delete[] buffer;
-                    delete[] plaintext;
+                    delete[] buffer; buffer = 0;
+                    delete[] plaintext; plaintext = 0;
                     definitionFile.close();
                     return;
                 }
                 emit progress(stepNum);
             }
             ++stepNum;
-            delete[] buffer;
+            delete[] buffer; buffer = 0;
         }
-        delete[] plaintext;
+        delete[] plaintext; plaintext = 0;
     }
     else {   // (JGM) definitionFile is in plain text.
         if (!definitionFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -671,7 +671,7 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
             }
             ++stepNum;
         }
-        delete[] buffer;
+        delete[] buffer; buffer = 0;
         definitionFile.close();
     }
     transactionQuery.exec("END TRANSACTION");
@@ -955,11 +955,11 @@ CreateDatabaseThread::importPlayability(const QString& filename,
 
       SimpleCrypt crypto(Q_UINT64_C(0x56414a415a7a4c45));
       QByteArray *plaintextBlob = new QByteArray(crypto.decryptToByteArray(*fileBlob));
-      delete fileBlob;
+      delete fileBlob; fileBlob = 0;
 
       char *plaintext = new char[plaintextBlob->size() + 1];
       strcpy(plaintext, plaintextBlob->constData());
-      delete plaintextBlob;
+      delete plaintextBlob; plaintextBlob = 0;
 
       int imported = 0;
       char *buffer;
@@ -990,32 +990,32 @@ CreateDatabaseThread::importPlayability(const QString& filename,
           bool skip = !readNewline;
           readNewline = line.endsWith("\n");
           if (skip) {
-              delete[] buffer;
+              delete[] buffer; buffer = 0;
               continue;
           }
           line = line.simplified();
           if (line.isEmpty() || (line.at(0) == '#')) {
-              delete[] buffer;
+              delete[] buffer; buffer = 0;
               continue;
           }
           bool ok = false;
           qint64 playability = line.section(' ', 0, 0).toLongLong(&ok);
           if (!ok) {
-              delete[] buffer;
+              delete[] buffer; buffer = 0;
               continue;
           }
           QString word = line.section(' ', 1, 1);
           if (word.isEmpty()) {
-              delete[] buffer;
+              delete[] buffer; buffer = 0;
               continue;
           }
 
           playabilityMap[word] = playability;
           ++imported;
 
-          delete[] buffer;
+          delete[] buffer; buffer = 0;
       }
-      delete[] plaintext;
+      delete[] plaintext; plaintext = 0;
       return imported;
     }
     else {   // (JGM) Playability file is in plain text.
@@ -1053,7 +1053,7 @@ CreateDatabaseThread::importPlayability(const QString& filename,
             playabilityMap[word] = playability;
             ++imported;
         }
-        delete[] buffer;
+        delete[] buffer; buffer = 0;
         file.close();
         return imported;
     }

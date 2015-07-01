@@ -260,7 +260,7 @@ WordEngine::importBinaryFile(const QString& lexicon, const QString& filename,
 
     SimpleCrypt crypto(Q_UINT64_C(0x56414a415a7a4c45));
     QByteArray *plaintextBlob = new QByteArray(crypto.decryptToByteArray(*fileBlob));
-    delete fileBlob;
+    delete fileBlob; fileBlob = 0;
 //    if (!crypto.lastError() == SimpleCrypt::ErrorNoError) {
 //      // check why we have an error, use the error code from crypto.lastError() for that.
 //      delete plaintextData;
@@ -270,7 +270,7 @@ WordEngine::importBinaryFile(const QString& lexicon, const QString& filename,
     int imported = 0;
     char *plaintext = new char[plaintextBlob->size() + 1];
     strcpy(plaintext, plaintextBlob->constData());
-    delete plaintextBlob;
+    delete plaintextBlob; plaintextBlob = 0;
 
     char *nextNewline;
     char *buffer;
@@ -300,13 +300,13 @@ WordEngine::importBinaryFile(const QString& lexicon, const QString& filename,
         bool skip = !readNewline;
         readNewline = line.endsWith("\n");
         if (skip) {
-            delete[] buffer;
+            delete[] buffer; buffer = 0;
             continue;
         }
 
         line = line.simplified();
         if (!line.length() || (line.at(0) == '#')) {
-            delete[] buffer;
+            delete[] buffer; buffer = 0;
             continue;
         }
         QString word = line.section(' ', 0, 0).toUpper();
@@ -322,10 +322,10 @@ WordEngine::importBinaryFile(const QString& lexicon, const QString& filename,
             addDefinition(lexicon, word, definition);
         }
         ++imported;
-        delete[] buffer;
+        delete[] buffer; buffer = 0;
     }
 
-    delete[] plaintext;
+    delete[] plaintext; plaintext = 0;
     return imported;
 }
 
