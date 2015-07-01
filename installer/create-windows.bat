@@ -82,7 +82,10 @@ copy %QTDIR%\bin\Qt5WinExtras.dll %OUTDIR%
 copy %QTDIR%\bin\Qt5XmlPatterns.dll %OUTDIR%
 rem copy %QTDIR%\bin\mingwm10.dll %OUTDIR%
 copy %QTDIR%\bin\libgcc_s_dw2-1.dll %OUTDIR%
+
+rem ** FIX THIS **  File not being copied for some reason.
 copy %QTDIR%\bin\libstdc++-6.dll %OUTDIR%
+
 copy %QTDIR%\bin\libwinpthread-1.dll %OUTDIR%
 copy %QTDIR%\bin\icuuc53.dll %OUTDIR%
 copy %QTDIR%\bin\icuin53.dll %OUTDIR%

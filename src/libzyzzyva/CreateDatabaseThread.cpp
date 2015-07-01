@@ -548,7 +548,7 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
         strcpy(plaintext, plaintextBlob->constData());
         delete plaintextBlob; plaintextBlob = 0;
 
-        char *buffer;
+        char buffer[MAX_INPUT_LINE_LEN * 2 + 1];
         int lineLength;
         char *nextNewline;
         bool readNewline = true;
@@ -558,13 +558,13 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
 
             lineLength = nextNewline - plaintext + 1;
             if (lineLength <= MAX_INPUT_LINE_LEN - 1) {
-                buffer = new char[lineLength + 1];
+                //buffer = new char[lineLength + 1];
                 memcpy(buffer, plaintext, (lineLength) * sizeof(char));
                 buffer[lineLength] = '\0';
                 plaintext = nextNewline + 1;
             }
             else {
-                buffer = new char[MAX_INPUT_LINE_LEN];
+                //buffer = new char[MAX_INPUT_LINE_LEN];
                 memcpy(buffer, plaintext, (MAX_INPUT_LINE_LEN - 1) * sizeof(char));
                 buffer[MAX_INPUT_LINE_LEN - 1] = '\0';
                 plaintext += (MAX_INPUT_LINE_LEN - 1);
@@ -576,7 +576,6 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
             bool skip = !readNewline;
             readNewline = line.endsWith("\n");
             if (skip) {
-                delete[] buffer; buffer = 0;
                 continue;
             }
 
@@ -585,7 +584,6 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
                 if ((stepNum % PROGRESS_STEP) == 0) {
                     if (cancelled) {
                         transactionQuery.exec("END TRANSACTION");
-                        delete[] buffer; buffer = 0;
                         delete[] plaintext; plaintext = 0;
                         definitionFile.close();
                         return;
@@ -593,7 +591,6 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
                     emit progress(stepNum);
                 }
                 ++stepNum;
-                delete[] buffer; buffer = 0;
                 continue;
             }
             QString word = line.section(' ', 0, 0).toUpper();
@@ -606,7 +603,6 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
             if ((stepNum % PROGRESS_STEP) == 0) {
                 if (cancelled) {
                     transactionQuery.exec("END TRANSACTION");
-                    delete[] buffer; buffer = 0;
                     delete[] plaintext; plaintext = 0;
                     definitionFile.close();
                     return;
@@ -614,7 +610,6 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
                 emit progress(stepNum);
             }
             ++stepNum;
-            delete[] buffer; buffer = 0;
         }
         delete[] plaintext; plaintext = 0;
     }
@@ -628,7 +623,7 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
             definitionFile.readLine();
 
         bool readNewline = true;
-        char* buffer = new char[MAX_INPUT_LINE_LEN * 2 + 1];
+        char buffer[MAX_INPUT_LINE_LEN * 2 + 1];
         while (definitionFile.readLine(buffer, MAX_INPUT_LINE_LEN) > 0) {
             QString line (buffer);
 
@@ -644,7 +639,6 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
                 if ((stepNum % PROGRESS_STEP) == 0) {
                     if (cancelled) {
                         transactionQuery.exec("END TRANSACTION");
-                        delete[] buffer;
                         definitionFile.close();
                         return;
                     }
@@ -663,7 +657,6 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
             if ((stepNum % PROGRESS_STEP) == 0) {
                 if (cancelled) {
                     transactionQuery.exec("END TRANSACTION");
-                    delete[] buffer;
                     definitionFile.close();
                     return;
                 }
@@ -671,7 +664,6 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
             }
             ++stepNum;
         }
-        delete[] buffer; buffer = 0;
         definitionFile.close();
     }
     transactionQuery.exec("END TRANSACTION");
@@ -962,7 +954,7 @@ CreateDatabaseThread::importPlayability(const QString& filename,
       delete plaintextBlob; plaintextBlob = 0;
 
       int imported = 0;
-      char *buffer;
+      char buffer[MAX_INPUT_LINE_LEN * 2 + 1];
       int lineLength;
       char *nextNewline;
       bool readNewline = true;
@@ -972,13 +964,13 @@ CreateDatabaseThread::importPlayability(const QString& filename,
 
           lineLength = nextNewline - plaintext + 1;
           if (lineLength <= MAX_INPUT_LINE_LEN - 1) {
-              buffer = new char[lineLength + 1];
+              //buffer = new char[lineLength + 1];
               memcpy(buffer, plaintext, (lineLength) * sizeof(char));
               buffer[lineLength] = '\0';
               plaintext = nextNewline + 1;
           }
           else {
-              buffer = new char[MAX_INPUT_LINE_LEN];
+              //buffer = new char[MAX_INPUT_LINE_LEN];
               memcpy(buffer, plaintext, (MAX_INPUT_LINE_LEN - 1) * sizeof(char));
               buffer[MAX_INPUT_LINE_LEN - 1] = '\0';
               plaintext += (MAX_INPUT_LINE_LEN - 1);
@@ -990,30 +982,25 @@ CreateDatabaseThread::importPlayability(const QString& filename,
           bool skip = !readNewline;
           readNewline = line.endsWith("\n");
           if (skip) {
-              delete[] buffer; buffer = 0;
               continue;
           }
           line = line.simplified();
           if (line.isEmpty() || (line.at(0) == '#')) {
-              delete[] buffer; buffer = 0;
               continue;
           }
           bool ok = false;
           qint64 playability = line.section(' ', 0, 0).toLongLong(&ok);
           if (!ok) {
-              delete[] buffer; buffer = 0;
               continue;
           }
           QString word = line.section(' ', 1, 1);
           if (word.isEmpty()) {
-              delete[] buffer; buffer = 0;
               continue;
           }
 
           playabilityMap[word] = playability;
           ++imported;
 
-          delete[] buffer; buffer = 0;
       }
       delete[] plaintext; plaintext = 0;
       return imported;
@@ -1028,7 +1015,7 @@ CreateDatabaseThread::importPlayability(const QString& filename,
 
         int imported = 0;
         bool readNewline = true;
-        char* buffer = new char[MAX_INPUT_LINE_LEN * 2 + 1];
+        char buffer[MAX_INPUT_LINE_LEN * 2 + 1];
         while (file.readLine(buffer, MAX_INPUT_LINE_LEN) > 0) {
             QString line (buffer);
 
@@ -1053,7 +1040,6 @@ CreateDatabaseThread::importPlayability(const QString& filename,
             playabilityMap[word] = playability;
             ++imported;
         }
-        delete[] buffer; buffer = 0;
         file.close();
         return imported;
     }

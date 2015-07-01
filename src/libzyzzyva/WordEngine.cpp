@@ -273,7 +273,7 @@ WordEngine::importBinaryFile(const QString& lexicon, const QString& filename,
     delete plaintextBlob; plaintextBlob = 0;
 
     char *nextNewline;
-    char *buffer;
+    char buffer[MAX_INPUT_LINE_LEN * 2 + 1];
     int lineLength;
     bool readNewline = true;
     while (1) {
@@ -282,13 +282,13 @@ WordEngine::importBinaryFile(const QString& lexicon, const QString& filename,
 
         lineLength = nextNewline - plaintext + 1;
         if (lineLength <= MAX_INPUT_LINE_LEN - 1) {
-            buffer = new char[lineLength + 1];
+            //buffer = new char[lineLength + 1];
             memcpy(buffer, plaintext, (lineLength) * sizeof(char));
             buffer[lineLength] = '\0';
             plaintext = nextNewline + 1;
         }
         else {
-            buffer = new char[MAX_INPUT_LINE_LEN];
+            //buffer = new char[MAX_INPUT_LINE_LEN];
             memcpy(buffer, plaintext, (MAX_INPUT_LINE_LEN - 1) * sizeof(char));
             buffer[MAX_INPUT_LINE_LEN - 1] = '\0';
             plaintext += (MAX_INPUT_LINE_LEN - 1);
@@ -300,13 +300,11 @@ WordEngine::importBinaryFile(const QString& lexicon, const QString& filename,
         bool skip = !readNewline;
         readNewline = line.endsWith("\n");
         if (skip) {
-            delete[] buffer; buffer = 0;
             continue;
         }
 
         line = line.simplified();
         if (!line.length() || (line.at(0) == '#')) {
-            delete[] buffer; buffer = 0;
             continue;
         }
         QString word = line.section(' ', 0, 0).toUpper();
@@ -322,7 +320,6 @@ WordEngine::importBinaryFile(const QString& lexicon, const QString& filename,
             addDefinition(lexicon, word, definition);
         }
         ++imported;
-        delete[] buffer; buffer = 0;
     }
 
     delete[] plaintext; plaintext = 0;
