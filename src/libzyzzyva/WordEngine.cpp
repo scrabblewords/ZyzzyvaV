@@ -322,7 +322,7 @@ WordEngine::importBinaryFile(const QString& lexicon, const QString& filename,
         ++imported;
     }
 
-    delete[] plaintext; plaintext = 0;
+    //delete[] plaintext; plaintext = 0;            // (JGM) FIX THIS KLUDGE!  Not releasing allocated memory.
     return imported;
 }
 

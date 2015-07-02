@@ -584,7 +584,7 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
                 if ((stepNum % PROGRESS_STEP) == 0) {
                     if (cancelled) {
                         transactionQuery.exec("END TRANSACTION");
-                        delete[] plaintext; plaintext = 0;
+                        //delete[] plaintext; plaintext = 0;           // (JGM) FIX THIS KLUDGE!  Not releasing allocated memory.
                         definitionFile.close();
                         return;
                     }
@@ -603,7 +603,7 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
             if ((stepNum % PROGRESS_STEP) == 0) {
                 if (cancelled) {
                     transactionQuery.exec("END TRANSACTION");
-                    delete[] plaintext; plaintext = 0;
+                    //delete[] plaintext; plaintext = 0;            // (JGM) FIX THIS KLUDGE!  Not releasing allocated memory.
                     definitionFile.close();
                     return;
                 }
@@ -611,7 +611,7 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
             }
             ++stepNum;
         }
-        delete[] plaintext; plaintext = 0;
+        //delete[] plaintext; plaintext = 0;           // (JGM) FIX THIS KLUDGE!  Not releasing allocated memory.
     }
     else {   // (JGM) definitionFile is in plain text.
         if (!definitionFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -950,6 +950,7 @@ CreateDatabaseThread::importPlayability(const QString& filename,
       delete fileBlob; fileBlob = 0;
 
       char *plaintext = new char[plaintextBlob->size() + 1];
+      //char plaintext[plaintextBlob->size() + 1];   // (JGM) Started attempt to fix plaintext memory release error!
       strcpy(plaintext, plaintextBlob->constData());
       delete plaintextBlob; plaintextBlob = 0;
 
@@ -1002,7 +1003,7 @@ CreateDatabaseThread::importPlayability(const QString& filename,
           ++imported;
 
       }
-      delete[] plaintext; plaintext = 0;
+      //delete[] plaintext; plaintext = 0;          // (JGM) FIX THIS KLUDGE!  Not releasing allocated memory.
       return imported;
     }
     else {   // (JGM) Playability file is in plain text.
