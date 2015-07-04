@@ -52,6 +52,7 @@ int main(int argc, char** argv)
     window->tryConnectToDatabases();
 
     window->show();
+    window->setWindowState(Qt::WindowMaximized);
     splash->finish(window);
     delete splash;
 
