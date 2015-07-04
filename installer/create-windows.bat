@@ -3,7 +3,7 @@ rem create-windows.sh
 rem
 rem Create a Windows directory for the installer to use.
 rem
-rem Copyright 2006-2012 Boshvark Software, LLC.
+rem Copyright 2006-2012 North American SCRABBLE Players Association.
 rem
 rem This file is part of Zyzzyva.
 rem
@@ -68,7 +68,8 @@ copy %QTDIR%\bin\Qt5MultimediaQuick_p.dll %OUTDIR%
 copy %QTDIR%\bin\Qt5MultimediaWidgets.dll %OUTDIR%
 copy %QTDIR%\bin\Qt5Sensors.dll %OUTDIR%
 copy %QTDIR%\bin\Qt5WebChannel.dll %OUTDIR%
-rem Following Qt5 .dlls added preemptively.  They may not be necessary. (JGM).
+
+rem ** Following Qt5 .dlls added preemptively.  They may not be necessary. (JGM)
 copy %QTDIR%\bin\Qt5Concurrent.dll %OUTDIR%
 copy %QTDIR%\bin\Qt5DBus.dll %OUTDIR%
 copy %QTDIR%\bin\Qt5Declarative.dll %OUTDIR%
@@ -83,7 +84,7 @@ copy %QTDIR%\bin\Qt5XmlPatterns.dll %OUTDIR%
 rem copy %QTDIR%\bin\mingwm10.dll %OUTDIR%
 copy %QTDIR%\bin\libgcc_s_dw2-1.dll %OUTDIR%
 
-rem ** FIX THIS **  File not being copied for some reason.
+rem ** FIX THIS **  File not being copied for some reason. (JGM)
 copy %QTDIR%\bin\libstdc++-6.dll %OUTDIR%
 
 copy %QTDIR%\bin\libwinpthread-1.dll %OUTDIR%
@@ -113,6 +114,7 @@ copy COPYING %OUTDIR%\COPYING.txt
 copy LICENSE %OUTDIR%\LICENSE.txt
 copy README %OUTDIR%\README.txt
 
+rem (JGM) NOT WORKING if data dir already exists.  Must do manually.
 rem Copy Zyzzyva data directory
 xcopy /I /E /H data %OUTDIR%\data
 

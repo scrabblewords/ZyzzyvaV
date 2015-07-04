@@ -4,7 +4,7 @@
 // The main settings for the word study application.
 //
 // Copyright 2015 Twilight Century Computing.
-// Copyright 2005-2012 Boshvark Software, LLC.
+// Copyright 2005-2012 North American SCRABBLE Players Association.
 //
 // This file is part of Zyzzyva.
 //
@@ -43,7 +43,7 @@ const QString MainSettings::JUDGE_PREFS_GROUP = "Word Judge";
 const QString MainSettings::FONT_PREFS_GROUP = "Fonts";
 const QString MainSettings::WORD_LIST_PREFS_GROUP = "Word Tables";
 
-const QString SETTINGS_MAIN = "Zyzzyva V";
+const QString SETTINGS_MAIN = "Collins Zyzzyva";
 const QString SETTINGS_PROGRAM_VERSION = "program_version";
 const QString SETTINGS_MAIN_WINDOW_POS = "main_window_pos";
 const QString SETTINGS_MAIN_WINDOW_SIZE = "main_window_size";
@@ -105,7 +105,7 @@ const QString SETTINGS_JUDGE_SAVE_LOG = "judge_save_log";
 const bool    DEFAULT_AUTO_IMPORT = true;
 const QString DEFAULT_DEFAULT_LEXICON = Defs::LEXICON_CSW15;
 const bool    DEFAULT_DISPLAY_WELCOME = true;
-const QString DEFAULT_USER_DATA_DIR = Auxil::getHomeDir() + "/.zyzzyvav";
+const QString DEFAULT_USER_DATA_DIR = Auxil::getHomeDir() + "/.collinszyzzyva";
 const bool    DEFAULT_USE_TILE_THEME = true;
 const QString DEFAULT_TILE_THEME = "tan-with-border";
 const bool    DEFAULT_SEARCH_SELECT_INPUT = true;

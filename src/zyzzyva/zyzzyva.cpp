@@ -4,7 +4,7 @@
 // The main Zyzzyva program.
 //
 // Copyright 2015 Twilight Century Computing.
-// Copyright 2004-2012 Boshvark Software, LLC.
+// Copyright 2004-2012 North American SCRABBLE Players Association.
 //
 // This file is part of Zyzzyva.
 //
@@ -29,10 +29,11 @@
 #include <QObject>
 #include <QPixmap>
 #include <QSplashScreen>
+#include <QDebug>
 
 const QString SETTINGS_ORGANIZATION_NAME = "Twilight Century Computing";
 const QString SETTINGS_DOMAIN_NAME = "twilightcenturycomputing.com";
-const QString SETTINGS_APPLICATION_NAME = "Zyzzyva V";
+const QString SETTINGS_APPLICATION_NAME = "Collins Zyzzyva";
 
 int main(int argc, char** argv)
 {

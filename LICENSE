@@ -10,7 +10,7 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-Zyzzyva V is free software; you can redistribute it and/or modify
+Collins Zyzzyva is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
 (at your option) any later version.
@@ -21,11 +21,11 @@ Computing give permission to link the code of this program with the Qt Library
 without including the source code for the Qt library in the source
 distribution.
 
-The main Zyzzyva V icon (blue Z tile) was created by Jeremy Hildebrand and is
+The main Collins Zyzzyva icon (blue Z tile) was created by Jeremy Hildebrand and is
 used with permission.
 
 The Quiz, Search, Definition, Word Judge, Cardbox, Preferences, Help, and
-Close Tab images displayed by Zyzzyva V belong to the Tango Desktop Project
+Close Tab images displayed by Collins Zyzzyva belong to the Tango Desktop Project
 (tango.freedesktop.org), and have been released to the Public Domain.
 
 The lists of 6-letter and 7-letter bingo stems are calculated using an algorithm
@@ -35,7 +35,7 @@ CSW15 playability rankings provided courtesy of John O'Laughlin.
 
 The SimpleCrypt encryption code was created by Andre Somers.
 
-Zyzzyva V is distributed in the hope that it will be useful,
+Collins Zyzzyva is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.

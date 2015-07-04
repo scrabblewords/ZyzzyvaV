@@ -4,7 +4,7 @@
 // The main window for the word study application.
 //
 // Copyright 2015 Twilight Century Computing.
-// Copyright 2004-2012 Boshvark Software, LLC.
+// Copyright 2004-2012 North American SCRABBLE Players Association.
 //
 // This file is part of Zyzzyva.
 //
@@ -68,12 +68,12 @@
 
 MainWindow* MainWindow::instance = 0;
 
-const QString APPLICATION_TITLE = "Zyzzyva V";
+const QString APPLICATION_TITLE = "Collins Zyzzyva";
 
 const QString IMPORT_FAILURE_TITLE = "Load Failed";
 const QString IMPORT_COMPLETE_TITLE = "Load Complete";
 
-const QString SETTINGS_MAIN = "/Zyzzyva V";
+const QString SETTINGS_MAIN = "/Collins Zyzzyva";
 const QString SETTINGS_GEOMETRY = "/geometry";
 const QString SETTINGS_GEOMETRY_X = "/x";
 const QString SETTINGS_GEOMETRY_Y = "/y";

@@ -5,7 +5,7 @@
 // very easily judge the validity of one or more words.
 //
 // Copyright 2015 Twilight Century Computing.
-// Copyright 2006-2012 Boshvark Software, LLC.
+// Copyright 2006-2012 North American SCRABBLE Players Association.
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -847,7 +847,7 @@ JudgeDialog::createTitleWidget()
 //	QString programName = "NSSC Word Judge";
 //	QString pixmapName = ":/nssc-128x128";
 //#else
-    QString programName = "Zyzzyva V Word Judge";
+    QString programName = "Collins Zyzzyva Word Judge";
 	QString pixmapName = ":/zyzzyva-128x128";
 //#endif
 

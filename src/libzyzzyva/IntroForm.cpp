@@ -4,7 +4,7 @@
 // A form for displaying introductory help material.
 //
 // Copyright 2015 Twilight Century Computing.
-// Copyright 2006-2012 Boshvark Software, LLC.
+// Copyright 2006-2012 North American SCRABBLE Players Association.
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -23,8 +23,9 @@
 
 #include "IntroForm.h"
 #include "Auxil.h"
-#include <QTextBrowser>
+//#include <QTextBrowser>
 #include <QVBoxLayout>
+#include <QWebView>
 
 const QString TITLE_PREFIX = "Welcome";
 
@@ -39,15 +40,22 @@ const QString TITLE_PREFIX = "Welcome";
 IntroForm::IntroForm(QWidget* parent, Qt::WindowFlags f)
     : ActionForm(IntroFormType, parent, f)
 {
-    QVBoxLayout* mainVlay = new QVBoxLayout(this);
-    Q_CHECK_PTR(mainVlay);
+    QHBoxLayout* mainHlay = new QHBoxLayout(this);
+    Q_CHECK_PTR(mainHlay);
 
-    QTextBrowser* browser = new QTextBrowser(this);
-    Q_CHECK_PTR(browser);
-    mainVlay->addWidget(browser);
-
+    QWebView *view = new QWebView(this);
+    Q_CHECK_PTR(view);
     QString mainPage = Auxil::getHelpDir() + "/index.html";
-    browser->setSource(QUrl::fromLocalFile(mainPage));
+    view->load(QUrl::fromLocalFile(mainPage));
+    mainHlay->addWidget(view);
+
+//    QTextBrowser* browser = new QTextBrowser(this);
+//    Q_CHECK_PTR(browser);
+//    mainVlay->addWidget(browser);
+
+//    QString mainPage = Auxil::getHelpDir() + "/index.html";
+//    browser->setSource(QUrl::fromLocalFile(mainPage));
+//    //QDesktopServices::openUrl(QUrl::fromLocalFile(mainPage));
 }
 
 //---------------------------------------------------------------------------

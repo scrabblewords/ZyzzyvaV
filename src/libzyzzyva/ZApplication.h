@@ -4,7 +4,7 @@
 // A class derived from QApplication.
 //
 // Copyright 2015 Twilight Century Computing.
-// Copyright 2006-2012 Boshvark Software, LLC.
+// Copyright 2006-2012 North American SCRABBLE Players Association.
 //
 // This file is part of Zyzzyva.
 //

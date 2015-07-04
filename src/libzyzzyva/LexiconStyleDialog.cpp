@@ -5,7 +5,7 @@
 // a particular combination of lexicons.
 //
 // Copyright 2015 Twilight Century Computing.
-// Copyright 2008-2012 Boshvark Software, LLC.
+// Copyright 2008-2012 North American SCRABBLE Players Association.
 //
 // This file is part of Zyzzyva.
 //

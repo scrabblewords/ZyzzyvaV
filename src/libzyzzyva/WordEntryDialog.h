@@ -4,7 +4,7 @@
 // A dialog for getting a word from the user.
 //
 // Copyright 2015 Twilight Century Computing.
-// Copyright 2005-2012 Boshvark Software, LLC.
+// Copyright 2005-2012 North American SCRABBLE Players Association.
 //
 // This file is part of Zyzzyva.
 //

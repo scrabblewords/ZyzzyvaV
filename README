@@ -1,16 +1,16 @@
-Zyzzyva V is free software, released under the GNU General Public License.
-Please see COPYING and LICENSE for details.  Zyzzyva V is written by Michael W
-Thelen <mthelen@gmail.com> and Jim Miller <jg.millirem@gmail.com>.
+Collins Zyzzyva is free software, released under the GNU General Public License.
+Please see COPYING and LICENSE for details.  Collins Zyzzyva is written by
+Michael W Thelen <mthelen@gmail.com> and Jim Miller <jg.millirem@gmail.com>.
 
-The latest version of Zyzzyva V can always be found at
+The latest version of Collins Zyzzyva can always be found at
 http://www.collinsdictionary.com/word-games/scrabble-tools
-and the source code for Zyzzyva V is found at https://goo.gl/8queyr
+and the source code for Collins Zyzzyva is found at https://goo.gl/8queyr
 
-If you are building Zyzzyva from source code, you will need the Qt5 library,
+If you are building Collins Zyzzyva from source code, you will need the Qt5 library,
 available from https://www.qt.io/download-open-source
 
 After Qt5 is installed, the following steps should be sufficient to
-build Zyzzyva:
+build Collins Zyzzyva:
 
     qmake
     make

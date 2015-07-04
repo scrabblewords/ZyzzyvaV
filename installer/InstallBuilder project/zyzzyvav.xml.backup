@@ -1,9 +1,10 @@
 <project>
-    <shortName>zyzzyvav</shortName>
+    <shortName>CollinsZyzzyva</shortName>
     <fullName>Zyzzyva</fullName>
     <version>5.0.0</version>
-    <readmeFile>F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\README</readmeFile>
-    <licenseFile>F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\LICENSE</licenseFile>
+    <installerFilename>Collins-Zyzzyva-${product_version}-${platform_name}-installer.${platform_exec_suffix}</installerFilename>
+    <readmeFile>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/README</readmeFile>
+    <licenseFile>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/LICENSE</licenseFile>
     <componentList>
         <component>
             <name>default</name>
@@ -13,10 +14,10 @@
             <show>1</show>
             <desktopShortcutList>
                 <shortcut>
-                    <comment>Zyzzyva V ${product_version}</comment>
+                    <comment>Collins Zyzzyva ${product_version}</comment>
                     <exec>${installdir}/zyzzyva</exec>
                     <icon>${installdir}/images/zyzzyva-32x32.png</icon>
-                    <name>Zyzzyva V ${product_version}</name>
+                    <name>Collins Zyzzyva ${product_version}</name>
                     <path>${installdir}</path>
                     <platforms>all</platforms>
                     <runAsAdmin>0</runAsAdmin>
@@ -38,7 +39,7 @@
                             <comment>Uninstall</comment>
                             <exec>${installdir}/${uninstallerName}</exec>
                             <icon></icon>
-                            <name>Uninstall Zyzzyva V ${product_version}</name>
+                            <name>Uninstall Collins Zyzzyva ${product_version}</name>
                             <path>${installdir}</path>
                             <platforms>all</platforms>
                             <runAsAdmin>0</runAsAdmin>
@@ -57,7 +58,7 @@
                     <platforms>linux</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\zyzzyva.top</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/zyzzyva.top</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>C:/Users/jim/Boshvark/Zyzzyva/Installer/linux/zyzzyva</origin>
@@ -133,55 +134,55 @@
                     <platforms>windows</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\installer\windows\CHANGES.txt</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/CHANGES.txt</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\installer\windows\AUTHORS.txt</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/AUTHORS.txt</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\installer\windows\zyzzyva5.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/zyzzyva5.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\installer\windows\zyzzyva.top</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/zyzzyva.top</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\installer\windows\zyzzyva.exe</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/zyzzyva.exe</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\installer\windows\README.txt</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/README.txt</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\installer\windows\Qt5Xml.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Xml.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\installer\windows\Qt5Sql.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Sql.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\installer\windows\Qt5Network.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Network.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\installer\windows\Qt5Gui.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Gui.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\installer\windows\Qt5Core.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Core.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\installer\windows\LICENSE.txt</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/LICENSE.txt</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\installer\windows\COPYING.txt</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/COPYING.txt</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\installer\windows\assistant.exe</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/assistant.exe</origin>
                         </distributionFile>
                         <distributionDirectory>
-                            <origin>F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\installer\windows\data</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/data</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\installer\windows\sqldrivers</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/sqldrivers</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\installer\windows\images</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/images</origin>
                         </distributionDirectory>
                         <distributionFile>
                             <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Widgets.dll</origin>
@@ -298,8 +299,8 @@
             </folderList>
             <startMenuShortcutList>
                 <startMenuShortcut>
-                    <comment>Uninstall Zyzzyva V ${product_version}</comment>
-                    <name>Uninstall Zyzzyva V ${product_version}</name>
+                    <comment>Uninstall Collins Zyzzyva ${product_version}</comment>
+                    <name>Uninstall Collins Zyzzyva ${product_version}</name>
                     <runAsAdmin>0</runAsAdmin>
                     <runInTerminal>0</runInTerminal>
                     <windowsExec>${installdir}/uninstall.exe</windowsExec>
@@ -308,8 +309,8 @@
                     <windowsPath>${installdir}/</windowsPath>
                 </startMenuShortcut>
                 <startMenuShortcut>
-                    <comment>Zyzzyva V ${product_version}</comment>
-                    <name>Zyzzyva V ${product_version}</name>
+                    <comment>Collins Zyzzyva ${product_version}</comment>
+                    <name>Collins Zyzzyva ${product_version}</name>
                     <runAsAdmin>0</runAsAdmin>
                     <runInTerminal>0</runInTerminal>
                     <windowsExec>${installdir}/zyzzyva.exe</windowsExec>
@@ -352,8 +353,8 @@
     <description></description>
     <enableRollback>1</enableRollback>
     <enableTimestamp>1</enableTimestamp>
-    <outputDirectory>F:\jim\Desktop\!!DESKTOPSAVE</outputDirectory>
-    <startMenuGroupName>${product_fullname} ${product_version}</startMenuGroupName>
+    <outputDirectory>F:/jim/Desktop/!!DESKTOPSAVE</outputDirectory>
+    <startMenuGroupName>Collins Zyzzyva ${product_version}</startMenuGroupName>
     <summary>${product_fullname} is a word study program written by Michael Thelen and Jim Miller.</summary>
     <uninstallerName></uninstallerName>
     <vendor>Twilight Century Computing</vendor>
@@ -374,7 +375,7 @@
     </parameterList>
     <platformOptionsList>
         <platformOptions>
-            <installerFilename>ZyzzyvaV-${product_version}-${platform_name}-installer.${platform_exec_suffix}</installerFilename>
+            <installerFilename>Collins-Zyzzyva-${product_version}-${platform_name}-installer.${platform_exec_suffix}</installerFilename>
             <platform>windows</platform>
         </platformOptions>
     </platformOptionsList>

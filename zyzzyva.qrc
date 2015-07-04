@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file alias="zyzzyva-32x32">images/zyzzyva-32x32.png</file>
         <file alias="zyzzyva-128x128">images/zyzzyva-128x128.png</file>
-        <file alias="zyzzyva-splash">images/zyzzyva-splash.png</file>
         <file alias="search-icon">images/search-icon-medium.png</file>
         <file alias="judge-icon">images/judge-icon-medium.png</file>
         <file alias="quiz-icon">images/quiz-icon-medium.png</file>
@@ -19,5 +18,6 @@
         <file alias="judge-unacceptable">images/judge-unacceptable.png</file>
         <file alias="plus-icon">images/plus-icon-small.png</file>
         <file alias="minus-icon">images/minus-icon-small.png</file>
+        <file alias="zyzzyva-splash">images/zyzzyva-splash.png</file>
     </qresource>
 </RCC>

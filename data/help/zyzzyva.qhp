@@ -4,7 +4,7 @@
     <virtualFolder>5.0.0</virtualFolder>
     <filterSection>
         <toc>
-            <section title="Zyzzyva V Help" ref="index.html">
+            <section title="Collins Zyzzyva Help" ref="index.html">
                 <section title="Quick Start" ref="quickstart.html"/>
                 <section title="Searching for Words" ref="search.html">
                     <section title="Search Conditions" ref="search.html#search-conditions">
@@ -121,6 +121,8 @@
             <file>toc.html</file>
             <file>view.html</file>
             <file>wordlists.html</file>
+            <file>images/collins_logo.png</file>
+            <file>images/WESPA_wide_logo.png</file>
         </files>
     </filterSection>
 </QtHelpProject>
