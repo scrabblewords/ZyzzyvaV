@@ -24,8 +24,9 @@
 #include "IntroForm.h"
 #include "Auxil.h"
 //#include <QTextBrowser>
-#include <QVBoxLayout>
+//#include <QVBoxLayout>
 #include <QWebView>
+#include <QFormLayout>
 
 const QString TITLE_PREFIX = "Welcome";
 
@@ -40,14 +41,15 @@ const QString TITLE_PREFIX = "Welcome";
 IntroForm::IntroForm(QWidget* parent, Qt::WindowFlags f)
     : ActionForm(IntroFormType, parent, f)
 {
-    QHBoxLayout* mainHlay = new QHBoxLayout(this);
-    Q_CHECK_PTR(mainHlay);
+    QHBoxLayout* mainLay = new QHBoxLayout(this);
+    Q_CHECK_PTR(mainLay);
+    mainLay->setContentsMargins(11, 11, 0, 11);
 
     QWebView *view = new QWebView(this);
     Q_CHECK_PTR(view);
     QString mainPage = Auxil::getHelpDir() + "/index.html";
     view->load(QUrl::fromLocalFile(mainPage));
-    mainHlay->addWidget(view);
+    mainLay->addWidget(view);
 
 //    QTextBrowser* browser = new QTextBrowser(this);
 //    Q_CHECK_PTR(browser);
