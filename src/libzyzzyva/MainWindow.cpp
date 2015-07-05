@@ -519,7 +519,7 @@ MainWindow::processDatabaseErrors()
 
     QString caption = "Build databases?";
     QString message =
-        "For certain searches and quizzes to work correctly, Zyzzyva "
+        "For certain searches and quizzes to work correctly, Collins Zyzzyva "
         "must have a database of information about each lexicon in use.  "
         "Creating or updating these databases may take several minutes, "
         "but it will only need to be done once.  Here are the steps that "
@@ -1394,8 +1394,8 @@ MainWindow::rebuildDatabase(const QString& lexicon)
     if (!ok) {
         QString caption = "Cannot remove database backup file";
         QString message = "Cannot remove database backup file: " +
-            tmpDbFilename + ".\nPlease close Zyzzyva, remove or rename the "
-            "file, then restart Zyzzyva.";
+            tmpDbFilename + ".\nPlease close Collins Zyzzyva, remove or rename the "
+            "file, then restart Collins Zyzzyva.";
         message = Auxil::dialogWordWrap(message);
         QMessageBox::warning(this, caption, message);
         return false;
@@ -1405,8 +1405,8 @@ MainWindow::rebuildDatabase(const QString& lexicon)
     if (!ok) {
         QString caption = "Cannot remove database file";
         QString message = "Cannot remove original database file: " +
-            dbFilename + ".\nPlease close Zyzzyva, remove or rename the "
-            "file, then restart Zyzzyva.";
+            dbFilename + ".\nPlease close Collins Zyzzyva, remove or rename the "
+            "file, then restart Collins Zyzzyva.";
         message = Auxil::dialogWordWrap(message);
         QMessageBox::warning(this, caption, message);
         tmpDbFile.rename(dbFilename);
