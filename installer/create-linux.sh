@@ -29,7 +29,7 @@ cd ..
 set -e
 
 #QTVER=4.3.2
-QTVER=5.4/gcc_64
+QTVER=Qt5.4.2/5.4/gcc
 INSTDIR=installer
 QTDIR=/home/jim/Qt/$QTVER
 
@@ -50,13 +50,10 @@ make
 
 mkdir -p $OUTDIR/bin
 
-cp $(find /usr/lib -name libstdc++.so.6 | head -n 1) $OUTDIR/bin
-cp $(find /lib -name libgcc_s.so.1 | head -n 1) $OUTDIR/bin
-cp -d $QTDIR/lib/libQt5{Core,Gui,Network,Sql,Xml,Widgets,PrintSupport,Help,WebKit,\
-  WebKitWidgets,CLucene,Qml,Quick,QuickWidgets,Positioning,Multimedia,MultimediaQuick_p,\
-  MultimediaWidgets,Sensors,WebChannel,Concurrent,DBus,Declarative,Designer,DesignerComponents,\
-  Location,OpenGL,Script,ScriptTools,LinuxExtras,XmlPatterns}.so* $OUTDIR/bin
-rm $OUTDIR/bin/*.debug
+cp $(find /usr/lib64 -name libstdc++.so.6 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib64 -name libgcc_s.so.1 | head -n 1) $OUTDIR/bin
+cp -d $QTDIR/lib/libQt5{Core,Gui,Network,Sql,Xml,Widgets,PrintSupport,Help,WebKit,WebKitWidgets,CLucene,Qml,Quick,QuickWidgets,Positioning,Multimedia,MultimediaQuick_p,MultimediaWidgets,Sensors,WebChannel,Concurrent,DBus,Declarative,Designer,DesignerComponents,Location,OpenGL,Script,ScriptTools,XmlPatterns}.so* $OUTDIR/bin
+#rm $OUTDIR/bin/*.debug
 cp -d $QTDIR/bin/assistant $OUTDIR/bin
 cp -d bin/libzyzzyva.so* $OUTDIR/bin
 cp -d bin/zyzzyva $OUTDIR/bin
