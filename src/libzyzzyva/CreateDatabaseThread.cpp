@@ -944,7 +944,7 @@ CreateDatabaseThread::importPlayability(const QString& filename,
       // (JGM) Discard header line if appropriate.
       if (lexiconName != LEXICON_CUSTOM)
           fileBlob->remove(0, fileBlob->indexOf('\n') + 1);
-
+      //TODO (JGM) Comment out decryption key when copying to published source zip.
       SimpleCrypt crypto(Q_UINT64_C(0x56414a415a7a4c45));
       QByteArray *plaintextBlob = new QByteArray(crypto.decryptToByteArray(*fileBlob));
       delete fileBlob; fileBlob = 0;
