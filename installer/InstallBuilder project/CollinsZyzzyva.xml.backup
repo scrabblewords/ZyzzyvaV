@@ -56,6 +56,38 @@
                     <destination>${installdir}</destination>
                     <name>programfileslinux</name>
                     <platforms>linux</platforms>
+                    <distributionFileList>
+                        <distributionFile>
+                            <origin>/home/jim/projects/Collins-Zyzzyva/installer/linux/AUTHORS</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>/home/jim/projects/Collins-Zyzzyva/installer/linux/CHANGES</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>/home/jim/projects/Collins-Zyzzyva/installer/linux/COPYING</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>/home/jim/projects/Collins-Zyzzyva/installer/linux/LICENSE</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>/home/jim/projects/Collins-Zyzzyva/installer/linux/README</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>/home/jim/projects/Collins-Zyzzyva/installer/linux/zyzzyva</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>/home/jim/projects/Collins-Zyzzyva/installer/linux/zyzzyva.top</origin>
+                        </distributionFile>
+                        <distributionDirectory>
+                            <origin>/home/jim/projects/Collins-Zyzzyva/installer/linux/bin</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>/home/jim/projects/Collins-Zyzzyva/installer/linux/data</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>/home/jim/projects/Collins-Zyzzyva/installer/linux/images</origin>
+                        </distributionDirectory>
+                    </distributionFileList>
                 </folder>
                 <folder>
                     <description>Program Files</description>
@@ -348,6 +380,9 @@
         </platformOptions>
         <platformOptions>
             <platform>linux-x64</platform>
+        </platformOptions>
+        <platformOptions>
+            <platform>linux</platform>
         </platformOptions>
     </platformOptionsList>
 </project>

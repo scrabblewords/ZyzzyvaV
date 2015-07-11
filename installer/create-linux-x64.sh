@@ -1,6 +1,6 @@
 #!/bin/bash
 #-----------------------------------------------------------------------------
-# create-linux.sh
+# create-linux-x64.sh
 #
 # Create a Linux directory for the installer to use.
 #

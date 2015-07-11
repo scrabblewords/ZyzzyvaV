@@ -28,10 +28,9 @@ cd ..
 
 set -e
 
-#QTVER=4.3.2
-QTVER=Qt5.4.2/5.4/gcc
+QTVER=Qt5.4.1/5.4/gcc
 INSTDIR=installer
-QTDIR=/home/jim/Qt/$QTVER
+QTDIR=/home/jim/$QTVER
 
 if [ "$QTDIR" = "" ]; then
     QTDIR=/usr/local/Trolltech/Qt-$QTVER
@@ -49,15 +48,29 @@ $QTDIR/bin/qmake
 make
 
 mkdir -p $OUTDIR/bin
-
-cp $(find /usr/lib64 -name libstdc++.so.6 | head -n 1) $OUTDIR/bin
-cp $(find /usr/lib64 -name libgcc_s.so.1 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib -name libstdc++.so.6 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib -name libgcc_s.so.1 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib -name libgstreamer-0.10.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib -name libgstapp-0.10.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib -name libgio-2.0.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib -name libgstinterfaces-0.10.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib -name libgstpbutils-0.10.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib -name libgstvideo-0.10.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib -name libgstbase-0.10.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib -name libgobject-2.0.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib -name libgmodule-2.0.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib -name libgthread-2.0.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib -name libglib-2.0.so.0 | head -n 1) $OUTDIR/bin
+mkdir -p $OUTDIR/bin/platforms
+cp $QTDIR/plugins/platforms/libqxcb.so $OUTDIR/bin/platforms/
+cp $QTDIR/lib/libicu*.so* $OUTDIR/bin
 cp -d $QTDIR/lib/libQt5{Core,Gui,Network,Sql,Xml,Widgets,PrintSupport,Help,WebKit,WebKitWidgets,CLucene,Qml,Quick,QuickWidgets,Positioning,Multimedia,MultimediaQuick_p,MultimediaWidgets,Sensors,WebChannel,Concurrent,DBus,Declarative,Designer,DesignerComponents,Location,OpenGL,Script,ScriptTools,XmlPatterns}.so* $OUTDIR/bin
 #rm $OUTDIR/bin/*.debug
 cp -d $QTDIR/bin/assistant $OUTDIR/bin
 cp -d bin/libzyzzyva.so* $OUTDIR/bin
 cp -d bin/zyzzyva $OUTDIR/bin
 cp -d installer/zyzzyva.sh $OUTDIR/zyzzyva
+chmod ugo+x $OUTDIR/zyzzyva
 
 cp zyzzyva.top $OUTDIR
 cp AUTHORS $OUTDIR/AUTHORS
@@ -68,6 +81,9 @@ cp README $OUTDIR/README
 
 mkdir -p $OUTDIR/images
 cp images/zyzzyva-32x32.png $OUTDIR/images
+
+mkdir -p $OUTDIR/bin/sqldrivers
+cp $QTDIR/plugins/sqldrivers/libqsqlite.so $OUTDIR/bin/sqldrivers
 
 cp -r data $OUTDIR
 find $OUTDIR/data -type d -name '.svn' -print0 | xargs -0 rm -rf
