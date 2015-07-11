@@ -51,6 +51,17 @@ make
 mkdir -p $OUTDIR/bin
 cp $(find /usr/lib64 -name libstdc++.so.6 | head -n 1) $OUTDIR/bin
 cp $(find /usr/lib64 -name libgcc_s.so.1 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib64 -name libgstreamer-0.10.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib64 -name libgstapp-0.10.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib64 -name libgio-2.0.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib64 -name libgstinterfaces-0.10.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib64 -name libgstpbutils-0.10.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib64 -name libgstvideo-0.10.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib64 -name libgstbase-0.10.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib64 -name libgobject-2.0.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib64 -name libgmodule-2.0.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib64 -name libgthread-2.0.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib64 -name libglib-2.0.so.0 | head -n 1) $OUTDIR/bin
 mkdir -p $OUTDIR/bin/platforms
 cp $QTDIR/plugins/platforms/libqxcb.so $OUTDIR/bin/platforms/
 cp $QTDIR/lib/libicu*.so* $OUTDIR/bin
