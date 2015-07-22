@@ -329,7 +329,7 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
     // Tool Bar
     QToolBar* toolbar = new QToolBar;
     Q_CHECK_PTR(toolbar);
-    toolbar->setIconSize(QSize(22, 22));
+    toolbar->setIconSize(QSize(36, 36));
     toolbar->addAction(saveAction);
     toolbar->addAction(saveAsAction);
     toolbar->addSeparator();
