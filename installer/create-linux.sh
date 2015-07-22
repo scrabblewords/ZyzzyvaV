@@ -61,6 +61,8 @@ cp $(find /usr/lib -name libgobject-2.0.so.0 | head -n 1) $OUTDIR/bin
 cp $(find /usr/lib -name libgmodule-2.0.so.0 | head -n 1) $OUTDIR/bin
 cp $(find /usr/lib -name libgthread-2.0.so.0 | head -n 1) $OUTDIR/bin
 cp $(find /usr/lib -name libglib-2.0.so.0 | head -n 1) $OUTDIR/bin
+cp $(find /usr/lib -name libffi.so.6 | head -n 1) $OUTDIR/bin
+
 mkdir -p $OUTDIR/bin/platforms
 cp $QTDIR/plugins/platforms/libqxcb.so $OUTDIR/bin/platforms/
 cp $QTDIR/lib/libicu*.so* $OUTDIR/bin
