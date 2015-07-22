@@ -1024,7 +1024,7 @@ MainWindow::displayHelp()
     args << QLatin1String("-collectionFile")
         << (Auxil::getHelpDir() + QLatin1String("/zyzzyva.qhc"))
         << QLatin1String("-showUrl")
-        << QLatin1String("qthelp://twilightcenturycomputing.com/5.0.0/index.html")
+        << QLatin1String("qthelp://twilightcenturycomputing.com/5.0.1/index.html")
         << QLatin1String("-enableRemoteControl");
     process->start(QLatin1String("assistant"), args);
     if (!process->waitForStarted())

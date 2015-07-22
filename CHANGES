@@ -1,3 +1,26 @@
+Version 5.0.1
+Released July 23, 2015
+
+User-visible changes:
+ * Definition/p.o.s./inflection/cross-reference data added for the 6500 new CSW15 words;
+   data for tens of thousands of other words added, corrected, or made consistent, in
+   both CSW15 and CSW12 - BIG thanks to David Sutton
+ * Icons in main toolbar bumped up in size, for easier visibility
+
+Developer-visible changes:
+ * libffi.so.6 library added to Linux packages
+
+
+Version 2.2.1
+Released 2012-08-08
+
+User-visible changes:
+ * Fix Shift By Backlog cardbox rescheduling
+ * Make Part of Speech search a dropdown selection
+ * Help documentation for Part of Speech and Definition search
+ * Other minor fixes
+
+
 *** Collins Zyzzyva branch ***
 Version 5.0.0
 Released July 7, 2015
