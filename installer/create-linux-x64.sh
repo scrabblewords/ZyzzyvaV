@@ -28,7 +28,6 @@ cd ..
 
 set -e
 
-#QTVER=4.3.2
 QTVER=5.4/gcc_64
 INSTDIR=installer
 QTDIR=/home/jim/Qt/$QTVER
