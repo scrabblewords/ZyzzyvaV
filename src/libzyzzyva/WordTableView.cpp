@@ -615,7 +615,7 @@ WordTableView::getExportStrings(QModelIndex& index, const
 
         // special processing for inner hooks and symbols
         if ((column == WordTableModel::WORD_COLUMN) &&
-            (exportInnerHooks || exportSymbols))
+            (exportInnerHooks || exportSymbols) && (attribute != WordAttrAlphagram))
         {
             str = model()->data(index, Qt::DisplayRole).toString().toUpper();
             if (!exportSymbols) {
