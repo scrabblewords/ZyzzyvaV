@@ -834,6 +834,9 @@ JudgeDialog::getInstructionMessage()
 QWidget*
 JudgeDialog::createTitleWidget()
 {
+    // 20150729 DMS, use screen width to detect when TitleWidget is too wide
+    int screenWidth = QApplication::desktop()->width();
+
     QFont titleFont = qApp->font();
     titleFont.setPixelSize(int(TITLE_FONT_PIXEL_SIZE * fontMultiplier));
 
@@ -847,15 +850,28 @@ JudgeDialog::createTitleWidget()
 //	QString programName = "NSSC Word Judge";
 //	QString pixmapName = ":/nssc-128x128";
 //#else
-    QString programName = "Collins Zyzzyva Word Judge";
-	QString pixmapName = ":/zyzzyva-128x128";
+    // QString programName = "Collins Zyzzyva Word Judge";
+    QString programName1 = "Collins Zyzzyva";
+    QString programName2 = "Word Judge";
+    QString pixmapName = ":/zyzzyva-128x128";
 //#endif
 
-    QLabel* programLabel = new QLabel(programName + "\n"
+    QLabel* programLabel;
+    // 20150803 DMS, be naive and hard code different messages for narrow screen
+    if (screenWidth < 1030)
+    {
+        programLabel = new QLabel(programName1 + " " + ZYZZYVA_VERSION + "\n" +
+                                      programName2);
+    }
+    else
+    {
+        programLabel = new QLabel(programName1 + " " + programName2 + "\n" +
                                       "Version " + ZYZZYVA_VERSION);
+    }
     Q_CHECK_PTR(programLabel);
     programLabel->setFont(titleFont);
     programLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+// programLabel->setScaledContents(true);
     titleHlay->addWidget(programLabel);
     titleHlay->setStretchFactor(programLabel, 1);
 
@@ -871,11 +887,16 @@ JudgeDialog::createTitleWidget()
     if (date.isValid())
         dateStr = date.toString("MMMM d, yyyy");
     QLabel* lexiconLabel = new QLabel("Lexicon: " + lexicon + "\n" + dateStr);
+
+//    QLabel* lexiconLabel = new QLabel(QString("%1").arg(screenWidth));
+//    QLabel* lexiconLabel = new QLabel(QString("%1").arg(programLabel->hasScaledContents()));
     Q_CHECK_PTR(lexiconLabel);
     lexiconLabel->setFont(titleFont);
     lexiconLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+// lexiconLabel->width();
     titleHlay->addWidget(lexiconLabel);
     titleHlay->setStretchFactor(lexiconLabel, 1);
+
 
     return widget;
 }
