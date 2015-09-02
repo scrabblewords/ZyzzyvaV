@@ -190,6 +190,12 @@ QuizForm::QuizForm(WordEngine* we, QWidget* parent, Qt::WindowFlags f)
     Q_CHECK_PTR(questionCanvas);
     questionCanvas->setPalette(
         QPalette(MainSettings::getQuizBackgroundColor()));
+    // (JGM, 7/26/15) Trying to solve Win8 quiz tiles too-smallness for Jennifer Lee.
+    // Keep investigating - sizeHint and sizePolicy for the tiles themselves.
+    // This is probably a layout automatic sizing issue.
+    //questionCanvas->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    //printf("%d\n", questionCanvas->sizeHint());
+    //questionCanvas->setMinimumSize(QSize(400, 100));
     questionCanvas->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     questionStack->addWidget(questionCanvas);
 
@@ -1411,6 +1417,11 @@ QuizForm::setQuestionLabel(const QString& question, const QString& order)
     }
 
     QWidget* currentWidget = questionStack->currentWidget();
+    // (JGM) Increases spacing between quiz question letters in non-tiled mode.
+    QFont currentWidgetFont = currentWidget->font();
+    currentWidgetFont.setLetterSpacing(QFont::PercentageSpacing, 175);
+    currentWidget->setFont(currentWidgetFont);
+    //
     if (currentWidget == questionCanvas) {
         questionCanvas->setText(displayQuestion);
         questionLabel->setText(QString());
