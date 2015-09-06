@@ -15,7 +15,7 @@
 /src/zyzzyva/*.o
 /installer/windows/
 /installer/windows-no-sse2/
-/installer/linux/
+/installer/linux*
 /src/*/build/
 /src/*/debug/
 /src/*/release/
