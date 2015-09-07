@@ -1088,6 +1088,7 @@ SettingsDialog::writeSettings()
     MainSettings::setWordListShowDefinitions(showDefinitionCbox->isChecked());
     MainSettings::setWordListLowerCaseWildcards(
         lowerCaseWildcardsCbox->isChecked());
+    MainSettings::setWordListUseLexiconStyles(lexiconStyleCbox->isChecked());
     MainSettings::setWordListLexiconStyles(getLexiconStyles());
     MainSettings::writeSettings();
 }
