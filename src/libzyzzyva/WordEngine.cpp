@@ -261,7 +261,7 @@ WordEngine::importBinaryFile(const QString& lexicon, const QString& filename,
     //TODO (JGM) Comment out decryption key when copying to published source zip.
     SimpleCrypt crypto(Q_UINT64_C(0x56414a415a7a4c45));
     QByteArray *plaintextBlob = new QByteArray(crypto.decryptToByteArray(*fileBlob));
-    delete fileBlob; fileBlob = 0;
+    delete fileBlob;
 //    if (!crypto.lastError() == SimpleCrypt::ErrorNoError) {
 //      // check why we have an error, use the error code from crypto.lastError() for that.
 //      delete plaintextData;
@@ -270,8 +270,9 @@ WordEngine::importBinaryFile(const QString& lexicon, const QString& filename,
 
     int imported = 0;
     char *plaintext = new char[plaintextBlob->size() + 1];
+    char *plaintextAllocation = plaintext;
     strcpy(plaintext, plaintextBlob->constData());
-    delete plaintextBlob; plaintextBlob = 0;
+    delete plaintextBlob;
 
     char *nextNewline;
     char buffer[MAX_INPUT_LINE_LEN * 2 + 1];
@@ -323,7 +324,7 @@ WordEngine::importBinaryFile(const QString& lexicon, const QString& filename,
         ++imported;
     }
 
-    //delete[] plaintext; plaintext = 0;            // (JGM) FIX THIS KLUDGE!  Not releasing allocated memory.
+    delete[] plaintextAllocation;
     return imported;
 }
 
