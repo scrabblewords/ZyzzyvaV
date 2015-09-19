@@ -49,7 +49,6 @@
 #include "WordVariationType.h"
 #include "Auxil.h"
 #include "Defs.h"
-#include <QAction>
 #include <QApplication>
 #include <QDir>
 #include <QFileDialog>
@@ -137,6 +136,17 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
 
     fileMenu->addSeparator();
 
+    // Print
+    printAction = new QAction("&Print...", this);
+    Q_CHECK_PTR(printAction);
+    printAction->setIcon(QIcon(":/print-icon"));
+    printAction->setEnabled(false);
+    printAction->setShortcut(QString("Ctrl+P"));
+    connect(printAction, SIGNAL(triggered()), SLOT(doPrintAction()));
+    fileMenu->addAction(printAction);
+
+    fileMenu->addSeparator();
+
     // New Introduction
     QAction* newIntroAction = new QAction("&Welcome", this);
     Q_CHECK_PTR(newIntroAction);
@@ -189,7 +199,7 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
 
     fileMenu->addSeparator();
 
-    // Close Table
+    // Close Tab
     QAction* closeTabAction = new QAction("&Close Tab", this);
     Q_CHECK_PTR(closeTabAction);
     closeTabAction->setShortcut(tr("Ctrl+W"));
@@ -330,17 +340,50 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
     QToolBar* toolbar = new QToolBar;
     Q_CHECK_PTR(toolbar);
     toolbar->setIconSize(QSize(36, 36));
-    toolbar->addAction(saveAction);
-    toolbar->addAction(saveAsAction);
+    // (JGM) Hacky, for disallowing the toolbar QActions' mnemonics to interfere with form mnemonics in Qt5.
+    toolbarSaveAction = new QAction("Save", this);
+    copyQActionPartial(saveAction, toolbarSaveAction);
+    connect(toolbarSaveAction, SIGNAL(triggered()), SLOT(doSaveAction()));
+    toolbar->addAction(toolbarSaveAction);
+    toolbarSaveAsAction = new QAction("Save As...", this);
+    copyQActionPartial(saveAsAction, toolbarSaveAsAction);
+    connect(toolbarSaveAsAction, SIGNAL(triggered()), SLOT(doSaveAction()));
+    toolbar->addAction(toolbarSaveAsAction);
     toolbar->addSeparator();
-    toolbar->addAction(newQuizAction);
-    toolbar->addAction(newSearchAction);
-    toolbar->addAction(newCardboxAction);
-    toolbar->addAction(newDefinitionAction);
-    toolbar->addAction(newJudgeAction);
+    toolbarPrintAction = new QAction("Print...", this);
+    copyQActionPartial(printAction, toolbarPrintAction);
+    connect(toolbarPrintAction, SIGNAL(triggered()), SLOT(doPrintAction()));
+    toolbar->addAction(toolbarPrintAction);
     toolbar->addSeparator();
-    toolbar->addAction(editPrefsAction);
-    toolbar->addAction(helpAction);
+    QAction* toolbarQuizAction = new QAction("Quiz", this);
+    copyQActionPartial(newQuizAction, toolbarQuizAction);
+    connect(toolbarQuizAction, SIGNAL(triggered()), SLOT(newQuizFormInteractive()));
+    toolbar->addAction(toolbarQuizAction);
+    QAction* toolbarSearchAction = new QAction("Search", this);
+    copyQActionPartial(newSearchAction, toolbarSearchAction);
+    connect(toolbarSearchAction, SIGNAL(triggered()), SLOT(newSearchForm()));
+    toolbar->addAction(toolbarSearchAction);
+    QAction* toolbarCardboxAction = new QAction("Cardbox", this);
+    copyQActionPartial(newCardboxAction, toolbarCardboxAction);
+    connect(toolbarCardboxAction, SIGNAL(triggered()), SLOT(newCardboxForm()));
+    toolbar->addAction(toolbarCardboxAction);
+    QAction* toolbarDefinitionAction = new QAction("Definition", this);
+    copyQActionPartial(newDefinitionAction, toolbarDefinitionAction);
+    connect(toolbarDefinitionAction, SIGNAL(triggered()), SLOT(newDefineForm()));
+    toolbar->addAction(toolbarDefinitionAction);
+    QAction* toolbarJudgeAction = new QAction("Word Judge", this);
+    copyQActionPartial(newJudgeAction, toolbarJudgeAction);
+    connect(toolbarJudgeAction, SIGNAL(triggered()), SLOT(doJudgeAction()));
+    toolbar->addAction(toolbarJudgeAction);
+    toolbar->addSeparator();
+    QAction* toolbarEditPrefsAction = new QAction("Preferences", this);
+    copyQActionPartial(editPrefsAction, toolbarEditPrefsAction);
+    connect(toolbarEditPrefsAction, SIGNAL(triggered()), SLOT(editSettings()));
+    toolbar->addAction(toolbarEditPrefsAction);
+    QAction* toolbarHelpAction = new QAction("Help", this);
+    copyQActionPartial(helpAction, toolbarHelpAction);
+    connect(toolbarHelpAction, SIGNAL(triggered()), SLOT(displayHelp()));
+    toolbar->addAction(toolbarHelpAction);
     addToolBar(toolbar);
 
     tabStack = new QTabWidget(this);
@@ -385,7 +428,7 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
     makeUserDirs();
 
     setWindowTitle(APPLICATION_TITLE);
-    setWindowIcon(QIcon(":/zyzzyva-32x32"));
+    setWindowIcon(QIcon(":/zyzzyva-128x128"));
 
     if (!instance)
         instance = this;
@@ -730,6 +773,22 @@ MainWindow::doSaveAsAction()
     // Prompt to save changes if this is a Quiz tab
     ActionForm* form = static_cast<ActionForm*>(w);
     form->saveRequested(true);
+}
+
+//---------------------------------------------------------------------------
+//  doPrintAction
+//
+//! Open a print dialog for the current tab.
+//---------------------------------------------------------------------------
+void
+MainWindow::doPrintAction()
+{
+    QWidget* w = tabStack->currentWidget();
+    if (!w)
+        return;
+
+    ActionForm* form = static_cast<ActionForm*>(w);
+    form->printRequested();
 }
 
 //---------------------------------------------------------------------------
@@ -1115,6 +1174,7 @@ MainWindow::currentTabChanged(int)
     QString details;
     bool saveEnabled = false;
     bool saveCapable = false;
+    bool printEnabled = false;
     if (w) {
         ActionForm* form = static_cast<ActionForm*>(w);
         form->selectInputArea();
@@ -1122,11 +1182,16 @@ MainWindow::currentTabChanged(int)
         details = form->getDetailsString();
         saveEnabled = form->isSaveEnabled();
         saveCapable = form->isSaveCapable();
+        printEnabled = form->isPrintEnabled();
     }
     messageLabel->setText(status);
     detailsLabel->setText(details);
     saveAction->setEnabled(saveEnabled);
+    toolbarSaveAction->setEnabled(saveEnabled);
     saveAsAction->setEnabled(saveCapable);
+    toolbarSaveAsAction->setEnabled(saveCapable);
+    printAction->setEnabled(printEnabled);
+    toolbarPrintAction->setEnabled(printEnabled);
 }
 
 //---------------------------------------------------------------------------
@@ -1206,6 +1271,28 @@ MainWindow::tabSaveEnabledChanged(bool saveEnabled)
     int index = tabStack->indexOf(form);
     if (index == tabStack->currentIndex()) {
         saveAction->setEnabled(saveEnabled);
+        toolbarSaveAction->setEnabled(saveEnabled);
+    }
+}
+
+//---------------------------------------------------------------------------
+//  tabPrintEnabledChanged
+//
+//! Called when the print enabled status for a tab changes.
+//
+//! @param the new print enabled status
+//---------------------------------------------------------------------------
+void
+MainWindow::tabPrintEnabledChanged(bool printEnabled)
+{
+    QObject* object = sender();
+    if (!object)
+        return;
+    ActionForm* form = static_cast<ActionForm*>(object);
+    int index = tabStack->indexOf(form);
+    if (index == tabStack->currentIndex()) {
+        printAction->setEnabled(printEnabled);
+        toolbarPrintAction->setEnabled(printEnabled);
     }
 }
 
@@ -1576,6 +1663,7 @@ MainWindow::readSettings(bool useGeometry)
     QString fontStr = MainSettings::getMainFont();
     bool mainFontOk = true;
     if (fontStr.isEmpty())
+        //qApp->setFont(QGuiApplication::font());   //(JGM) Attempt to dynamically reload fonts.
         ; // do nothing
     else if (mainFont.fromString(fontStr)) {
         qApp->setFont(mainFont);
@@ -1638,6 +1726,16 @@ MainWindow::readSettings(bool useGeometry)
         //qWarning("Cannot set font: " + fontStr);
     }
 
+    // Printing font
+    fontStr = MainSettings::getPrintingFont();
+    if (fontStr.isEmpty())
+        ; // do nothing
+    else if (font.fromString(fontStr))
+        ; // do nothing
+    else {
+        //qWarning("Cannot set font: " + fontStr);
+    }
+
     // Set tile theme and background color for all quiz forms
     // FIXME: instead, this should simply call a settingsChanged slot on all
     // forms, and each form should handle it as they see fit
@@ -1691,6 +1789,8 @@ MainWindow::newTab(ActionForm* form)
             SLOT(tabDetailsChanged(const QString&)));
     connect(form, SIGNAL(saveEnabledChanged(bool)),
             SLOT(tabSaveEnabledChanged(bool)));
+    connect(form, SIGNAL(printEnabledChanged(bool)),
+            SLOT(tabPrintEnabledChanged(bool)));
 
     tabStack->addTab(form, form->getIcon(), form->getTitle());
     tabStack->setCurrentWidget(form);
@@ -2204,4 +2304,19 @@ MainWindow::doTest()
 {
     LetterBag letterBag;
     qDebug("*** doTest!");
+}
+
+//---------------------------------------------------------------------------
+//  copyQActionPartial
+//
+//! Copy selected properties of a QAction (for toolbar) (JGM)
+//
+//! @param orig Source QAction
+//! @param dest Target QAction
+//---------------------------------------------------------------------------
+void
+MainWindow::copyQActionPartial(const QAction* orig, QAction* dest)
+{
+    dest->setIcon(orig->icon());
+    dest->setEnabled(orig->isEnabled());
 }

@@ -166,6 +166,9 @@ class MainSettings
     static QString getDefinitionFont() { return instance->definitionFont; }
     static void setDefinitionFont(const QString& str) {
         instance->definitionFont = str; }
+    static QString getPrintingFont() { return instance->printingFont; }
+    static void setPrintingFont(const QString& str) {
+        instance->printingFont = str; }
     static bool getWordListSortByLength() {
         return instance->wordListSortByLength; }
     static void setWordListSortByLength(bool b) {
@@ -287,6 +290,7 @@ class MainSettings
     QString quizLabelFont;
     QString wordInputFont;
     QString definitionFont;
+    QString printingFont;
     bool wordListSortByLength;
     bool wordListSortByReverseLength;
     bool wordListSortByProbabilityOrder;

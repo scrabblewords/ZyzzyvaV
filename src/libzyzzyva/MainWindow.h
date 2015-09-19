@@ -27,6 +27,7 @@
 #define ZYZZYVA_MAIN_WINDOW_H
 
 #include "CardboxRescheduleType.h"
+#include <QAction>
 #include <QCloseEvent>
 #include <QIcon>
 #include <QLabel>
@@ -71,6 +72,7 @@ class MainWindow : public QMainWindow
     void newCardboxForm();
     void doSaveAction();
     void doSaveAsAction();
+    void doPrintAction();
     void doJudgeAction();
     void editSettings();
     void viewDefinition();
@@ -87,6 +89,7 @@ class MainWindow : public QMainWindow
     void tabStatusChanged(const QString& status);
     void tabDetailsChanged(const QString& details);
     void tabSaveEnabledChanged(bool saveEnabled);
+    void tabPrintEnabledChanged(bool printEnabled);
 
     void doTest();
 
@@ -125,6 +128,7 @@ class MainWindow : public QMainWindow
     void newTab(ActionForm* form);
     void newQuizFromQuizFile(const QString& filename);
     void newQuizFromWordFile(const QString& filename);
+    void copyQActionPartial(const QAction* orig, QAction* dest);
 
     private:
     enum LexiconDatabaseError {
@@ -146,6 +150,10 @@ class MainWindow : public QMainWindow
 
     QAction*     saveAction;
     QAction*     saveAsAction;
+    QAction*     printAction;
+    QAction*     toolbarSaveAction;
+    QAction*     toolbarSaveAsAction;
+    QAction*     toolbarPrintAction;
 
     SettingsDialog* settingsDialog;
     AboutDialog*    aboutDialog;

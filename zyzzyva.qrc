@@ -19,5 +19,6 @@
         <file alias="save-as-icon">images/save-as-icon-large.png</file>
         <file alias="save-icon">images/save-icon-large.png</file>
         <file alias="search-icon">images/search-icon-large.png</file>
+        <file alias="print-icon">images/print-icon-large.png</file>
     </qresource>
 </RCC>

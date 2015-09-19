@@ -40,6 +40,9 @@
 #include <QHBoxLayout>
 #include <QSplitter>
 #include <QTimer>
+#include <QtPrintSupport/QPrinter>
+#include <QtPrintSupport/QPrintDialog>
+#include <QTextDocument>
 
 using namespace Defs;
 
@@ -142,6 +145,19 @@ SearchForm::getTitle() const
 }
 
 //---------------------------------------------------------------------------
+//  getresultModel
+//
+//! Returns the current resultModel.
+//
+//! @return the current resultModel
+//---------------------------------------------------------------------------
+WordTableModel*
+SearchForm::getResultModel() const
+{
+    return resultModel;
+}
+
+//---------------------------------------------------------------------------
 //  getStatusString
 //
 //! Returns the current status string.
@@ -181,6 +197,19 @@ SearchForm::isSaveEnabled() const
 }
 
 //---------------------------------------------------------------------------
+//  isPrintEnabled
+//
+//! Determine whether the print action should be enabled for this form.
+//
+//! @return true if print should be enabled, false otherwise
+//---------------------------------------------------------------------------
+bool
+SearchForm::isPrintEnabled() const
+{
+    return (resultModel->rowCount() > 0);
+}
+
+//---------------------------------------------------------------------------
 //  saveRequested
 //
 //! Called when a save action is requested.
@@ -191,6 +220,36 @@ void
 SearchForm::saveRequested(bool)
 {
     resultView->exportRequested();
+}
+
+//---------------------------------------------------------------------------
+//  printRequested
+//
+//! Called when a print action is requested.
+//---------------------------------------------------------------------------
+void
+SearchForm::printRequested()
+{
+    QString html;
+    html = "<html><body><table border=\"0\">";
+    for(int row = 0; row < getResultModel()->rowCount(); row++) {
+        html += "<tr>";
+        for(int column = 0; column < getResultModel()->columnCount(); column++) {
+            QString data = getResultModel()->data(getResultModel()->index(row, column),
+             Qt::DisplayRole).toString();
+            html += "<td>" + data + "</td>";
+        }
+        html += "</tr>";
+    }
+    html += "</table></body></html>";
+
+    QPrinter printer;
+    QPrintDialog *dialog = new QPrintDialog(&printer);
+    if(dialog->exec() == QDialog::Accepted) {
+        QTextDocument document;
+        document.setHtml(html);
+        document.print(&printer);
+    }
 }
 
 //---------------------------------------------------------------------------
@@ -343,6 +402,7 @@ SearchForm::search()
 
     updateResultTotal(wordList.size());
     emit saveEnabledChanged(!wordList.empty());
+    emit printEnabledChanged(!wordList.empty());
 
     QWidget* focusWidget = QApplication::focusWidget();
     QLineEdit* lineEdit = dynamic_cast<QLineEdit*>(focusWidget);

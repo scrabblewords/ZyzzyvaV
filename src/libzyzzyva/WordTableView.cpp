@@ -73,10 +73,12 @@ WordTableView::WordTableView(WordEngine* e, QWidget* parent)
 
     // FIXME: Once Trolltech fixes the assert in QHeaderView, continue with
     // statements like these
-    //if (!MainSettings::getWordListShowHooks()) {
-    //    setColumnHidden(WordTableModel::FRONT_HOOK_COLUMN, true);
-    //    setColumnHidden(WordTableModel::BACK_HOOK_COLUMN, true);
-    //}
+    // FIXME (JGM) Place this code elsewhere!  It doesn't take effect after turning options on/off during program execution,
+    // for example.
+    if (!MainSettings::getWordListShowHooks()) {
+        setColumnHidden(WordTableModel::FRONT_HOOK_COLUMN, true);
+        setColumnHidden(WordTableModel::BACK_HOOK_COLUMN, true);
+    }
 
     header()->setSortIndicatorShown(true);
     header()->setSortIndicator(WordTableModel::WORD_COLUMN,
