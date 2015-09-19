@@ -27,11 +27,11 @@ setlocal
 
 cd ..
 
-set QTVER=Qt5.5.0\5.5\mingw492_32
+set QTVER=Qt5.5.0-no-sse2\qtbase
 set QTDIR=E:\Qt\%QTVER%
 set INSTDIR=installer
 set PLATFORM=windows
-set OUTDIR=%INSTDIR%\%PLATFORM%
+set OUTDIR=%INSTDIR%\windows-no-sse2
 
 qmake
 CALL mingw32-make
@@ -71,7 +71,7 @@ copy %QTDIR%\bin\Qt5WebChannel.dll %OUTDIR%
 
 rem ** Following Qt5 .dlls added preemptively.  They may not be necessary. (JGM)
 copy %QTDIR%\bin\Qt5Concurrent.dll %OUTDIR%
-copy %QTDIR%\bin\Qt5DBus.dll %OUTDIR%
+rem copy %QTDIR%\bin\Qt5DBus.dll %OUTDIR%
 copy %QTDIR%\bin\Qt5Declarative.dll %OUTDIR%
 copy %QTDIR%\bin\Qt5Designer.dll %OUTDIR%
 copy %QTDIR%\bin\Qt5DesignerComponents.dll %OUTDIR%
@@ -87,6 +87,12 @@ copy %QTDIR%\bin\libgcc_s_dw2-1.dll %OUTDIR%
 xcopy /I /E /H /R /Y %QTDIR%\bin\libstdc++-6.dll %OUTDIR%
 
 copy %QTDIR%\bin\libwinpthread-1.dll %OUTDIR%
+
+rem ** !!!! **
+copy E:\gtk\bin\libxml2-2.dll %OUTDIR%
+copy E:\gtk\bin\zlib1.dll %OUTDIR%
+copy E:\gtk\bin\liblzma-5.dll %OUTDIR%
+copy E:\gtk\bin\libiconv-2.dll %OUTDIR%
 
 copy %QTDIR%\bin\icuuc54.dll %OUTDIR%
 copy %QTDIR%\bin\icuin54.dll %OUTDIR%
