@@ -1935,6 +1935,7 @@ MainWindow::importChecksums(const QString& filename)
         QString line (buffer);
         checksums.append(line.toUShort());
     }
+    delete [] buffer;
     return checksums;
 }
 
