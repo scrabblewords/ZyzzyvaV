@@ -134,7 +134,7 @@ QuizForm::QuizForm(WordEngine* we, QWidget* parent, Qt::WindowFlags f)
     questionMarkedStatus(QuestionNotMarked), db(0),
     // FIXME: This dialog should be nonmodal!
     analyzeDialog(new AnalyzeQuizDialog(quizEngine, we, this,
-                                        Qt::WindowMinMaxButtonsHint))
+                                        Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint))
 {
     QFont titleFont = qApp->font();
     titleFont.setPixelSize(TITLE_FONT_PIXEL_SIZE);
