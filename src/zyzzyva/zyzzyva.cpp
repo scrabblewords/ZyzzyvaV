@@ -46,7 +46,7 @@ int main(int argc, char** argv)
     QPixmap pixmap (":/zyzzyva-splash");
     QSplashScreen* splash = new QSplashScreen(pixmap);
     splash->show();
-    QThread::sleep(3);
+    QThread::sleep(2);
 
     MainWindow* window = new MainWindow(0, splash);
 
