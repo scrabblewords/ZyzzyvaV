@@ -523,6 +523,7 @@ QuizForm::responseEntered()
         message = Auxil::dialogWordWrap(message);
         QMessageBox::warning(this, caption, message);
         unpauseTimer();
+        selectInputArea();
         return;
     }
 
@@ -562,7 +563,7 @@ QuizForm::responseEntered()
     }
     else if (status == QuizEngine::Duplicate) {
         statusStr = "<font color=\"purple\">Duplicate</font>";
-        inputLine->clear();
+        selectInputArea();
     }
 
     // Update the stats if the stats are already shown
