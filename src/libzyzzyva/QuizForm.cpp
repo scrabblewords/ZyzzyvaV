@@ -490,6 +490,19 @@ QuizForm::isSaveEnabled() const
 }
 
 //---------------------------------------------------------------------------
+//  isPrintEnabled
+//
+//! Determine whether the print action should be enabled for this form.
+//
+//! @return true if print should be enabled, false otherwise
+//---------------------------------------------------------------------------
+bool
+QuizForm::isPrintEnabled() const
+{
+    return (responseModel->rowCount() > 0);
+}
+
+//---------------------------------------------------------------------------
 //  responseEntered
 //
 //! Called when a response is entered into the input line.
@@ -533,6 +546,7 @@ QuizForm::responseEntered()
         responseModel->addWord(
             WordTableModel::WordItem(response, WordTableModel::WordCorrect),
             true);
+        emit printEnabledChanged(true);
         MainSettings::setWordListGroupByAnagrams(origGroupByAnagrams);
 
         responseView->scrollTo(responseModel->sibling(
@@ -778,6 +792,17 @@ QuizForm::saveRequested(bool saveAs)
 }
 
 //---------------------------------------------------------------------------
+//  printRequested
+//
+//! Called when a print action is requested.
+//---------------------------------------------------------------------------
+void
+QuizForm::printRequested()
+{
+    responseView->printRequested();
+}
+
+//---------------------------------------------------------------------------
 //  selectInputArea
 //
 //! Give focus to a text input area if possible.  Otherwise give focus to
@@ -881,6 +906,7 @@ QuizForm::markMissed()
 {
     quizEngine->markQuestionAsMissed();
     responseModel->clear();
+    emit printEnabledChanged(false);
     markMissedButton->setText(MARK_CORRECT_BUTTON);
     bool old = checkBringsJudgment;
     checkBringsJudgment = true;
@@ -1070,6 +1096,8 @@ QuizForm::checkResponseClicked()
         markMissedButton->setText(MARK_CORRECT_BUTTON);
     }
 
+    emit printEnabledChanged(true);
+
     if ((quizEngine->numQuestions() > 0) && !quizEngine->onLastQuestion()) {
         nextQuestionButton->setEnabled(true);
         nextQuestionButton->setFocus();
@@ -1221,6 +1249,7 @@ QuizForm::startQuestion()
     clearStats();
     updateQuestionDisplay();
     responseModel->clear();
+    emit printEnabledChanged(false);
     questionMarkedStatus = QuestionNotMarked;
 
     QString question = quizEngine->getQuestion();

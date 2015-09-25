@@ -40,9 +40,6 @@
 #include <QHBoxLayout>
 #include <QSplitter>
 #include <QTimer>
-#include <QtPrintSupport/QPrinter>
-#include <QtPrintSupport/QPrintDialog>
-#include <QTextDocument>
 
 using namespace Defs;
 
@@ -230,26 +227,7 @@ SearchForm::saveRequested(bool)
 void
 SearchForm::printRequested()
 {
-    QString html;
-    html = "<html><body><table border=\"0\">";
-    for(int row = 0; row < getResultModel()->rowCount(); row++) {
-        html += "<tr>";
-        for(int column = 0; column < getResultModel()->columnCount(); column++) {
-            QString data = getResultModel()->data(getResultModel()->index(row, column),
-             Qt::DisplayRole).toString();
-            html += "<td>" + data + "</td>";
-        }
-        html += "</tr>";
-    }
-    html += "</table></body></html>";
-
-    QPrinter printer;
-    QPrintDialog *dialog = new QPrintDialog(&printer);
-    if(dialog->exec() == QDialog::Accepted) {
-        QTextDocument document;
-        document.setHtml(html);
-        document.print(&printer);
-    }
+    resultView->printRequested();
 }
 
 //---------------------------------------------------------------------------

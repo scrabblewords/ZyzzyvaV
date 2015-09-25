@@ -45,8 +45,11 @@
 #include <QHeaderView>
 #include <QMessageBox>
 #include <QMenu>
+#include <QtPrintSupport/QPrinter>
+#include <QtPrintSupport/QPrintDialog>
 #include <QPushButton>
 #include <QSignalMapper>
+#include <QTextDocument>
 #include <QTextStream>
 #include <QToolTip>
 
@@ -250,6 +253,37 @@ WordTableView::exportRequested()
         QString message = "Cannot save word list:\n" + error + ".";
         message = Auxil::dialogWordWrap(message);
         QMessageBox::warning(this, caption, message);
+    }
+}
+
+//---------------------------------------------------------------------------
+//  printRequested
+//
+//! Called when the user indicates that the word list should be printed.
+//! Display a print dialog.
+//---------------------------------------------------------------------------
+void
+WordTableView::printRequested()
+{
+    QString html;
+    html = "<html><body><table border=\"0\">";
+    for(int row = 0; row < model()->rowCount(); row++) {
+        html += "<tr>";
+        for(int column = 0; column < model()->columnCount(); column++) {
+            QString data = model()->data(model()->index(row, column),
+             Qt::DisplayRole).toString();
+            html += "<td>" + data + "</td>";
+        }
+        html += "</tr>";
+    }
+    html += "</table></body></html>";
+
+    QPrinter printer;
+    QPrintDialog *dialog = new QPrintDialog(&printer);
+    if(dialog->exec() == QDialog::Accepted) {
+        QTextDocument document;
+        document.setHtml(html);
+        document.print(&printer);
     }
 }
 
@@ -895,6 +929,13 @@ WordTableView::contextMenuEvent(QContextMenuEvent* e)
     Q_CHECK_PTR(exportAction);
     connect(exportAction, SIGNAL(triggered()), SLOT(exportRequested()));
     popupMenu->addAction(exportAction);
+
+    if (model()->rowCount() > 0) {
+        QAction* printAction = new QAction("Print list...", popupMenu);
+        Q_CHECK_PTR(printAction);
+        connect(printAction, SIGNAL(triggered()), SLOT(printRequested()));
+        popupMenu->addAction(printAction);
+    }
 
     QAction* createQuizAction = new QAction("Quiz from list...", popupMenu);
     Q_CHECK_PTR(createQuizAction);

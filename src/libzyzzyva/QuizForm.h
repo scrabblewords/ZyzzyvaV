@@ -66,10 +66,12 @@ class QuizForm : public ActionForm
     QString getDetailsString() const;
     bool isSaveCapable() const { return true; }
     bool isSaveEnabled() const;
+    bool isPrintEnabled() const;
 
     // Reimplemented virtual methods
     public slots:
     void saveRequested(bool saveAs = false);
+    void printRequested();
     void selectInputArea();
 
     public slots:

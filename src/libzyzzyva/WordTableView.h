@@ -43,6 +43,7 @@ class WordTableView : public QTreeView
     public slots:
     virtual void resizeItemsToContents();
     void exportRequested();
+    void printRequested();
     void createQuizRequested();
     void addToCardboxRequested();
     void removeFromCardboxRequested();
