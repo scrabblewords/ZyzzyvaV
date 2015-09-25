@@ -30,6 +30,7 @@
 #include <QPixmap>
 #include <QSplashScreen>
 #include <QDebug>
+#include <QThread>
 
 const QString SETTINGS_ORGANIZATION_NAME = "Twilight Century Computing";
 const QString SETTINGS_DOMAIN_NAME = "twilightcenturycomputing.com";
@@ -45,6 +46,7 @@ int main(int argc, char** argv)
     QPixmap pixmap (":/zyzzyva-splash");
     QSplashScreen* splash = new QSplashScreen(pixmap);
     splash->show();
+    QThread::sleep(3);
 
     MainWindow* window = new MainWindow(0, splash);
 
