@@ -436,9 +436,6 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
     if (MainSettings::getDisplayWelcome())
         newIntroForm();
 
-//    connect(helpDialog, SIGNAL(error(const QString&)),
-//            SLOT(helpDialogError(const QString&)));
-
     splashScreen = 0;
     QTimer::singleShot(0, this, SLOT(displayLexiconError()));
 }
