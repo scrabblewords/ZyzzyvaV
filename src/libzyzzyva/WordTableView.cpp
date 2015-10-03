@@ -76,12 +76,11 @@ WordTableView::WordTableView(WordEngine* e, QWidget* parent)
 
     // FIXME: Once Trolltech fixes the assert in QHeaderView, continue with
     // statements like these
-    // FIXME (JGM) Place this code elsewhere!  It doesn't take effect after turning options on/off during program execution,
-    // for example.
-    if (!MainSettings::getWordListShowHooks()) {
-        setColumnHidden(WordTableModel::FRONT_HOOK_COLUMN, true);
-        setColumnHidden(WordTableModel::BACK_HOOK_COLUMN, true);
-    }
+//    // FIXME (JGM) This code apparently not needed.
+//    if (!MainSettings::getWordListShowHooks()) {
+//        setColumnHidden(WordTableModel::FRONT_HOOK_COLUMN, true);
+//        setColumnHidden(WordTableModel::BACK_HOOK_COLUMN, true);
+//    }
 
     header()->setSortIndicatorShown(true);
     header()->setSortIndicator(WordTableModel::WORD_COLUMN,
@@ -644,7 +643,8 @@ WordTableView::getExportStrings(QModelIndex& index, const
         if (column < 0)
             continue;
 
-        index = index.sibling(index.row(), column); QString str;
+        index = index.sibling(index.row(), column);
+        QString str;
 
         // XXX: inner hook and symbols should be stored under separate roles
         // in the WordTableModel, so they can be easily queried

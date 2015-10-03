@@ -189,6 +189,10 @@ class MainSettings
         return instance->wordListGroupByAnagrams; }
     static void setWordListGroupByAnagrams(bool b) {
         instance->wordListGroupByAnagrams = b; }
+    static bool getWordListShowWildcardMatches() {
+        return instance->wordListShowWildcardMatches; }
+    static void setWordListShowWildcardMatches(bool b) {
+        instance->wordListShowWildcardMatches = b; }
     static bool getWordListShowProbabilityOrder() {
         return instance->wordListShowProbabilityOrder; }
     static void setWordListShowProbabilityOrder(bool b) {
@@ -296,6 +300,7 @@ class MainSettings
     bool wordListSortByProbabilityOrder;
     bool wordListSortByPlayabilityOrder;
     bool wordListGroupByAnagrams;
+    bool wordListShowWildcardMatches;
     bool wordListShowProbabilityOrder;
     bool wordListShowPlayabilityOrder;
     bool wordListShowHooks;

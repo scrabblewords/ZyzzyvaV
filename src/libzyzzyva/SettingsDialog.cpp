@@ -749,6 +749,10 @@ SettingsDialog::SettingsDialog(QWidget* parent, Qt::WindowFlags f)
     wordListDisplayVlay->setMargin(MARGIN);
     wordListDisplayVlay->setSpacing(SPACING);
 
+    showWildcardMatchesCbox = new QCheckBox("Show wildcard matches");
+    Q_CHECK_PTR(showWildcardMatchesCbox);
+    wordListDisplayVlay->addWidget(showWildcardMatchesCbox);
+
     showProbabilityOrderCbox = new QCheckBox("Show probability order");
     Q_CHECK_PTR(showProbabilityOrderCbox);
     wordListDisplayVlay->addWidget(showProbabilityOrderCbox);
@@ -1017,6 +1021,8 @@ SettingsDialog::refreshSettings()
 
     lengthSortCbox->setChecked(MainSettings::getWordListSortByLength());
     anagramGroupCbox->setChecked(MainSettings::getWordListGroupByAnagrams());
+    showWildcardMatchesCbox->setChecked(
+        MainSettings::getWordListShowWildcardMatches());
     showProbabilityOrderCbox->setChecked(
         MainSettings::getWordListShowProbabilityOrder());
     showPlayabilityOrderCbox->setChecked(
@@ -1106,6 +1112,8 @@ SettingsDialog::writeSettings()
     MainSettings::setPrintingFont(fontPrintingLine->text());
     MainSettings::setWordListSortByLength(lengthSortCbox->isChecked());
     MainSettings::setWordListGroupByAnagrams(anagramGroupCbox->isChecked());
+    MainSettings::setWordListShowWildcardMatches(
+        showWildcardMatchesCbox->isChecked());
     MainSettings::setWordListShowProbabilityOrder(
         showProbabilityOrderCbox->isChecked());
     MainSettings::setWordListShowPlayabilityOrder(

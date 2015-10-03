@@ -62,6 +62,8 @@ const QString SETTINGS_FONT_WORD_INPUT = "font_word_input";
 const QString SETTINGS_FONT_PRINTING = "font_printing";
 const QString SETTINGS_SORT_BY_LENGTH = "wordlist_sort_by_length";
 const QString SETTINGS_GROUP_BY_ALPHAGRAMS = "wordlist_group_by_alphagrams";
+const QString SETTINGS_SHOW_WILDCARD_MATCHES
+    = "wordlist_show_wildcard matches";
 const QString SETTINGS_SHOW_PROBABILITY_ORDER
     = "wordlist_show_probability_order";
 const QString SETTINGS_SHOW_PLAYABILITY_ORDER
@@ -131,6 +133,7 @@ const QString DEFAULT_CARDBOX_WINDOWS = "0 1 2 3 5 7 10 15 20 30 50";
 const bool    DEFAULT_JUDGE_SAVE_LOG = true;
 const bool    DEFAULT_SORT_BY_LENGTH = false;
 const bool    DEFAULT_GROUP_BY_ANAGRAMS = true;
+const bool    DEFAULT_SHOW_WILDCARD_MATCHES = true;
 const bool    DEFAULT_SHOW_PROBABILITY_ORDER = true;
 const bool    DEFAULT_SHOW_PLAYABILITY_ORDER = false;
 const bool    DEFAULT_SHOW_HOOKS = true;
@@ -319,6 +322,9 @@ MainSettings::readSettings()
     instance->wordListGroupByAnagrams
         = settings.value(SETTINGS_GROUP_BY_ALPHAGRAMS,
                          DEFAULT_GROUP_BY_ANAGRAMS).toBool();
+    instance->wordListShowWildcardMatches
+        = settings.value(SETTINGS_SHOW_WILDCARD_MATCHES,
+                         DEFAULT_SHOW_WILDCARD_MATCHES).toBool();
     instance->wordListShowProbabilityOrder
         = settings.value(SETTINGS_SHOW_PROBABILITY_ORDER,
                          DEFAULT_SHOW_PROBABILITY_ORDER).toBool();
@@ -438,6 +444,8 @@ MainSettings::writeSettings()
                       instance->wordListSortByLength);
     settings.setValue(SETTINGS_GROUP_BY_ALPHAGRAMS,
                       instance->wordListGroupByAnagrams);
+    settings.setValue(SETTINGS_SHOW_WILDCARD_MATCHES,
+                      instance->wordListShowWildcardMatches);
     settings.setValue(SETTINGS_SHOW_PROBABILITY_ORDER,
                       instance->wordListShowProbabilityOrder);
     settings.setValue(SETTINGS_SHOW_PLAYABILITY_ORDER,
@@ -545,6 +553,8 @@ MainSettings::restoreDefaults(const QString& group)
     if (group.isEmpty() || (group == WORD_LIST_PREFS_GROUP)) {
         instance->wordListSortByLength = DEFAULT_SORT_BY_LENGTH;
         instance->wordListGroupByAnagrams = DEFAULT_GROUP_BY_ANAGRAMS;
+        instance->wordListShowWildcardMatches =
+            DEFAULT_SHOW_WILDCARD_MATCHES;
         instance->wordListShowProbabilityOrder =
             DEFAULT_SHOW_PROBABILITY_ORDER;
         instance->wordListShowPlayabilityOrder =
