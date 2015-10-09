@@ -23,14 +23,33 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #-----------------------------------------------------------------------------
+# Modified: 20150921, DMS.  To use the correct locations for local env.
 
 cd ..
 
 set -e
 
-QTVER=5.4/gcc_64
 INSTDIR=installer
-QTDIR=/home/jim/Qt/$QTVER
+# QTVER=5.4/gcc_64
+# QTDIR=/home/jim/Qt/$QTVER
+
+# 20150921 DMS. Allow paths to be specified using env variables
+if [ -z $QTVER ]
+then
+  QTVER=5.5/gcc_64
+fi
+if [ -z $QTDIR ]
+then
+  QTDIR=/home/lampdms/dev/Qt/$QTVER
+fi
+if [ -z $LIBPATH ]
+then
+  # So JGM should use : export LIBPATH=/usr/lib64 : before calling this script
+  # DMS will use the default (as .so are in /usr/lib/x86_64-linux-gnu/ )
+  LIBPATH=/usr/
+fi
+
+echo "Creating Linux64: using $QTDIR"
 
 if [ "$QTDIR" = "" ]; then
     QTDIR=/usr/local/Trolltech/Qt-$QTVER
@@ -48,20 +67,22 @@ $QTDIR/bin/qmake
 make
 
 mkdir -p $OUTDIR/bin
-cp $(find /usr/lib64 -name libstdc++.so.6 | head -n 1) $OUTDIR/bin
-cp $(find /usr/lib64 -name libgcc_s.so.1 | head -n 1) $OUTDIR/bin
-cp $(find /usr/lib64 -name libgstreamer-0.10.so.0 | head -n 1) $OUTDIR/bin
-cp $(find /usr/lib64 -name libgstapp-0.10.so.0 | head -n 1) $OUTDIR/bin
-cp $(find /usr/lib64 -name libgio-2.0.so.0 | head -n 1) $OUTDIR/bin
-cp $(find /usr/lib64 -name libgstinterfaces-0.10.so.0 | head -n 1) $OUTDIR/bin
-cp $(find /usr/lib64 -name libgstpbutils-0.10.so.0 | head -n 1) $OUTDIR/bin
-cp $(find /usr/lib64 -name libgstvideo-0.10.so.0 | head -n 1) $OUTDIR/bin
-cp $(find /usr/lib64 -name libgstbase-0.10.so.0 | head -n 1) $OUTDIR/bin
-cp $(find /usr/lib64 -name libgobject-2.0.so.0 | head -n 1) $OUTDIR/bin
-cp $(find /usr/lib64 -name libgmodule-2.0.so.0 | head -n 1) $OUTDIR/bin
-cp $(find /usr/lib64 -name libgthread-2.0.so.0 | head -n 1) $OUTDIR/bin
-cp $(find /usr/lib64 -name libglib-2.0.so.0 | head -n 1) $OUTDIR/bin
-cp $(find /usr/lib64 -name libffi.so.6 | head -n 1) $OUTDIR/bin
+cp $(find $LIBPATH -name libstdc++.so.6 | head -n 1) $OUTDIR/bin; echo libstdc
+# cp $(find $LIBPATH -name "libgcc_s*" | head -n 1) $OUTDIR/bin; echo libgcc
+cp /usr/lib/gcc/x86_64-linux-gnu/4.9/libgcc_s.so   $OUTDIR/bin; echo libgcc
+cp $(find $LIBPATH -name libgstreamer-0.10.so.0 | head -n 1) $OUTDIR/bin; echo libgstreamer
+cp $(find $LIBPATH -name libgstapp-0.10.so.0 | head -n 1) $OUTDIR/bin; echo libgstapp
+cp $(find $LIBPATH -name libgio-2.0.so.0 | head -n 1) $OUTDIR/bin; echo libgio
+cp $(find $LIBPATH -name libgstinterfaces-0.10.so.0 | head -n 1) $OUTDIR/bin; echo libgstinterfaces
+cp $(find $LIBPATH -name libgstpbutils-0.10.so.0 | head -n 1) $OUTDIR/bin; echo libgstpbutils
+cp $(find $LIBPATH -name libgstvideo-0.10.so.0 | head -n 1) $OUTDIR/bin; echo libgstvideo
+cp $(find $LIBPATH -name libgstbase-0.10.so.0 | head -n 1) $OUTDIR/bin; echo libgstbase
+cp $(find $LIBPATH -name libgobject-2.0.so.0 | head -n 1) $OUTDIR/bin; echo libgobject
+cp $(find $LIBPATH -name libgmodule-2.0.so.0 | head -n 1) $OUTDIR/bin; echo libgmodule
+cp $(find $LIBPATH -name libgthread-2.0.so.0 | head -n 1) $OUTDIR/bin; echo libgthread
+# cp $(find $LIBPATH -name libglib-2.0.so.0 | head -n 1) $OUTDIR/bin; echo libglib
+cp /lib/x86_64-linux-gnu/libglib-2.0.so.0 $OUTDIR/bin; echo libglib
+cp $(find $LIBPATH -name libffi.so.6 | head -n 1) $OUTDIR/bin; echo libffi
 
 mkdir -p $OUTDIR/bin/platforms
 cp $QTDIR/plugins/platforms/libqxcb.so $OUTDIR/bin/platforms/
