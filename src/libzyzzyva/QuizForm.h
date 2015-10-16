@@ -67,6 +67,8 @@ class QuizForm : public ActionForm
     bool isSaveCapable() const { return true; }
     bool isSaveEnabled() const;
     bool isPrintEnabled() const;
+    WordTableView* getView() { return responseView; }
+    AnalyzeQuizDialog* getAnalyzeDialog() { return analyzeDialog; }
 
     // Reimplemented virtual methods
     public slots:

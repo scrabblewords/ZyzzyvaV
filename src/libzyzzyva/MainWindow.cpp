@@ -25,6 +25,7 @@
 
 #include "MainWindow.h"
 #include "AboutDialog.h"
+#include "AnalyzeQuizDialog.h"
 #include "CardboxForm.h"
 #include "CardboxRescheduleDialog.h"
 #include "CreateDatabaseThread.h"
@@ -45,6 +46,7 @@
 #include "SettingsDialog.h"
 #include "WordEngine.h"
 #include "WordEntryDialog.h"
+#include "WordTableView.h"
 #include "WordVariationDialog.h"
 #include "WordVariationType.h"
 #include "Auxil.h"
@@ -979,6 +981,9 @@ MainWindow::viewVariation(int variation)
                                                           word, type, this);
     Q_CHECK_PTR(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
+    wordVariationDialogs.insert(wordVariationDialogs.size(), dialog);
+    //NOTE (JGM) WordVariationDialog* does not work as arguments!
+    connect(dialog, SIGNAL(destroyed(QObject*)), this, SLOT(clearDialogFromList(QObject*)));
     dialog->show();
 }
 
@@ -1750,6 +1755,34 @@ MainWindow::readSettings(bool useGeometry)
             // ### update details string here?
             //quizForm->updateDetailsString();
             quizForm->setTileTheme(tileTheme);
+            quizForm->getView()->resizeItemsRecursively();
+            AnalyzeQuizDialog* analyzeDialog = quizForm->getAnalyzeDialog();
+            if (analyzeDialog) {
+                analyzeDialog->getMissedView()->resizeItemsRecursively();
+                analyzeDialog->getIncorrectView()->resizeItemsRecursively();
+            }
+        }
+        else if (type == ActionForm::SearchFormType) {
+            SearchForm* searchForm = static_cast<SearchForm*> (form);
+            searchForm->getView()->resizeItemsRecursively();
+        }
+    }
+    //! TODO (JGM) Add an interface to combine this with the same function in
+    //! WordTableView::resizeItemsRecursively.
+    QListIterator<WordVariationDialog*> it(wordVariationDialogs);
+    WordVariationDialog* current;
+    while (it.hasNext()) {
+        current = it.next();
+        if (current) {
+            if (current->getTopView()) {
+                current->getTopView()->resizeItemsRecursively();
+            }
+            if (current->getMiddleView()) {
+                current->getMiddleView()->resizeItemsRecursively();
+            }
+            if (current->getBottomView()) {
+                current->getBottomView()->resizeItemsRecursively();
+            }
         }
     }
 }
@@ -2317,4 +2350,20 @@ MainWindow::copyQActionPartial(const QAction* orig, QAction* dest)
 {
     dest->setIcon(orig->icon());
     dest->setEnabled(orig->isEnabled());
+}
+
+//---------------------------------------------------------------------------
+//  clearDialogFromList
+//
+//! Remove pointer to this dialog from the list of child WordVariationDialogs.
+//! TODO (JGM) Add an interface to combine this with the same function in
+//! WordTableView.
+//
+//! @param obj pointer to the child WVD object.
+//---------------------------------------------------------------------------
+void
+MainWindow::clearDialogFromList(QObject* obj)
+{
+    WordVariationDialog *wvd = static_cast<WordVariationDialog*>(obj);
+    wordVariationDialogs.removeOne(wvd);
 }

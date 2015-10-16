@@ -399,7 +399,7 @@ WordTableModel::data(const QModelIndex& index, int role) const
                     if (!MainSettings::getWordListShowWildcardMatches()) {
                         return QString();
                     }
-                return wordItem.getWildcard();
+                    return wordItem.getWildcard();
 
                 case PROBABILITY_ORDER_COLUMN: {
                     if (!MainSettings::getWordListShowProbabilityOrder()) {
@@ -540,9 +540,9 @@ WordTableModel::headerData(int section, Qt::Orientation orientation, int
         case Qt::DisplayRole:
             switch (section) {
                 case WILDCARD_MATCH_COLUMN:
-                return (MainSettings::getWordListShowWildcardMatches() &&
-                        MainSettings::getWordListGroupByAnagrams()) ?
-                            WILDCARD_MATCH_HEADER : QString();
+                return (MainSettings::getWordListShowWildcardMatches()
+                        //&& MainSettings::getWordListGroupByAnagrams()
+                        ) ? WILDCARD_MATCH_HEADER : QString();
 
                 case PROBABILITY_ORDER_COLUMN:
                 return MainSettings::getWordListShowProbabilityOrder() ?

@@ -242,6 +242,7 @@ class MainSettings
                      wordListSortByReverseLength(false),
                      wordListSortByProbabilityOrder(false),
                      wordListSortByPlayabilityOrder(false),
+                     wordListShowWildcardMatches(false),
                      wordListShowHooks(false),
                      wordListShowHookParents(false),
                      wordListUseHookParentHyphens(false),

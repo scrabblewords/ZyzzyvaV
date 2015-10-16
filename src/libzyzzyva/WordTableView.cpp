@@ -55,10 +55,6 @@
 
 using namespace std;
 
-const int WordTableModel::ITEM_XPADDING = 5;
-const int WordTableModel::ITEM_YPADDING = 0;
-const int TWO_COLUMN_ANAGRAM_PADDING = 3;
-
 //---------------------------------------------------------------------------
 //  WordTableView
 //
@@ -74,21 +70,73 @@ WordTableView::WordTableView(WordEngine* e, QWidget* parent)
     setSelectionMode(QAbstractItemView::SingleSelection);
     setRootIsDecorated(false);
 
+    // TODO (JGM): Revisit this code in order to completely hide desired columns.
+    // Existing view display problems:  Wildcard column in child windows only hiding/unhiding
+    // on hover or other action; and inner hook symbol likewise not changing automatically.
+    //
     // FIXME: Once Trolltech fixes the assert in QHeaderView, continue with
     // statements like these
-//    // FIXME (JGM) This code apparently not needed.
+    //header()->setSectionResizeMode(WordTableModel::FRONT_HOOK_COLUMN, QHeaderView::Interactive);
+    //header()->setSectionResizeMode(WordTableModel::BACK_HOOK_COLUMN, QHeaderView::Interactive);
+    header()->setSectionResizeMode(QHeaderView::Interactive);
+    //header()->setMinimumSectionSize(0);
+    //header()->setCascadingSectionResizes(true);
+    //header()->setDefaultSectionSize(0);
+    //header()->setStyleSheet("QHeaderView::down-arrow {image: none;}");
+    //header()->setStyleSheet("QHeaderView::up-arrow {image: none;}");
 //    if (!MainSettings::getWordListShowHooks()) {
-//        setColumnHidden(WordTableModel::FRONT_HOOK_COLUMN, true);
-//        setColumnHidden(WordTableModel::BACK_HOOK_COLUMN, true);
+
+//        hideColumn(WordTableModel::FRONT_HOOK_COLUMN);
+//        columnCountChanged()
+//        header()->resizeSection(WordTableModel::FRONT_HOOK_COLUMN, 0);
+//        setColumnWidth(WordTableModel::FRONT_HOOK_COLUMN, 0);
+//        header()->hideSection(WordTableModel::FRONT_HOOK_COLUMN);
+//        //model()->removeColumn(WordTableModel::FRONT_HOOK_COLUMN);
+
+//        hideColumn(WordTableModel::BACK_HOOK_COLUMN);
+//        header()->resizeSection(WordTableModel::BACK_HOOK_COLUMN, 0);
+//        setColumnWidth(WordTableModel::BACK_HOOK_COLUMN, 0);
+//        header()->hideSection(WordTableModel::BACK_HOOK_COLUMN);
+//        //header()->setStyleSheet("QHeaderView::section:hidden {background-color: transparent;}");
 //    }
 
     header()->setSortIndicatorShown(true);
-    header()->setSortIndicator(WordTableModel::WORD_COLUMN,
-        Qt::AscendingOrder);
+    header()->setSortIndicator(WordTableModel::WORD_COLUMN, Qt::AscendingOrder);
     //header()->setClickable(true);
     header()->setSectionsClickable(true);
     connect(header(), SIGNAL(sectionClicked(int)),
         SLOT(headerSectionClicked(int)));
+}
+
+//---------------------------------------------------------------------------
+//  resizeItemsRecursively
+//
+//! Resize all columns to fit the model contents, for view and all views
+//! of child WordVariationDialogs.
+//!
+//! TODO (JGM) Add an interface to combine this with the same function in
+//! MainWindow::readSettings.
+//---------------------------------------------------------------------------
+void
+WordTableView::resizeItemsRecursively()
+{
+    resizeItemsToContents();
+    QListIterator<WordVariationDialog*> it(wordVariationDialogs);
+    WordVariationDialog* current;
+    while (it.hasNext()) {
+        current = it.next();
+        if (current) {
+            if (current->getTopView()) {
+                current->getTopView()->resizeItemsRecursively();
+            }
+            if (current->getMiddleView()) {
+                current->getMiddleView()->resizeItemsRecursively();
+            }
+            if (current->getBottomView()) {
+                current->getBottomView()->resizeItemsRecursively();
+            }
+        }
+    }
 }
 
 //---------------------------------------------------------------------------
@@ -101,8 +149,26 @@ WordTableView::resizeItemsToContents()
 {
 //    for (int i = 0; i < model()->rowCount(); ++i)
 //        resizeRowToContents(i);
-    for (int i = 0; i < model()->columnCount(); ++i)
+
+    // TODO (JGM): See WordTableView::WordTableView big TODO.
+    //header()->setMinimumSectionSize(0);
+    //header()->setCascadingSectionResizes(true);
+    for (int i = 0; i < model()->columnCount(); ++i) {
+//      if (isColumnHidden(i)) {
+          //hideColumn(i);
+//          header()->resizeSection(i, 0);
+//          setColumnWidth(i, 0);
+//          header()->hideSection(i);
+          //setColumnWidth(i, 0);
+          //header()->hideSection(i);
+//      }
+//      else {
+    //model()->removeColumn(i);
+    //header()->setDefaultSectionSize(0);
+        //header()->resizeSection(i, 10);
         resizeColumnToContents(i);
+      }
+//  }
 }
 
 //---------------------------------------------------------------------------
@@ -143,8 +209,11 @@ WordTableView::viewVariation(int variation)
     WordVariationType type = static_cast<WordVariationType>(variation);
     WordVariationDialog* dialog = new WordVariationDialog(wordEngine, lexicon,
                                                           word, type, this);
-    dialog->setAttribute(Qt::WA_DeleteOnClose);
     Q_CHECK_PTR(dialog);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    wordVariationDialogs.insert(wordVariationDialogs.size(), dialog);
+    //NOTE (JGM) WordVariationDialog* does not work as arguments!
+    connect(dialog, SIGNAL(destroyed(QObject*)), this, SLOT(clearDialogFromList(QObject*)));
     dialog->show();
 }
 
@@ -438,6 +507,22 @@ WordTableView::removeFromCardboxRequested()
     }
 
     delete dialog;
+}
+
+//---------------------------------------------------------------------------
+//  clearDialogFromList
+//
+//! Remove pointer to this dialog from the list of child WordVariationDialogs.
+//! TODO (JGM) Add an interface to combine this with the same function in
+//! MainWindow.
+//
+//! @param obj pointer to the child WVD object.
+//---------------------------------------------------------------------------
+void
+WordTableView::clearDialogFromList(QObject* obj)
+{
+    WordVariationDialog *wvd = static_cast<WordVariationDialog*>(obj);
+    wordVariationDialogs.removeOne(wvd);
 }
 
 //---------------------------------------------------------------------------
@@ -1032,7 +1117,7 @@ int
 WordTableView::sizeHintForColumn(int column) const
 {
     return QAbstractItemView::sizeHintForColumn(column) +
-        (2 * WordTableModel::ITEM_XPADDING);
+        (2 * ITEM_XPADDING);
 }
 
 //---------------------------------------------------------------------------
@@ -1050,5 +1135,5 @@ int
 WordTableView::sizeHintForRow(int row) const
 {
     return QAbstractItemView::sizeHintForRow(row) +
-        (2 * WordTableModel::ITEM_YPADDING);
+        (2 * ITEM_YPADDING);
 }

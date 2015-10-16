@@ -27,6 +27,7 @@
 #define ZYZZYVA_MAIN_WINDOW_H
 
 #include "CardboxRescheduleType.h"
+#include "WordVariationDialog.h"
 #include <QAction>
 #include <QCloseEvent>
 #include <QIcon>
@@ -130,6 +131,9 @@ class MainWindow : public QMainWindow
     void newQuizFromWordFile(const QString& filename);
     void copyQActionPartial(const QAction* orig, QAction* dest);
 
+    private slots:
+    void clearDialogFromList(QObject* obj);
+
     private:
     enum LexiconDatabaseError {
         DbNoError = 0,
@@ -157,10 +161,10 @@ class MainWindow : public QMainWindow
 
     SettingsDialog* settingsDialog;
     AboutDialog*    aboutDialog;
-    //HelpDialog*     helpDialog;
 
     QString lexiconError;
     QMap<QString, int> dbErrors;
+    QList<WordVariationDialog*> wordVariationDialogs;
 
     static MainWindow*  instance;
 };
