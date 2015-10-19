@@ -25,6 +25,7 @@
 
 #include "SettingsDialog.h"
 #include "MainSettings.h"
+#include "MainWindow.h"
 #include "LexiconSelectDialog.h"
 #include "LexiconStyle.h"
 #include "LexiconStyleDialog.h"
@@ -1169,7 +1170,9 @@ SettingsDialog::restoreDefaultsClicked()
 {
     MainSettings::restoreDefaults(navList->selectedItems().first()->text());
     refreshSettings();
-    //MainWindow::readSettings(false);  //(JGM) Attempt to dynamically reload fonts.
+    //(JGM) Attempt to dynamically reload fonts (made MainWindow::readSettings public in the process...)
+    MainWindow::getInstance()->readSettings(false);
+    ////readSettings();
 }
 
 //---------------------------------------------------------------------------

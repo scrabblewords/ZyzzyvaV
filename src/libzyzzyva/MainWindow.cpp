@@ -1663,32 +1663,29 @@ MainWindow::readSettings(bool useGeometry)
     // Main font
     QFont mainFont;
     QString fontStr = MainSettings::getMainFont();
-    bool mainFontOk = true;
-    if (fontStr.isEmpty())
-        //qApp->setFont(QGuiApplication::font());   //(JGM) Attempt to dynamically reload fonts.
-        ; // do nothing
+    if (fontStr.isEmpty()) {
+        //(JGM) Attempt to dynamically reload fonts.
+        qApp->setFont(QGuiApplication::font());
+        qApp->setFont(QGuiApplication::font(), "QHeaderView");
+    }
     else if (mainFont.fromString(fontStr)) {
         qApp->setFont(mainFont);
+        qApp->setFont(mainFont, "QHeaderView");
     }
     else {
         //qWarning("Cannot set font: " + fontStr);
-        mainFontOk = false;
     }
 
     // Word list font
     QFont font;
     fontStr = MainSettings::getWordListFont();
     if (fontStr.isEmpty())
-        ; // do nothing
+        qApp->setFont(qApp->font(), "WordTableView");
     else if (font.fromString(fontStr))
         qApp->setFont(font, "WordTableView");
     else {
         //qWarning("Cannot set font: " + fontStr);
     }
-
-    // Set word list headers back to main font
-    if (mainFontOk)
-        qApp->setFont(mainFont, "QHeaderView");
 
     // Quiz label font
     fontStr = MainSettings::getQuizLabelFont();
@@ -1705,8 +1702,10 @@ MainWindow::readSettings(bool useGeometry)
 
     // Word input font
     fontStr = MainSettings::getWordInputFont();
-    if (fontStr.isEmpty())
-        ; // do nothing
+    if (fontStr.isEmpty()) {
+        qApp->setFont(qApp->font(), "WordLineEdit");
+        qApp->setFont(qApp->font(), "WordTextEdit");
+    }
     else if (font.fromString(fontStr)) {
         qApp->setFont(font, "WordLineEdit");
         qApp->setFont(font, "WordTextEdit");
@@ -1717,8 +1716,11 @@ MainWindow::readSettings(bool useGeometry)
 
     // Definition font
     fontStr = MainSettings::getDefinitionFont();
-    if (fontStr.isEmpty())
-        ; // do nothing
+    if (fontStr.isEmpty()) {
+        qApp->setFont(qApp->font(), "DefinitionBox");
+        qApp->setFont(qApp->font(), "DefinitionLabel");
+        qApp->setFont(qApp->font(), "DefinitionTextEdit");
+    }
     else if (font.fromString(fontStr)) {
         qApp->setFont(font, "DefinitionBox");
         qApp->setFont(font, "DefinitionLabel");
@@ -1731,9 +1733,9 @@ MainWindow::readSettings(bool useGeometry)
     // Printing font
     fontStr = MainSettings::getPrintingFont();
     if (fontStr.isEmpty())
-        ; // do nothing
+        ;
     else if (font.fromString(fontStr))
-        ; // do nothing
+        ;
     else {
         //qWarning("Cannot set font: " + fontStr);
     }

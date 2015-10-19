@@ -107,6 +107,7 @@ class MainWindow : public QMainWindow
     int rescheduleCardbox(const QStringList& words, const QString& lexicon,
         const QString& quizType, CardboxRescheduleType rescheduleType,
         int rescheduleValue = 0) const;
+    void readSettings(bool useGeometry);
 
     protected:
     virtual void closeEvent(QCloseEvent* event);
@@ -124,7 +125,6 @@ class MainWindow : public QMainWindow
                     quint16* expectedChecksum = 0);
     QList<quint16> importChecksums(const QString& file);
     int importStems(const QString& lexicon);
-    void readSettings(bool useGeometry);
     void writeSettings();
     void newTab(ActionForm* form);
     void newQuizFromQuizFile(const QString& filename);
