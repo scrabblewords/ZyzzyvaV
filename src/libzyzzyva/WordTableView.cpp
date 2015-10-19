@@ -52,6 +52,7 @@
 #include <QTextDocument>
 #include <QTextStream>
 #include <QToolTip>
+#include <QDebug>
 
 using namespace std;
 
@@ -334,13 +335,70 @@ void
 WordTableView::printRequested()
 {
     QString html;
-    html = "<html><body><table border=\"0\">";
-    for(int row = 0; row < model()->rowCount(); row++) {
+    QString htmlAlignment;
+    QString alignment;
+    int wordType;
+    bool shading = false;
+
+    //bool ZWSPs;
+    qint16 padding = 0;
+
+    html = "<html><body><table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+    for (int row = 0; row < model()->rowCount(); row++) {
         html += "<tr>";
-        for(int column = 0; column < model()->columnCount(); column++) {
-            QString data = model()->data(model()->index(row, column),
-             Qt::DisplayRole).toString();
-            html += "<td>" + data + "</td>";
+        for (int column = 0; column < model()->columnCount(); column++) {
+            wordType = (model()->data(model()->index(row, column), WordTableModel::WordTypeRole)).toInt();
+            switch (wordType) {
+                case WordTableModel::WordNormal:
+                    shading = false;
+                break;
+                case WordTableModel::WordNormalAlternate:
+                    shading = true;
+            }
+            //ZWSPs = false;
+            alignment = (model()->data(model()->index(row, column), Qt::TextAlignmentRole)).toString();
+            switch(alignment.toInt() - 128) {
+                case Qt::AlignLeft:
+                    htmlAlignment = "\"left\"";
+                break;
+                case Qt::AlignCenter:
+                    htmlAlignment = "\"center\"";
+                break;
+                case Qt::AlignRight:
+                    htmlAlignment = "\"right\"";
+            }
+            QString data = model()->data(model()->index(row, column), Qt::DisplayRole).toString();
+            if (column == WordTableModel::FRONT_HOOK_COLUMN) {
+                padding = 10;
+                //ZWSPs = true;
+            }
+            else if (column == WordTableModel::WORD_COLUMN) {
+                data.replace(' ', "&nbsp;");
+                padding = 5;
+            }
+            else if (column == WordTableModel::BACK_HOOK_COLUMN) {
+                padding = 25;
+                //ZWSPs = true;
+            }
+            else if (column == WordTableModel::DEFINITION_COLUMN)
+                padding = 0;
+            else
+                padding = 25;
+            if (!data.isNull())
+                html += "<td align=" + htmlAlignment + " style=\"padding:0 " + QString::number(padding) + "px 0 0 px;"
+                    // TODO (JGM):  Trying to get long lists of hook letters not to break prematurely after '+'
+                    // character, for example (see PA in list of anagrams of "A?").  But using ZWSPs causes the hook cells
+                    // to be placed slightly lower!  And soft hyphen leaves a hyphen character; and valign doesn't help.
+                    // Is there anything in CSS to accomplish this?
+                    // REFER TO:  http://doc.qt.io/qt-5/richtext-html-subset.html
+                    //
+                    //+ "px 0 0 px;\">" + (ZWSPs ? data.replace(QRegExp("([ -~])"), "\\1&#8203;") : data) + "</td>";
+                    //+ (ZWSPs ? ("valign=\"top\">" + data.replace(QRegExp("([ -~])"), "\\1&#8203;")) : (">" + data)) + "</td>";
+                    //+ (ZWSPs ? (">" + data.replace(QRegExp("([ -~])"), "\\1&shy;")) : (">" + data)) + "</td>";
+                    + (shading ? "background-color:rgb(222, 221, 220);\"" : "\"")
+                    + ">" + data + "</td>";
+            else
+                html += QString("<td") + (shading ? " style=\"background-color:rgb(222, 221, 220);\"" : "") + "></td>";
         }
         html += "</tr>";
     }
@@ -348,8 +406,11 @@ WordTableView::printRequested()
 
     QPrinter printer;
     QPrintDialog *dialog = new QPrintDialog(&printer);
-    if(dialog->exec() == QDialog::Accepted) {
+    QString printingFontStr = MainSettings::getPrintingFont();
+    if (dialog->exec() == QDialog::Accepted) {
         QTextDocument document;
+        if (!printingFontStr.isEmpty())
+            document.setDefaultFont(QFont(printingFontStr));
         document.setHtml(html);
         document.print(&printer);
     }
