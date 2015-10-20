@@ -410,7 +410,7 @@ WordTableView::printRequested()
             }
             else if (column == WordTableModel::WORD_COLUMN) {
                 data.replace(' ', "&nbsp;");
-                padding = 8;
+                padding = 10;
             }
             else if (column == WordTableModel::BACK_HOOK_COLUMN) {
                 padding = 25;
@@ -431,10 +431,10 @@ WordTableView::printRequested()
                     //+ "px 0 0 px;\">" + (ZWSPs ? data.replace(QRegExp("([ -~])"), "\\1&#8203;") : data) + "</td>";
                     //+ (ZWSPs ? ("valign=\"top\">" + data.replace(QRegExp("([ -~])"), "\\1&#8203;")) : (">" + data)) + "</td>";
                     //+ (ZWSPs ? (">" + data.replace(QRegExp("([ -~])"), "\\1&shy;")) : (">" + data)) + "</td>";
-                    + (shading ? "background-color:rgb(225, 224, 223);\"" : "\"")
+                    + (shading ? "background-color:rgb(232, 233, 234);\"" : "\"")
                     + ">" + data + "</td>";
             else
-                html += QString("<td") + (shading ? " style=\"background-color:rgb(225, 224, 223);\"" : "") + "></td>";
+                html += QString("<td") + (shading ? " style=\"background-color:rgb(232, 233, 234);\"" : "") + "></td>";
         }
         html += "</tr>";
     }
@@ -443,6 +443,7 @@ WordTableView::printRequested()
     QPrinter printer;
     QPrintDialog *dialog = new QPrintDialog(&printer);
     if (dialog->exec() == QDialog::Accepted) {
+        //QWebView document;
         QTextDocument document;
         document.setHtml(html);
         document.print(&printer);
@@ -1109,13 +1110,6 @@ WordTableView::contextMenuEvent(QContextMenuEvent* e)
     connect(exportAction, SIGNAL(triggered()), SLOT(exportRequested()));
     popupMenu->addAction(exportAction);
 
-    if (model()->rowCount() > 0) {
-        QAction* printAction = new QAction("Print list...", popupMenu);
-        Q_CHECK_PTR(printAction);
-        connect(printAction, SIGNAL(triggered()), SLOT(printRequested()));
-        popupMenu->addAction(printAction);
-    }
-
     QAction* createQuizAction = new QAction("Quiz from list...", popupMenu);
     Q_CHECK_PTR(createQuizAction);
     connect(createQuizAction, SIGNAL(triggered()), SLOT(createQuizRequested()));
@@ -1134,6 +1128,13 @@ WordTableView::contextMenuEvent(QContextMenuEvent* e)
     connect(removeFromCardboxAction, SIGNAL(triggered()),
             SLOT(removeFromCardboxRequested()));
     popupMenu->addAction(removeFromCardboxAction);
+
+    if (model()->rowCount() > 0) {
+        QAction* printAction = new QAction("Print list...", popupMenu);
+        Q_CHECK_PTR(printAction);
+        connect(printAction, SIGNAL(triggered()), SLOT(printRequested()));
+        popupMenu->addAction(printAction);
+    }
 
     popupMenu->exec(QCursor::pos());
     delete popupMenu;

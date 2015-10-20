@@ -138,17 +138,6 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
 
     fileMenu->addSeparator();
 
-    // Print
-    printAction = new QAction("&Print...", this);
-    Q_CHECK_PTR(printAction);
-    printAction->setIcon(QIcon(":/print-icon"));
-    printAction->setEnabled(false);
-    printAction->setShortcut(QString("Ctrl+P"));
-    connect(printAction, SIGNAL(triggered()), SLOT(doPrintAction()));
-    fileMenu->addAction(printAction);
-
-    fileMenu->addSeparator();
-
     // New Introduction
     QAction* newIntroAction = new QAction("&Welcome", this);
     Q_CHECK_PTR(newIntroAction);
@@ -198,6 +187,17 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
     newJudgeAction->setIcon(QIcon(":/judge-icon"));
     connect(newJudgeAction, SIGNAL(triggered()), SLOT(doJudgeAction()));
     fileMenu->addAction(newJudgeAction);
+
+    fileMenu->addSeparator();
+
+    // Print
+    printAction = new QAction("&Print...", this);
+    Q_CHECK_PTR(printAction);
+    printAction->setIcon(QIcon(":/print-icon"));
+    printAction->setEnabled(false);
+    printAction->setShortcut(QString("Ctrl+P"));
+    connect(printAction, SIGNAL(triggered()), SLOT(doPrintAction()));
+    fileMenu->addAction(printAction);
 
     fileMenu->addSeparator();
 
@@ -352,11 +352,6 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
     connect(toolbarSaveAsAction, SIGNAL(triggered()), SLOT(doSaveAction()));
     toolbar->addAction(toolbarSaveAsAction);
     toolbar->addSeparator();
-    toolbarPrintAction = new QAction("Print...", this);
-    copyQActionPartial(printAction, toolbarPrintAction);
-    connect(toolbarPrintAction, SIGNAL(triggered()), SLOT(doPrintAction()));
-    toolbar->addAction(toolbarPrintAction);
-    toolbar->addSeparator();
     QAction* toolbarQuizAction = new QAction("Quiz", this);
     copyQActionPartial(newQuizAction, toolbarQuizAction);
     connect(toolbarQuizAction, SIGNAL(triggered()), SLOT(newQuizFormInteractive()));
@@ -377,6 +372,11 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
     copyQActionPartial(newJudgeAction, toolbarJudgeAction);
     connect(toolbarJudgeAction, SIGNAL(triggered()), SLOT(doJudgeAction()));
     toolbar->addAction(toolbarJudgeAction);
+    toolbar->addSeparator();
+    toolbarPrintAction = new QAction("Print...", this);
+    copyQActionPartial(printAction, toolbarPrintAction);
+    connect(toolbarPrintAction, SIGNAL(triggered()), SLOT(doPrintAction()));
+    toolbar->addAction(toolbarPrintAction);
     toolbar->addSeparator();
     QAction* toolbarEditPrefsAction = new QAction("Preferences", this);
     copyQActionPartial(editPrefsAction, toolbarEditPrefsAction);
