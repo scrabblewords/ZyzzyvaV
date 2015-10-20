@@ -53,6 +53,7 @@
 #include <QTextStream>
 #include <QToolTip>
 #include <QDebug>
+#include <QFont>
 
 using namespace std;
 
@@ -339,11 +340,46 @@ WordTableView::printRequested()
     QString alignment;
     int wordType;
     bool shading = false;
-
     //bool ZWSPs;
-    qint16 padding = 0;
+    qint8 padding = 0;
+    QString printingFontStr;
+    QFont font;
+    QString fontFamily;
+    int fontSize;
+    bool fontBold;
+    bool fontItalic;
+    bool fontUnderline;
+    bool fontOverline;
+    QString tdStyle = QString();
 
-    html = "<html><body><table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+    printingFontStr = MainSettings::getPrintingFont();
+    if (!printingFontStr.isEmpty()) {
+        font.fromString(printingFontStr);
+        fontFamily = font.family();
+        fontSize = font.pointSize();
+        fontBold = font.bold();
+        fontItalic = font.italic();
+        fontUnderline = font.underline();
+        fontOverline = font.overline();
+        tdStyle += (QString("<style> td {font-family:") + fontFamily + ";font-size:" + QString("%1").arg(fontSize) + "pt");
+        if (fontBold)
+            tdStyle += (";font-weight:bold");
+        else
+            tdStyle += (";font-weight:normal");
+        if (fontItalic)
+            tdStyle += (";font-style:italic");
+        else
+            tdStyle += (";font-style:normal");
+        if (fontUnderline)
+            tdStyle += (";text-decoration:underline");
+        else if (fontOverline)
+            tdStyle += (";text-decoration:overline");
+        else
+            tdStyle += (";text-decoration:none");
+        tdStyle += "} </style>";
+    }
+
+    html = "<html><body>" + tdStyle + "<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
     for (int row = 0; row < model()->rowCount(); row++) {
         html += "<tr>";
         for (int column = 0; column < model()->columnCount(); column++) {
@@ -369,12 +405,12 @@ WordTableView::printRequested()
             }
             QString data = model()->data(model()->index(row, column), Qt::DisplayRole).toString();
             if (column == WordTableModel::FRONT_HOOK_COLUMN) {
-                padding = 10;
+                padding = 8;
                 //ZWSPs = true;
             }
             else if (column == WordTableModel::WORD_COLUMN) {
                 data.replace(' ', "&nbsp;");
-                padding = 5;
+                padding = 8;
             }
             else if (column == WordTableModel::BACK_HOOK_COLUMN) {
                 padding = 25;
@@ -395,10 +431,10 @@ WordTableView::printRequested()
                     //+ "px 0 0 px;\">" + (ZWSPs ? data.replace(QRegExp("([ -~])"), "\\1&#8203;") : data) + "</td>";
                     //+ (ZWSPs ? ("valign=\"top\">" + data.replace(QRegExp("([ -~])"), "\\1&#8203;")) : (">" + data)) + "</td>";
                     //+ (ZWSPs ? (">" + data.replace(QRegExp("([ -~])"), "\\1&shy;")) : (">" + data)) + "</td>";
-                    + (shading ? "background-color:rgb(222, 221, 220);\"" : "\"")
+                    + (shading ? "background-color:rgb(225, 224, 223);\"" : "\"")
                     + ">" + data + "</td>";
             else
-                html += QString("<td") + (shading ? " style=\"background-color:rgb(222, 221, 220);\"" : "") + "></td>";
+                html += QString("<td") + (shading ? " style=\"background-color:rgb(225, 224, 223);\"" : "") + "></td>";
         }
         html += "</tr>";
     }
@@ -406,11 +442,8 @@ WordTableView::printRequested()
 
     QPrinter printer;
     QPrintDialog *dialog = new QPrintDialog(&printer);
-    QString printingFontStr = MainSettings::getPrintingFont();
     if (dialog->exec() == QDialog::Accepted) {
         QTextDocument document;
-        if (!printingFontStr.isEmpty())
-            document.setDefaultFont(QFont(printingFontStr));
         document.setHtml(html);
         document.print(&printer);
     }
