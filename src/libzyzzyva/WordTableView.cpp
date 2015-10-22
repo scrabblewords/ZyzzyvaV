@@ -431,10 +431,10 @@ WordTableView::printRequested()
                     //+ "px 0 0 px;\">" + (ZWSPs ? data.replace(QRegExp("([ -~])"), "\\1&#8203;") : data) + "</td>";
                     //+ (ZWSPs ? ("valign=\"top\">" + data.replace(QRegExp("([ -~])"), "\\1&#8203;")) : (">" + data)) + "</td>";
                     //+ (ZWSPs ? (">" + data.replace(QRegExp("([ -~])"), "\\1&shy;")) : (">" + data)) + "</td>";
-                    + (shading ? "background-color:rgb(232, 233, 234);\"" : "\"")
+                    + (shading ? "background-color:rgb(228, 229, 230);\"" : "\"")
                     + ">" + data + "</td>";
             else
-                html += QString("<td") + (shading ? " style=\"background-color:rgb(232, 233, 234);\"" : "") + "></td>";
+                html += QString("<td") + (shading ? " style=\"background-color:rgb(228, 229, 230);\"" : "") + "></td>";
         }
         html += "</tr>";
     }
