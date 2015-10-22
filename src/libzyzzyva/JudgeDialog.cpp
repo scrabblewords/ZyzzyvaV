@@ -37,9 +37,11 @@
 #include <QHBoxLayout>
 #include <QKeyEvent>
 #include <QPalette>
+#include <QScreen>
 #include <QTextCursor>
 #include <QTextStream>
 #include <QVBoxLayout>
+#include <QWindow>
 
 // How many pixels to display for every 20 pixels of screen height
 const int FONT_PIXEL_DIVIDER = 20;
@@ -106,6 +108,7 @@ JudgeDialog::JudgeDialog(WordEngine* e, const QString& lex,
     : QDialog(parent, f), engine(e), lexicon(lex), password(pass),
     altPressed(false), count(0), clearResultsHold(0), fontMultiplier(0)
 {
+
     altPressedTimer = new QTimer(this);
     connect(altPressedTimer, SIGNAL(timeout()), SLOT(clearAltPressed()));
 
@@ -202,25 +205,26 @@ JudgeDialog::JudgeDialog(WordEngine* e, const QString& lex,
     passwordLabel->setAlignment(Qt::AlignHCenter);
     passwordVlay->addWidget(passwordLabel);
 
-    const int screenWidth = QApplication::desktop()->width();
+    //const int screenWidth = QApplication::desktop()->width();
     QHBoxLayout* passwordLineHlay = new QHBoxLayout;
     passwordLineHlay->setMargin(0);
     passwordVlay->addLayout(passwordLineHlay);
 
-    passwordLineHlay->addSpacing(screenWidth / 4);
+    //passwordLineHlay->addSpacing(screenWidth / 4);
 
     QFontMetrics instructionFontMetrics (instructionFont);
     passwordLine = new QLineEdit;
     passwordLine->setFont(instructionFont);
     passwordLine->setEchoMode(QLineEdit::Password);
     passwordLine->setMinimumSize(0, instructionFontMetrics.height());
+    passwordLine->setMaximumSize(instructionFontMetrics.width('W') * 20, instructionFontMetrics.height());
     connect(passwordLine, SIGNAL(textChanged(const QString&)),
         SLOT(passwordTextChanged()));
     connect(passwordLine, SIGNAL(returnPressed()),
         SLOT(passwordReturnPressed()));
     passwordLineHlay->addWidget(passwordLine);
 
-    passwordLineHlay->addSpacing(screenWidth / 4);
+    //passwordLineHlay->addSpacing(screenWidth / 4);
 
     passwordResultLabel = new QLabel;
     QFont passwordResultFont = instructionFont;
@@ -308,6 +312,8 @@ JudgeDialog::JudgeDialog(WordEngine* e, const QString& lex,
     installEventFilter(this);
 
     clearResults();
+    show();
+    windowHandle()->setScreen(parent->windowHandle()->screen());
     showFullScreen();
 }
 
@@ -834,9 +840,6 @@ JudgeDialog::getInstructionMessage()
 QWidget*
 JudgeDialog::createTitleWidget()
 {
-    // 20150729 DMS, use screen width to detect when TitleWidget is too wide
-    int screenWidth = QApplication::desktop()->width();
-
     QFont titleFont = qApp->font();
     titleFont.setPixelSize(int(TITLE_FONT_PIXEL_SIZE * fontMultiplier));
 
@@ -850,28 +853,15 @@ JudgeDialog::createTitleWidget()
 //	QString programName = "NSSC Word Judge";
 //	QString pixmapName = ":/nssc-128x128";
 //#else
-    // QString programName = "Collins Zyzzyva Word Judge";
-    QString programName1 = "Collins Zyzzyva";
-    QString programName2 = "Word Judge";
+    QString programName = "Collins Zyzzyva Word Judge";
     QString pixmapName = ":/zyzzyva-128x128";
 //#endif
 
-    QLabel* programLabel;
-    // 20150803 DMS, be naive and hard code different messages for narrow screen
-    if (screenWidth < 1030)
-    {
-        programLabel = new QLabel(programName1 + " " + ZYZZYVA_VERSION + "\n" +
-                                      programName2);
-    }
-    else
-    {
-        programLabel = new QLabel(programName1 + " " + programName2 + "\n" +
+    QLabel* programLabel = new QLabel(programName + "\n"
                                       "Version " + ZYZZYVA_VERSION);
-    }
     Q_CHECK_PTR(programLabel);
     programLabel->setFont(titleFont);
     programLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-// programLabel->setScaledContents(true);
     titleHlay->addWidget(programLabel);
     titleHlay->setStretchFactor(programLabel, 1);
 
@@ -887,16 +877,11 @@ JudgeDialog::createTitleWidget()
     if (date.isValid())
         dateStr = date.toString("MMMM d, yyyy");
     QLabel* lexiconLabel = new QLabel("Lexicon: " + lexicon + "\n" + dateStr);
-
-//    QLabel* lexiconLabel = new QLabel(QString("%1").arg(screenWidth));
-//    QLabel* lexiconLabel = new QLabel(QString("%1").arg(programLabel->hasScaledContents()));
     Q_CHECK_PTR(lexiconLabel);
     lexiconLabel->setFont(titleFont);
     lexiconLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-// lexiconLabel->width();
     titleHlay->addWidget(lexiconLabel);
     titleHlay->setStretchFactor(lexiconLabel, 1);
-
 
     return widget;
 }
