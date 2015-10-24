@@ -23,6 +23,7 @@ rem along with this program; if not, write to the Free Software
 rem Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 rem -------------------------------------------------------------------------
 
+
 setlocal
 
 cd ..
@@ -99,6 +100,7 @@ rem Copy Qt plugins
 mkdir %OUTDIR%\sqldrivers
 rem copy %QTDIR%\plugins\sqldrivers\qsqlite4.dll %OUTDIR%\sqldrivers
 copy %QTDIR%\plugins\sqldrivers\qsqlite.dll %OUTDIR%\sqldrivers
+copy %QTDIR%\plugins\printsupport\windowsprintersupport.dll %OUTDIR%\printsupport
 
 rem Copy Zyzzyva images
 mkdir %OUTDIR%\images

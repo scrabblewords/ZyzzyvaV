@@ -45,8 +45,8 @@
 #include <QHeaderView>
 #include <QMessageBox>
 #include <QMenu>
-#include <QtPrintSupport/QPrinter>
-#include <QtPrintSupport/QPrintDialog>
+#include <QPrintDialog>
+#include <QPrinter>
 #include <QPushButton>
 #include <QSignalMapper>
 #include <QTextDocument>
@@ -441,6 +441,7 @@ WordTableView::printRequested()
     html += "</table></body></html>";
 
     QPrinter printer;
+    //printer.setOutputFormat(QPrinter::NativeFormat);
     QPrintDialog *dialog = new QPrintDialog(&printer);
     if (dialog->exec() == QDialog::Accepted) {
         //QWebView document;

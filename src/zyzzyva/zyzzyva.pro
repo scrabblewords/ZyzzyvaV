@@ -26,7 +26,7 @@
 TEMPLATE = app
 TARGET = zyzzyva
 CONFIG += qt thread warn_on assistant
-QT += sql xml network widgets gui
+QT += sql xml network widgets gui webkit webkitwidgets printsupport
 #CONFIG += qt thread warn_on assistant
 #QT += xml gui
 
