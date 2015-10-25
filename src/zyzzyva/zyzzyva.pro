@@ -50,6 +50,7 @@ unix {
 }
 win32 {
     LIBS = -lzyzzyva5 -L$$ROOT/bin
+    RC_ICONS += $$ROOT/images/Zyzzyva.ico
 }
 
 # Source files
