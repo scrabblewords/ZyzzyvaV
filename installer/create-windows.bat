@@ -100,6 +100,7 @@ rem Copy Qt plugins
 mkdir %OUTDIR%\sqldrivers
 rem copy %QTDIR%\plugins\sqldrivers\qsqlite4.dll %OUTDIR%\sqldrivers
 copy %QTDIR%\plugins\sqldrivers\qsqlite.dll %OUTDIR%\sqldrivers
+mkdir %OUTDIR%\printsupport
 copy %QTDIR%\plugins\printsupport\windowsprintersupport.dll %OUTDIR%\printsupport
 
 rem Copy Zyzzyva images
