@@ -69,7 +69,12 @@ make
 mkdir -p $OUTDIR/bin
 cp $(find $LIBPATH -name libstdc++.so.6 | head -n 1) $OUTDIR/bin; echo libstdc
 # cp $(find $LIBPATH -name "libgcc_s*" | head -n 1) $OUTDIR/bin; echo libgcc
-cp /usr/lib/gcc/x86_64-linux-gnu/4.9/libgcc_s.so   $OUTDIR/bin; echo libgcc
+if [ -f /usr/lib/gcc/x86_64-linux-gnu/4.9/libgcc_s.so ]
+then
+  cp /usr/lib/gcc/x86_64-linux-gnu/4.9/libgcc_s.so   $OUTDIR/bin; echo libgcc
+else
+  cp $(find $LIBPATH -name "libgcc_s*" | head -n 1) $OUTDIR/bin; echo libgcc
+fi
 cp $(find $LIBPATH -name libgstreamer-0.10.so.0 | head -n 1) $OUTDIR/bin; echo libgstreamer
 cp $(find $LIBPATH -name libgstapp-0.10.so.0 | head -n 1) $OUTDIR/bin; echo libgstapp
 cp $(find $LIBPATH -name libgio-2.0.so.0 | head -n 1) $OUTDIR/bin; echo libgio
@@ -80,9 +85,13 @@ cp $(find $LIBPATH -name libgstbase-0.10.so.0 | head -n 1) $OUTDIR/bin; echo lib
 cp $(find $LIBPATH -name libgobject-2.0.so.0 | head -n 1) $OUTDIR/bin; echo libgobject
 cp $(find $LIBPATH -name libgmodule-2.0.so.0 | head -n 1) $OUTDIR/bin; echo libgmodule
 cp $(find $LIBPATH -name libgthread-2.0.so.0 | head -n 1) $OUTDIR/bin; echo libgthread
-# cp $(find $LIBPATH -name libglib-2.0.so.0 | head -n 1) $OUTDIR/bin; echo libglib
-cp /lib/x86_64-linux-gnu/libglib-2.0.so.0 $OUTDIR/bin; echo libglib
-cp $(find $LIBPATH -name libffi.so.6 | head -n 1) $OUTDIR/bin; echo libffi
+if [ -f /lib/x86_64-linux-gnu/libglib-2.0.so.0 ]
+then
+  cp /lib/x86_64-linux-gnu/libglib-2.0.so.0 $OUTDIR/bin; echo libglib
+else
+  cp $(find $LIBPATH -name libglib-2.0.so.0 | head -n 1) $OUTDIR/bin; echo libglib
+fi
+cp $(find $LIBPATH -name "libffi.so.*" | head -n 1) $OUTDIR/bin; echo libffi
 
 mkdir -p $OUTDIR/bin/platforms
 cp $QTDIR/plugins/platforms/libqxcb.so $OUTDIR/bin/platforms/
@@ -103,7 +112,7 @@ cp LICENSE $OUTDIR/LICENSE
 cp README $OUTDIR/README
 
 mkdir -p $OUTDIR/images
-cp images/zyzzyva-32x32.png $OUTDIR/images
+cp $(find images/ -name "zyzzyva-32x32*.png" | head -n 1) $OUTDIR/images; echo PNG
 
 mkdir -p $OUTDIR/bin/sqldrivers
 cp $QTDIR/plugins/sqldrivers/libqsqlite.so $OUTDIR/bin/sqldrivers
