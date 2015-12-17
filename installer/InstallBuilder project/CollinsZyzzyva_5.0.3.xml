@@ -2,7 +2,7 @@
     <shortName>CollinsZyzzyva</shortName>
     <fullName>Zyzzyva</fullName>
     <version>5.0.3</version>
-    <installerFilename>Collins-Zyzzyva-${product_version}-${platform_name}-legacy-installer.${platform_exec_suffix}</installerFilename>
+    <installerFilename>Collins-Zyzzyva-${product_version}-${platform_name}-installer.${platform_exec_suffix}</installerFilename>
     <readmeFile>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/README</readmeFile>
     <licenseFile>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/LICENSE</licenseFile>
     <componentList>
@@ -134,166 +134,157 @@
                     <platforms>windows</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/CHANGES.txt</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/assistant.exe</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/AUTHORS.txt</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/AUTHORS.txt</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/zyzzyva5.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/CHANGES.txt</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/zyzzyva.top</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/COPYING.txt</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/zyzzyva.exe</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/icudt54.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/README.txt</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/icuin54.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5Xml.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/icuuc54.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5Sql.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/libgcc_s_dw2-1.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5Network.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/libstdc++-6.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5Gui.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/libwinpthread-1.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5Core.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/LICENSE.txt</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/LICENSE.txt</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5CLucene.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/COPYING.txt</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Concurrent.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/assistant.exe</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Core.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5DBus.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Declarative.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Designer.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5DesignerComponents.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Gui.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Help.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Location.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Multimedia.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5MultimediaQuick_p.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5MultimediaWidgets.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Network.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5OpenGL.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Positioning.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5PrintSupport.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Qml.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Quick.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5QuickWidgets.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Script.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5ScriptTools.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Sensors.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Sql.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5WebChannel.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5WebKit.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5WebKitWidgets.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Widgets.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5WinExtras.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5Xml.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/Qt5XmlPatterns.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/README.txt</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/zyzzyva.exe</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/zyzzyva.top</origin>
                         </distributionFile>
                         <distributionDirectory>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/data</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/sqldrivers</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/sqldrivers</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/data</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/images</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/images</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/platforms</origin>
                         </distributionDirectory>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5Widgets.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/libgcc_s_dw2-1.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/libstdc++-6.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/libwinpthread-1.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/icuuc54.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/icuin54.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/zyzzyva5.dll</origin>
                         </distributionFile>
                         <distributionDirectory>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/platforms</origin>
-                        </distributionDirectory>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/icudt54.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5PrintSupport.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5Help.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5WebKit.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5WebKitWidgets.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5CLucene.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5Qml.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5Quick.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5QuickWidgets.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5Positioning.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5MultimediaWidgets.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5Multimedia.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5MultimediaQuick_p.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5XmlPatterns.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5Concurrent.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5Declarative.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5Designer.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5DesignerComponents.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5Location.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5OpenGL.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5Script.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5ScriptTools.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5WinExtras.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5Sensors.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/Qt5WebChannel.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/libxml2-2.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/zlib1.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/libiconv-2.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/liblzma-5.dll</origin>
-                        </distributionFile>
-                        <distributionDirectory>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows-no-sse2/printsupport</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/printsupport</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -378,15 +369,15 @@
             <value>${platform_install_prefix}/${product_shortname}-${product_version}</value>
             <default>${platform_install_prefix}/${product_shortname}-${product_version}</default>
             <allowEmptyValue>0</allowEmptyValue>
-            <ask>yes</ask>
             <cliOptionName>prefix</cliOptionName>
-            <mustBeWritable>yes</mustBeWritable>
+            <mustBeWritable>1</mustBeWritable>
             <mustExist>0</mustExist>
             <width>30</width>
         </directoryParameter>
     </parameterList>
     <platformOptionsList>
         <platformOptions>
+            <installerFilename>Collins-Zyzzyva-${product_version}-${platform_name}-installer.${platform_exec_suffix}</installerFilename>
             <platform>windows</platform>
         </platformOptions>
         <platformOptions>
