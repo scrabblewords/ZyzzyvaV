@@ -132,6 +132,7 @@ SearchConditionForm::SearchConditionForm(QWidget* parent, Qt::WindowFlags f)
           << Auxil::searchTypeToString(SearchCondition::NumAnagrams);
 
     typeCbox = new QComboBox;
+    typeCbox->setMaxVisibleItems(30);
     Q_CHECK_PTR(typeCbox);
     typeCbox->addItems(types);
     connect(typeCbox, SIGNAL(activated(const QString&)),
