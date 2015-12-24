@@ -417,7 +417,7 @@ WordTableView::printRequested()
             }
             else if (column == WordTableModel::WORD_COLUMN) {
                 unformattedData.replace(' ', "&nbsp;");
-                padding = 10;
+                padding = 15;
                 nbHyphens = true;
             }
             else if (column == WordTableModel::BACK_HOOK_COLUMN) {
@@ -445,7 +445,7 @@ WordTableView::printRequested()
                     //+ (ZWSPs ? ("valign=\"top\">" + data.replace(QRegExp("([ -~])"), "\\1&#8203;")) : (">" + data)) + "</td>";
                     //+ (ZWSPs ? (">" + data.replace(QRegExp("([ -~])"), "\\1&shy;")) : (">" + data)) + "</td>";
                     + (shading ? "background-color:rgb(228, 229, 230);" : "")
-                    + "padding:0 " + QString::number(padding) + "px 0 0 px;"
+                    + "padding:0px " + QString::number(padding) + "px 0px 0px;"
                     + (isDefCol ? "white-space:pre-wrap;padding-left:16px;text-indent:-16px" : "")
                     //+ (isDefCol ? "white-space:pre-wrap;" : "")
                     //+ "\""
