@@ -413,12 +413,12 @@ WordTableView::printRequested()
             if (column == WordTableModel::FRONT_HOOK_COLUMN) {
                 padding = 8;
                 //ZWSPs = true;
-                nbHyphens = true;
+                //nbHyphens = true;
             }
             else if (column == WordTableModel::WORD_COLUMN) {
                 unformattedData.replace(' ', "&nbsp;");
                 padding = 15;
-                nbHyphens = true;
+                //nbHyphens = true;
             }
             else if (column == WordTableModel::BACK_HOOK_COLUMN) {
                 padding = 25;
