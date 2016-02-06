@@ -134,9 +134,6 @@
                     <platforms>windows</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/assistant.exe</origin>
-                        </distributionFile>
-                        <distributionFile>
                             <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/windows/AUTHORS.txt</origin>
                         </distributionFile>
                         <distributionFile>
