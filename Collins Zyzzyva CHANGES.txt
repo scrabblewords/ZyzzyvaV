@@ -1,14 +1,15 @@
 *************
 Version 5.0.3
-Released around December 20, 2015
+Released around February 10, 2016
+For Windows, legacy hardware Windows, and Mac
 
  NEW:  CSW15 definitions overhaul and consistency project completed by David Sutton - about 2,000 more corrections and 20,000 more improvements.
- NEW:  Search, Quiz, etc. screens can be rearranged by drag and drop of their top tabs.
 
  Fixed:  A few improvements/adjustments to formatting of printed word lists.
 
  Tweak:  Help is now available solely through "Welcome" screens, removing the deprecated QAssistantClient.
  Tweak:  Help indicates new URL for Collins download page, and URL for Changelog page.
+ Tweak:  Search combo box now drops to show all options.
 
 
 *************
