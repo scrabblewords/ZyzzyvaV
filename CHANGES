@@ -1,7 +1,8 @@
 *************
 Version 5.0.3
 Released around February 10, 2016
-For Windows, legacy hardware Windows, and Mac
+For Windows, legacy hardware Windows, and OSX
+OSX build by Anand Buddhdev
 
  NEW:  CSW15 definitions overhaul and consistency project completed by David Sutton - about 2,000 more corrections and 20,000 more improvements.
 
@@ -15,6 +16,7 @@ For Windows, legacy hardware Windows, and Mac
 *************
 Version 5.0.2
 Release began October 26, 2015
+OSX build by Anand Buddhdev
 
  NEW:  Printing word tables directly from Zyzzyva, using chosen word table display options and selectable printing font.
  NEW:  Showing the wildcard matches (leftmost) column in word tables is now a user option.
@@ -45,6 +47,7 @@ Release began October 26, 2015
 *************
 Version 5.0.1
 Released July 23, 2015
+OSX build by Anand Buddhdev
 
 User-visible changes:
  * Definition/p.o.s./inflection/cross-reference data added for the 6500 new CSW15 words;
@@ -60,6 +63,7 @@ Developer-visible changes:
 *** Collins Zyzzyva branch ***
 Version 5.0.0
 Released July 7, 2015
+OSX build by Anand Buddhdev
 
 User-visible changes:
  * Collins Zyzzyva uses a new data directory and a new registry key to store its data, allowing
