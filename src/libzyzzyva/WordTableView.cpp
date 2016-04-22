@@ -110,15 +110,15 @@ WordTableView::WordTableView(WordEngine* e, QWidget* parent)
         SLOT(headerSectionClicked(int)));
 }
 
-//---------------------------------------------------------------------------
+//----------------------------------------------------------------------------
 //  resizeItemsRecursively
 //
 //! Resize all columns to fit the model contents, for view and all views
 //! of child WordVariationDialogs.
 //!
-//! TODO (JGM) Add an interface to combine this with the same function in
+//! TODO (JGM) Add an interface/function to combine this with the same code in
 //! MainWindow::readSettings.
-//---------------------------------------------------------------------------
+//----------------------------------------------------------------------------
 void
 WordTableView::resizeItemsRecursively()
 {

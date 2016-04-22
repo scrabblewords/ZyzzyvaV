@@ -1773,7 +1773,7 @@ MainWindow::readSettings(bool useGeometry)
             searchForm->getView()->resizeItemsRecursively();
         }
     }
-    //! TODO (JGM) Add an interface to combine this with the same function in
+    //! TODO (JGM) Add an interface/function to combine this with the same code in
     //! WordTableView::resizeItemsRecursively.
     QListIterator<WordVariationDialog*> it(wordVariationDialogs);
     WordVariationDialog* current;
