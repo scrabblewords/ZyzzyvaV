@@ -105,7 +105,8 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
     // off.  Qt 5.4/5.5 thinks the value is -2ms instead of 0ms, causing inconsistent cursor display
     // across different GUI events.  Blinkophiles won't notice a 2ms difference in the blink rate when
     // using this application.
-    qApp->setCursorFlashTime(qApp->cursorFlashTime() + 2);
+    // (JGM) As of Qt 5.6.0, hack is no longer needed.
+    //qApp->setCursorFlashTime(qApp->cursorFlashTime() + 2);
     //printf("%d\n", qApp->cursorFlashTime());
 
     // File Menu
