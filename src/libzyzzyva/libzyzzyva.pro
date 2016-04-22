@@ -26,7 +26,7 @@
 TEMPLATE = lib
 TARGET = zyzzyva
 CONFIG += qt thread warn_on assistant
-QT += sql xml network widgets gui webkit webkitwidgets printsupport
+QT += sql xml network widgets gui printsupport
 
 ROOT = ../..
 DESTDIR = $$ROOT/bin
