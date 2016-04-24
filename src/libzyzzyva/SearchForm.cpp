@@ -108,6 +108,7 @@ SearchForm::SearchForm(WordEngine* e, QWidget* parent, Qt::WindowFlags f)
     connect(resultModel, SIGNAL(wordsChanged()),
             resultView, SLOT(resizeItemsToContents()));
     resultView->setModel(resultModel);
+    resultView->resizeItemsRecursively();
 
     lexiconActivated(lexiconWidget->getCurrentLexicon());
 

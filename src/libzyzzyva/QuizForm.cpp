@@ -220,6 +220,7 @@ QuizForm::QuizForm(WordEngine* we, QWidget* parent, Qt::WindowFlags f)
     connect(responseModel, SIGNAL(wordsChanged()),
             responseView, SLOT(resizeItemsToContents()));
     responseView->setModel(responseModel);
+    responseView->resizeItemsRecursively();
 
     // Correct status
     QHBoxLayout* correctStatusHlay = new QHBoxLayout;

@@ -72,35 +72,14 @@ WordTableView::WordTableView(WordEngine* e, QWidget* parent)
     setSelectionMode(QAbstractItemView::SingleSelection);
     setRootIsDecorated(false);
 
-    // TODO (JGM): Revisit this code in order to completely hide desired columns.
-    // Existing view display problems:  Wildcard column in child windows only hiding/unhiding
+    // TODO (JGM): Existing view display problems:  Wildcard column in child windows only hiding/unhiding
     // on hover or other action; and inner hook symbol likewise not changing automatically.
-    //
-    // FIXME: Once Trolltech fixes the assert in QHeaderView, continue with
-    // statements like these
-    //header()->setSectionResizeMode(WordTableModel::FRONT_HOOK_COLUMN, QHeaderView::Interactive);
-    //header()->setSectionResizeMode(WordTableModel::BACK_HOOK_COLUMN, QHeaderView::Interactive);
     header()->setSectionResizeMode(QHeaderView::Interactive);
     //header()->setMinimumSectionSize(0);
     //header()->setCascadingSectionResizes(true);
     //header()->setDefaultSectionSize(0);
     //header()->setStyleSheet("QHeaderView::down-arrow {image: none;}");
     //header()->setStyleSheet("QHeaderView::up-arrow {image: none;}");
-//    if (!MainSettings::getWordListShowHooks()) {
-
-//        hideColumn(WordTableModel::FRONT_HOOK_COLUMN);
-//        columnCountChanged()
-//        header()->resizeSection(WordTableModel::FRONT_HOOK_COLUMN, 0);
-//        setColumnWidth(WordTableModel::FRONT_HOOK_COLUMN, 0);
-//        header()->hideSection(WordTableModel::FRONT_HOOK_COLUMN);
-//        //model()->removeColumn(WordTableModel::FRONT_HOOK_COLUMN);
-
-//        hideColumn(WordTableModel::BACK_HOOK_COLUMN);
-//        header()->resizeSection(WordTableModel::BACK_HOOK_COLUMN, 0);
-//        setColumnWidth(WordTableModel::BACK_HOOK_COLUMN, 0);
-//        header()->hideSection(WordTableModel::BACK_HOOK_COLUMN);
-//        //header()->setStyleSheet("QHeaderView::section:hidden {background-color: transparent;}");
-//    }
 
     header()->setSortIndicatorShown(true);
     header()->setSortIndicator(WordTableModel::WORD_COLUMN, Qt::AscendingOrder);
@@ -122,6 +101,7 @@ WordTableView::WordTableView(WordEngine* e, QWidget* parent)
 void
 WordTableView::resizeItemsRecursively()
 {
+    setColumnsVisibility();
     resizeItemsToContents();
     QListIterator<WordVariationDialog*> it(wordVariationDialogs);
     WordVariationDialog* current;
@@ -149,28 +129,35 @@ WordTableView::resizeItemsRecursively()
 void
 WordTableView::resizeItemsToContents()
 {
-//    for (int i = 0; i < model()->rowCount(); ++i)
-//        resizeRowToContents(i);
-
-    // TODO (JGM): See WordTableView::WordTableView big TODO.
-    //header()->setMinimumSectionSize(0);
-    //header()->setCascadingSectionResizes(true);
-    for (int i = 0; i < model()->columnCount(); ++i) {
-//      if (isColumnHidden(i)) {
-          //hideColumn(i);
-//          header()->resizeSection(i, 0);
-//          setColumnWidth(i, 0);
-//          header()->hideSection(i);
-          //setColumnWidth(i, 0);
-          //header()->hideSection(i);
-//      }
-//      else {
-    //model()->removeColumn(i);
-    //header()->setDefaultSectionSize(0);
-        //header()->resizeSection(i, 10);
+    for (int i = 0; i < model()->columnCount(); ++i)
         resizeColumnToContents(i);
-      }
-//  }
+}
+
+//----------------------------------------------------------------------------
+//  setColumnsVisibility
+//
+//! Hide columns based on the settings in the Word Tables settings section.
+//----------------------------------------------------------------------------
+void
+WordTableView::setColumnsVisibility()
+{
+    for (int i = 0; i < model()->columnCount(); ++i)
+        switch (i) {
+            case WordTableModel::WILDCARD_MATCH_COLUMN:
+                !MainSettings::getWordListShowWildcardMatches() ? header()->setSectionHidden(i, true) : header()->setSectionHidden(i, false); break;
+            case WordTableModel::PROBABILITY_ORDER_COLUMN:
+                !MainSettings::getWordListShowProbabilityOrder() ? header()->setSectionHidden(i, true) : header()->setSectionHidden(i, false); break;
+            case WordTableModel::PLAYABILITY_ORDER_COLUMN:
+                !MainSettings::getWordListShowPlayabilityOrder() ? header()->setSectionHidden(i, true) : header()->setSectionHidden(i, false); break;
+            case WordTableModel::FRONT_HOOK_COLUMN:
+                !MainSettings::getWordListShowHooks() ? header()->setSectionHidden(i, true) : header()->setSectionHidden(i, false); break;
+            case WordTableModel::WORD_COLUMN:
+                header()->setSectionHidden(i, false); break;
+            case WordTableModel::BACK_HOOK_COLUMN:
+                !MainSettings::getWordListShowHooks() ? header()->setSectionHidden(i, true) : header()->setSectionHidden(i, false); break;
+            case WordTableModel::DEFINITION_COLUMN:
+                !MainSettings::getWordListShowDefinitions() ? header()->setSectionHidden(i, true) : header()->setSectionHidden(i, false);
+        }
 }
 
 //---------------------------------------------------------------------------

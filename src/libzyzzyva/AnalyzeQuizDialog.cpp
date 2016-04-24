@@ -89,6 +89,7 @@ AnalyzeQuizDialog::AnalyzeQuizDialog(QuizEngine* qe, WordEngine* we, QWidget*
     connect(missedModel, SIGNAL(wordsChanged()),
             missedView, SLOT(resizeItemsToContents()));
     missedView->setModel(missedModel);
+    missedView->resizeItemsRecursively();
 
     QHBoxLayout* precisionHlay = new QHBoxLayout;
     Q_CHECK_PTR(precisionHlay);
@@ -114,6 +115,7 @@ AnalyzeQuizDialog::AnalyzeQuizDialog(QuizEngine* qe, WordEngine* we, QWidget*
     connect(incorrectModel, SIGNAL(wordsChanged()),
             incorrectView, SLOT(resizeItemsToContents()));
     incorrectView->setModel(incorrectModel);
+    incorrectView->resizeItemsRecursively();
 
     QHBoxLayout* buttonHlay = new QHBoxLayout;
     buttonHlay->setSpacing(SPACING);
