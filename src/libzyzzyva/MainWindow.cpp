@@ -83,6 +83,8 @@ const QString SETTINGS_GEOMETRY_HEIGHT = "/height";
 
 const int DETAILS_FONT_MIN_POINTS = 6;
 
+const QColor SPLASH_MESSAGE_COLOR = Qt::white;
+
 using namespace Defs;
 
 //---------------------------------------------------------------------------
@@ -99,7 +101,7 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
       aboutDialog(new AboutDialog(this))//,
       //helpDialog(new HelpDialog(QString(), this))
 {
-    setSplashMessage("Creating interface...");
+    setSplashMessage("Creating interface...", SPLASH_MESSAGE_COLOR);
     //printf("%d\n", qApp->cursorFlashTime());
     // (JGM) Hack to properly display the cursor on Windows (7-specific?) when cursor blink is turned
     // off.  Qt 5.4/5.5 thinks the value is -2ms instead of 0ms, causing inconsistent cursor display
@@ -425,11 +427,11 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
 
     fixTrolltechConfig();
 
-    setSplashMessage("Reading settings...");
+    setSplashMessage("Reading settings...", SPLASH_MESSAGE_COLOR);
     readSettings(true);
     updateSettings();
 
-    setSplashMessage("Creating data files...");
+    setSplashMessage("Creating data files...", SPLASH_MESSAGE_COLOR);
     makeUserDirs();
 
     setWindowTitle(APPLICATION_TITLE);
@@ -492,7 +494,7 @@ MainWindow::tryAutoImport()
     if (!MainSettings::getUseAutoImport())
         return;
 
-    setSplashMessage("Loading lexicons...");
+    setSplashMessage("Loading lexicons...", SPLASH_MESSAGE_COLOR);
 
     // If no auto import lexicons are set, prompt the user with a lexicon
     // selection dialog
@@ -1315,7 +1317,7 @@ MainWindow::tryConnectToDatabase(const QString& lexicon)
     if (wordEngine->databaseIsConnected(lexicon) && (lexicon != LEXICON_CUSTOM))
         return DbNoError;
 
-    setSplashMessage(QString("Connecting to %1 database...").arg(lexicon));
+    setSplashMessage(QString("Connecting to %1 database...").arg(lexicon), SPLASH_MESSAGE_COLOR);
 
     QString dbFilename = Auxil::getDatabaseFilename(lexicon);
     QFile dbFile (dbFilename);
@@ -1982,11 +1984,11 @@ MainWindow::importChecksums(const QString& filename)
 //! @param message the message
 //---------------------------------------------------------------------------
 void
-MainWindow::setSplashMessage(const QString& message)
+MainWindow::setSplashMessage(const QString& message, const QColor& color)
 {
     //qDebug("Splash message: |%s|", message.toUtf8().constData());
     if (splashScreen)
-        splashScreen->showMessage(message, Qt::AlignHCenter | Qt::AlignBottom);
+        splashScreen->showMessage(message, Qt::AlignHCenter | Qt::AlignBottom, color);
     else
         messageLabel->setText(message);
 
@@ -2238,7 +2240,7 @@ MainWindow::importLexicon(const QString& lexicon)
         return false;
 
     QString splashMessage = "Loading " + lexicon + " lexicon...";
-    setSplashMessage(splashMessage);
+    setSplashMessage(splashMessage, SPLASH_MESSAGE_COLOR);
 
     if (dawg) {
         quint16 expectedForwardChecksum = 0;

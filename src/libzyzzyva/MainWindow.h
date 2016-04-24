@@ -113,7 +113,7 @@ class MainWindow : public QMainWindow
     virtual void closeEvent(QCloseEvent* event);
 
     private:
-    void setSplashMessage(const QString& message);
+    void setSplashMessage(const QString& message, const QColor& color = Qt::black);
     void fixTrolltechConfig();
     void updateSettings();
     void makeUserDirs();
