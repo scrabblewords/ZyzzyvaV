@@ -4,7 +4,7 @@
 #
 # Create a bundle for Mac OS X.
 #
-# Copyright 2016 Twilight Century Computing.
+# Copyright 2015-2016 Twilight Century Computing.
 # Copyright 2008-2012 North American SCRABBLE Players Association.
 #
 # This file is part of Zyzzyva.
