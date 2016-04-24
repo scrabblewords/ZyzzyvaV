@@ -330,7 +330,6 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
     QAction* helpAction = new QAction("&Help", this);
     Q_CHECK_PTR(helpAction);
     helpAction->setIcon(QIcon(":/help-icon"));
-    //connect(helpAction, SIGNAL(triggered()), SLOT(displayHelp()));
     // Start using "Welcome" dialog solely for providing help!
     connect(helpAction, SIGNAL(triggered()), SLOT(newIntroForm()));
     helpMenu->addAction(helpAction);
@@ -387,7 +386,6 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
     toolbar->addAction(toolbarEditPrefsAction);
     QAction* toolbarHelpAction = new QAction("Help", this);
     copyQActionPartial(helpAction, toolbarHelpAction);
-    //connect(toolbarHelpAction, SIGNAL(triggered()), SLOT(displayHelp()));
     // Start using "Welcome" dialog solely for providing help!
     connect(toolbarHelpAction, SIGNAL(triggered()), SLOT(newIntroForm()));
     toolbar->addAction(toolbarHelpAction);
