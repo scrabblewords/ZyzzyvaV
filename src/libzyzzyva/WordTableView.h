@@ -41,6 +41,7 @@ class WordTableView : public QTreeView
     WordTableView(WordEngine* e, QWidget* parent = 0);
     virtual ~WordTableView() { }
     void resizeItemsRecursively();
+    void setColumnsVisibility();
 
     public slots:
     virtual void resizeItemsToContents();
