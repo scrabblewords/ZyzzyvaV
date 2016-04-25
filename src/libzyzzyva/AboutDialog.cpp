@@ -66,6 +66,8 @@ AboutDialog::AboutDialog(QWidget* parent, Qt::WindowFlags f)
     aboutLabel->setAlignment(Qt::AlignHCenter);
     aboutLabel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
     aboutLabel->setText(Auxil::getAboutString());
+    aboutLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    aboutLabel->setOpenExternalLinks(true);
     tabStack->addTab(aboutLabel, "Collins Zyzzyva 5.0.3");
 
     QLabel* thanksLabel = new QLabel;
