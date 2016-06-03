@@ -53,11 +53,12 @@ int main(int argc, char** argv)
     window->tryAutoImport();
     window->tryConnectToDatabases();
 
-    window->show();
-    //TODO (JGM) Following line causes display problem for OSX, according to Anand.
+    // TODO (JGM) Setting state to maximized causes shrink->expand startup window display problem for OSX, according to Anand.
+    // FIXED: Showing window last seems to solve the problem.
     window->setWindowState(Qt::WindowMaximized);
     splash->finish(window);
     delete splash;
+    window->show();
 
     // Now that the splash screen is gone, process any database errors
     window->processDatabaseErrors();
@@ -85,3 +86,4 @@ int main(int argc, char** argv)
 
     return app.exec();
 }
+
