@@ -35,7 +35,7 @@ OBJECTS_DIR = build/obj
 INCLUDEPATH += build/moc
 DEPENDPATH += build/moc
 
-include($$ROOT/zyzzyva.pri)
+#include($$ROOT/zyzzyva.pri)
 
 unix {
     VERSION = $$system(cat $$ROOT/VERSION)

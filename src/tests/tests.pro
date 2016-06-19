@@ -35,7 +35,7 @@ OBJECTS_DIR = build/obj
 INCLUDEPATH += build/moc $$ROOT/src/libzyzzyva
 DEPENDPATH += build/moc
 
-include($$ROOT/zyzzyva.pri)
+#include($$ROOT/zyzzyva.pri)
 
 unix {
     LIBS = -lzyzzyva -L$$ROOT/bin
