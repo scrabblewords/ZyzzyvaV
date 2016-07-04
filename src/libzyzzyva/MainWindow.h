@@ -155,6 +155,7 @@ class MainWindow : public QMainWindow
     QAction*     saveAction;
     QAction*     saveAsAction;
     QAction*     printAction;
+    QAction*     closeTabAction;
     QAction*     toolbarSaveAction;
     QAction*     toolbarSaveAsAction;
     QAction*     toolbarPrintAction;

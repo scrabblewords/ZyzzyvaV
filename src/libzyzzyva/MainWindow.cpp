@@ -205,8 +205,9 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
     fileMenu->addSeparator();
 
     // Close Tab
-    QAction* closeTabAction = new QAction("&Close Tab", this);
+    closeTabAction = new QAction("&Close Tab", this);
     Q_CHECK_PTR(closeTabAction);
+    closeTabAction->setEnabled(false);
     closeTabAction->setShortcut(tr("Ctrl+W"));
     connect(closeTabAction, SIGNAL(triggered()), SLOT(closeCurrentTab()));
     fileMenu->addAction(closeTabAction);
@@ -1164,6 +1165,7 @@ MainWindow::closeCurrentTab()
         messageLabel->setText(QString());
         detailsLabel->setText(QString());
         closeButton->hide();
+        closeTabAction->setEnabled(false);
     }
 }
 
@@ -1833,6 +1835,8 @@ MainWindow::newTab(ActionForm* form)
     tabStack->setCurrentWidget(form);
     closeButton->show();
     currentTabChanged(0);
+    if (tabStack->count() == 1)
+        closeTabAction->setEnabled(true);
 }
 
 //---------------------------------------------------------------------------
