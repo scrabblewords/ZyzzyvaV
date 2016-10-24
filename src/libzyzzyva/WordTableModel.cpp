@@ -658,6 +658,8 @@ bool
 WordTableModel::setData(const QModelIndex& index, const QVariant& value, int
                         role)
 {
+    setAlphagramsGroupCount(0);
+
     if (index.isValid() && (role == Qt::EditRole)) {
         if (index.column() == WILDCARD_MATCH_COLUMN) {
             wordList[index.row()].setWildcard(value.toString());
@@ -806,6 +808,7 @@ WordTableModel::markAlternates()
         if (alphagram != prevAlphagram) {
             if (!prevAlphagram.isEmpty())
                 alternate = !alternate;
+            alphagramGroupsCount++;
             prevAlphagram = alphagram;
         }
         if (alternate && (item.getType() == WordNormal))

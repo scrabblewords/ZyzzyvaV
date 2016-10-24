@@ -138,6 +138,8 @@ class WordTableModel : public QAbstractTableModel
     void setProbabilityNumBlanks(int numBlanks) { probNumBlanks = numBlanks; }
     int getProbabilityNumBlanks() const { return probNumBlanks; }
     void clearLastAddedIndex();
+    int getAlphagramGroupsCount() const { return alphagramGroupsCount; }
+    void setAlphagramsGroupCount(int numGroups) { alphagramGroupsCount = numGroups; }
 
     signals:
     void wordsChanged();
@@ -167,6 +169,7 @@ class WordTableModel : public QAbstractTableModel
 
     static const QChar PARENT_HOOK_CHAR;
 
+    int alphagramGroupsCount;
 };
 
 #endif // ZYZZYVA_WORD_TABLE_MODEL_H

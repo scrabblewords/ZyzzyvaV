@@ -61,7 +61,7 @@ class SearchForm : public ActionForm
 
     public slots:
     void search();
-    void updateResultTotal(int num);
+    void updateResultTotal(int num, int numGroups, bool grouped);
     void lexiconActivated(const QString& lexicon);
     void specChanged();
 
