@@ -213,7 +213,7 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
     fileMenu->addAction(closeTabAction);
 
     // Quit
-    QAction* quitAction = new QAction("&Quit", this);
+    QAction* quitAction = new QAction("&Exit", this);
     Q_CHECK_PTR(quitAction);
     connect(quitAction, SIGNAL(triggered()), SLOT(close()));
     fileMenu->addAction(quitAction);
