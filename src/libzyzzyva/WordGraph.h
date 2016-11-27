@@ -48,7 +48,7 @@ class WordGraph
     private:
     class Node {
       public:
-        Node(char c = 0, bool e = false);
+        Node(QChar c = 0, bool e = false);
         ~Node();
         bool operator==(const Node& rhs);
         QChar letter;

@@ -745,7 +745,7 @@ WordGraph::addWordOld(const QString& w, bool reverse)
 
         // Empty node, so create a new node and link from its parent
         if (!node) {
-            node = new Node(c.toLatin1());
+            node = new Node(c);
             (parentNode ? parentNode->child : (reverse ? rtop : top)) = node;
         }
 
@@ -753,7 +753,7 @@ WordGraph::addWordOld(const QString& w, bool reverse)
         else {
             while (node->letter != c) {
                 if (!node->next) {
-                    node->next = new Node(c.toLatin1());
+                    node->next = new Node(c);
                 }
                 node = node->next;
             }
@@ -1240,7 +1240,7 @@ WordGraph::getNumWords(qint32 node) const
 //
 //! Constructor.
 //---------------------------------------------------------------------------
-WordGraph::Node::Node(char c, bool e)
+WordGraph::Node::Node(QChar c, bool e)
     : letter(c), eow(e), next(0), child(0)
 {
 }
