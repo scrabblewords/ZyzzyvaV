@@ -1397,6 +1397,7 @@ QuizForm::minimizeCanvas()
 void
 QuizForm::setQuestionLabel(const QString& question, const QString& order)
 {
+
     QString displayQuestion (question);
     QuizSpec quizSpec = quizEngine->getQuizSpec();
     QuizSpec::QuizType type = quizSpec.getType();
@@ -1434,14 +1435,13 @@ QuizForm::setQuestionLabel(const QString& question, const QString& order)
                 qSort(qchars.begin(), qchars.end(), alphabeticalCmp);
             }
 
-            char chars[MAX_WORD_LEN + 1];
+	    QString chars;
             int i = 0;
             QListIterator<QChar> it (qchars);
             while (it.hasNext()) {
-                chars[i] = it.next().toLatin1();
+		chars.append(it.next());
                 ++i;
             }
-            chars[i] = 0;
 
             displayQuestion = chars;
         }
