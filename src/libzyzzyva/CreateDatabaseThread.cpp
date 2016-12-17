@@ -829,8 +829,11 @@ CreateDatabaseThread::replaceDefinitionLinks(const QString& definition,
         matchedRegex = &replaceRegex;
     }
 
-    if (index < 0)
+    if (index < 0) {
+        if (createdSet)
+            delete alreadyReplaced;
         return definition;
+    }
 
     QString modified (definition);
     QString word = matchedRegex->cap(1);
