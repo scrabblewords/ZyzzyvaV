@@ -38,10 +38,13 @@ const QString SETTINGS_APPLICATION_NAME = "Collins Zyzzyva";
 
 int main(int argc, char** argv)
 {
-    ZApplication app(argc, argv);
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    // JGM Testing
+    //app.setStyleSheet("* {background-color: red}");
     QCoreApplication::setOrganizationName(SETTINGS_ORGANIZATION_NAME);
     QCoreApplication::setOrganizationDomain(SETTINGS_DOMAIN_NAME);
     QCoreApplication::setApplicationName(SETTINGS_APPLICATION_NAME);
+    ZApplication app(argc, argv);
 
     QPixmap pixmap (":/zyzzyva-splash");
     QSplashScreen* splash = new QSplashScreen(pixmap);
