@@ -73,6 +73,7 @@ const QString SETTINGS_SHOW_HOOK_PARENTS = "wordlist_show_hook_parents";
 const QString SETTINGS_USE_HOOK_PARENT_HYPHENS
     = "wordlist_use_hook_parent_hyphens";
 const QString SETTINGS_SHOW_DEFINITIONS = "wordlist_show_definitions";
+const QString SETTINGS_SHOW_ONE_SENSE_PER_LINE = "wordlist_show_one_sense_per_line";
 const QString SETTINGS_LOWER_CASE_WILDCARDS = "wordlist_lower_case_wildcards";
 const QString SETTINGS_USE_LEXICON_STYLES = "wordlist_use_lexicon_styles";
 const QString SETTINGS_LEXICON_STYLES = "wordlist_lexicon_styles";
@@ -140,6 +141,7 @@ const bool    DEFAULT_SHOW_HOOKS = true;
 const bool    DEFAULT_SHOW_HOOK_PARENTS = true;
 const bool    DEFAULT_USE_HOOK_PARENT_HYPHENS = false;
 const bool    DEFAULT_SHOW_DEFINITIONS = true;
+const bool    DEFAULT_SHOW_ONE_SENSE_PER_LINE = true;
 const bool    DEFAULT_LOWER_CASE_WILDCARDS = false;
 const bool    DEFAULT_USE_LEXICON_STYLES = true;
 const QString DEFAULT_LEXICON_STYLES = QString(
@@ -342,6 +344,9 @@ MainSettings::readSettings()
     instance->wordListShowDefinitions
         = settings.value(SETTINGS_SHOW_DEFINITIONS,
                          DEFAULT_SHOW_DEFINITIONS).toBool();
+    instance->wordListShowOneSensePerLine
+        = settings.value(SETTINGS_SHOW_ONE_SENSE_PER_LINE,
+                         DEFAULT_SHOW_ONE_SENSE_PER_LINE).toBool();
     instance->wordListLowerCaseWildcards
         = settings.value(SETTINGS_LOWER_CASE_WILDCARDS,
                          DEFAULT_LOWER_CASE_WILDCARDS).toBool();
@@ -457,6 +462,8 @@ MainSettings::writeSettings()
                       instance->wordListUseHookParentHyphens);
     settings.setValue(SETTINGS_SHOW_DEFINITIONS,
                       instance->wordListShowDefinitions);
+    settings.setValue(SETTINGS_SHOW_ONE_SENSE_PER_LINE,
+                      instance->wordListShowOneSensePerLine);
     settings.setValue(SETTINGS_LOWER_CASE_WILDCARDS,
                       instance->wordListLowerCaseWildcards);
     settings.setValue(SETTINGS_USE_LEXICON_STYLES,
@@ -564,6 +571,7 @@ MainSettings::restoreDefaults(const QString& group)
         instance->wordListUseHookParentHyphens =
             DEFAULT_USE_HOOK_PARENT_HYPHENS;
         instance->wordListShowDefinitions = DEFAULT_SHOW_DEFINITIONS;
+        instance->wordListShowOneSensePerLine = DEFAULT_SHOW_ONE_SENSE_PER_LINE;
         instance->wordListLowerCaseWildcards = DEFAULT_LOWER_CASE_WILDCARDS;
         instance->wordListUseLexiconStyles = DEFAULT_USE_LEXICON_STYLES;
         instance->setWordListLexiconStyles(DEFAULT_LEXICON_STYLES);

@@ -217,6 +217,10 @@ class MainSettings
         return instance->wordListShowDefinitions; }
     static void setWordListShowDefinitions(bool b) {
         instance->wordListShowDefinitions = b; }
+    static bool getWordListShowOneSensePerLine() {
+        return instance->wordListShowOneSensePerLine; }
+    static void setWordListShowOneSensePerLine(bool b) {
+        instance->wordListShowOneSensePerLine = b; }
     static bool getWordListLowerCaseWildcards() {
         return instance->wordListLowerCaseWildcards; }
     static void setWordListLowerCaseWildcards(bool b) {
@@ -308,6 +312,7 @@ class MainSettings
     bool wordListShowHookParents;
     bool wordListUseHookParentHyphens;
     bool wordListShowDefinitions;
+    bool wordListShowOneSensePerLine;
     bool wordListLowerCaseWildcards;
     bool wordListUseLexiconStyles;
     QList<LexiconStyle> wordListLexiconStyles;

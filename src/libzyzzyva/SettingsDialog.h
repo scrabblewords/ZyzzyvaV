@@ -139,6 +139,7 @@ class SettingsDialog : public QDialog
     QCheckBox*   useHookParentHyphensCbox;
     QCheckBox*   showHooksCbox;
     QCheckBox*   showDefinitionCbox;
+    QCheckBox*   showOneSensePerLineCbox;
     QCheckBox*   lowerCaseWildcardsCbox;
     QCheckBox*   lexiconStyleCbox;
     QLabel*      lexiconStyleLabel;

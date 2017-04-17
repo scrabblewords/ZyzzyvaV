@@ -779,6 +779,10 @@ SettingsDialog::SettingsDialog(QWidget* parent, Qt::WindowFlags f)
     Q_CHECK_PTR(showDefinitionCbox);
     wordListDisplayVlay->addWidget(showDefinitionCbox);
 
+    showOneSensePerLineCbox = new QCheckBox("Show each definition sense on a separate line");
+    Q_CHECK_PTR(showOneSensePerLineCbox);
+    wordListDisplayVlay->addWidget(showOneSensePerLineCbox);
+
     lowerCaseWildcardsCbox =
         new QCheckBox("Use lower-case for wildcard matches");
     Q_CHECK_PTR(lowerCaseWildcardsCbox);
@@ -1034,6 +1038,7 @@ SettingsDialog::refreshSettings()
     useHookParentHyphensCbox->setChecked(
         MainSettings::getWordListUseHookParentHyphens());
     showDefinitionCbox->setChecked(MainSettings::getWordListShowDefinitions());
+    showOneSensePerLineCbox->setChecked(MainSettings::getWordListShowOneSensePerLine());
     lowerCaseWildcardsCbox->setChecked(
         MainSettings::getWordListLowerCaseWildcards());
     showHookParentsCboxToggled(showHookParents);
@@ -1124,6 +1129,7 @@ SettingsDialog::writeSettings()
     MainSettings::setWordListUseHookParentHyphens(
         useHookParentHyphensCbox->isChecked());
     MainSettings::setWordListShowDefinitions(showDefinitionCbox->isChecked());
+    MainSettings::setWordListShowOneSensePerLine(showOneSensePerLineCbox->isChecked());
     MainSettings::setWordListLowerCaseWildcards(
         lowerCaseWildcardsCbox->isChecked());
     MainSettings::setWordListUseLexiconStyles(lexiconStyleCbox->isChecked());
