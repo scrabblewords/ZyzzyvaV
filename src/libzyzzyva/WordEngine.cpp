@@ -488,13 +488,13 @@ WordEngine::databaseSearch(const QString& lexicon, const SearchSpec&
                 if (condition.type == SearchCondition::PartOfSpeech) {
                     whereSecondStr = conjStr +
                         " words.definition" + notStr +
-                        " LIKE '\%[" + str + "]\%' ESCAPE '\\'";
+                        " LIKE '%[" + str + "]%' ESCAPE '\\'";
                     str = "[" + str + " ";
                 }
 
                 whereStr +=
                     " words.definition" + notStr +
-                    " LIKE '\%" + str + "\%' ESCAPE '\\'" + whereSecondStr;
+                    " LIKE '%" + str + "%' ESCAPE '\\'" + whereSecondStr;
             }
             break;
 

@@ -75,7 +75,7 @@ int main(int argc, char** argv)
         window->processArguments(args);
     }
 
-#if not defined Z_LINUX
+#ifndef Z_LINUX
     // Handle file open requests
     QStringList files = app.getFileOpenRequests();
     foreach (const QString& file, files) {
