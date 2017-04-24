@@ -75,6 +75,7 @@ IscConnectionThread::connectToServer(const QString& creds,
     // Connect to a random port between 1321 and 1330
     Rand rng (Rand::MarsagliaMwc, QDateTime::currentDateTime().toTime_t(),
               Auxil::getPid());
+    //Rand rng (Rand::MarsagliaMwc, QDateTime::currentDateTime().toTime_t());
     int port = 1321 + rng.rand(9);
     socket->connectToHost("66.98.172.34", port);
 

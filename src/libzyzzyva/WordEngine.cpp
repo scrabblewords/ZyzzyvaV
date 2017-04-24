@@ -76,6 +76,7 @@ WordEngine::connectToDatabase(const QString& lexicon, const QString& filename,
 
     Rand rng;
     rng.srand(QDateTime::currentDateTime().toTime_t(), Auxil::getPid());
+//    rng.srand(QDateTime::currentDateTime().toTime_t());
     unsigned int r = rng.rand();
     QString dbConnectionName = "WordEngine_" + lexicon + "_" +
         QString::number(r);

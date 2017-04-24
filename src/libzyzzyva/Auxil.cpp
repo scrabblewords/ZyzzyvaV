@@ -30,7 +30,8 @@
 #include <QApplication>
 #include <QDir>
 #include <QFile>
-#include <unistd.h>
+// ORIGINAL!
+//#include <unistd.h>
 
 const QString SET_UNKNOWN_STRING = "Unknown";
 const QString SET_HOOK_WORDS_STRING = "Hook Words";
@@ -216,7 +217,9 @@ Auxil::copyDir(const QString& src, const QString& dest)
 unsigned int
 Auxil::getPid()
 {
-    return getpid();
+      //ORIGINAL!
+      //return getpid();
+    return QCoreApplication::applicationPid();
 }
 
 //---------------------------------------------------------------------------

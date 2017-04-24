@@ -67,6 +67,7 @@ QuizDatabase::QuizDatabase(const QString& lexicon, const QString& quizType)
 
     // Get random connection name
     rng.srand(QDateTime::currentDateTime().toTime_t(), Auxil::getPid());
+//    rng.srand(QDateTime::currentDateTime().toTime_t());
     unsigned int r = rng.rand();
     dbConnectionName = "quiz" + QString::number(r);
     db = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE",

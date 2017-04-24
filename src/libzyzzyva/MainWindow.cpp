@@ -1329,6 +1329,7 @@ MainWindow::tryConnectToDatabase(const QString& lexicon)
     if (dbFile.exists()) {
         Rand rng;
         rng.srand(QDateTime::currentDateTime().toTime_t(), Auxil::getPid());
+//        rng.srand(QDateTime::currentDateTime().toTime_t());
         unsigned int r = rng.rand();
         QString dbConnectionName = "MainWindow_" + lexicon + "_" +
             QString::number(r);

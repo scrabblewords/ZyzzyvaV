@@ -38,8 +38,10 @@ class Rand
     };
 
     public:
-    Rand(int a = MarsagliaMwc, unsigned int z0 = 362436069,
-         unsigned int w0 = 521288629)
+//    Rand(int a = MarsagliaMwc, unsigned int z0 = 362436069,
+//         unsigned int w0 = 521288629)
+    Rand(int a = MarsagliaMwc, unsigned int z0 = Z0_INIT,
+         unsigned int w0 = W0_INIT)
         : algorithm(Algorithm(a)), z(z0), w(w0) { }
     ~Rand() { }
 
@@ -59,6 +61,10 @@ class Rand
     Algorithm algorithm;
     unsigned int z;
     unsigned int w;
+
+    public:
+    static const unsigned int Z0_INIT = 362436069;
+    static const unsigned int W0_INIT = 521288629;
 };
 
 #endif // ZYZZYVA_RAND_H

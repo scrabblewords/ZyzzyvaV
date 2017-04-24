@@ -74,6 +74,7 @@ LetterBag::LetterBag(const QString& distribution)
     letterValues[QChar('Z')] = 10;
 
     rng.srand(QDateTime::currentDateTime().toTime_t(), Auxil::getPid());
+//    rng.srand(QDateTime::currentDateTime().toTime_t());
     resetContents(distribution);
 }
 
