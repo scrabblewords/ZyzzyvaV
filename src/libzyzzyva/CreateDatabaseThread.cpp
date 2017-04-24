@@ -724,7 +724,7 @@ CreateDatabaseThread::updateDefinitionLinks(QSqlDatabase& db, int& stepNum)
         QString newDefinition;
         foreach (const QString& def, defs) {
             if (!newDefinition.isEmpty())
-                newDefinition += "\n";
+                newDefinition += " / ";
 
             alreadyReplaced.clear();
             alreadyReplaced.insert(word.toUpper());
