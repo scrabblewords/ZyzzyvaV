@@ -1204,17 +1204,30 @@ WordEngine::getDefinition(const QString& lexicon, const QString& word,
         const QMultiMap<QString, QString>& mmap =
             lexiconData[lexicon]->definitions.value(word);
         QMapIterator<QString, QString> it (mmap);
-        while (it.hasNext()) {
-            it.next();
-            if (!definition.isEmpty()) {
-                if (multilineDefs)
+//        while (it.hasNext()) {
+//            it.next();
+//            if (!definition.isEmpty()) {
+//                if (multilineDefs)
+//                    definition += "\n";
+//                else
+//                    definition += " / ";
+//            }
+//            definition += it.value();
+//        }
+        it.next();
+        if (multilineDefs) {
+            QStringList defs = it.value().split(" / ");
+            definition = QString();
+            foreach (const QString& def, defs) {
+                if (!definition.isEmpty())
                     definition += "\n";
-                else
-                    definition += " / ";
+                definition += def;
             }
-            definition += it.value();
+            return definition;
         }
-        return definition;
+        else {
+            return it.value();
+        }
     }
 }
 
@@ -2114,7 +2127,7 @@ WordEngine::nonGraphSearch(const QString& lexicon, const SearchSpec& spec) const
 //! @param lexicon the name of the lexicon
 //! @param word the word
 //! @param definition the definition
-//! @param multilineDefs whether to show one definition sense per line
+//! @param multilineDefs whether or not separate parts of speech should be placed on separate lines
 //----------------------------------------------------------------------------------------------------
 void
 WordEngine::addDefinition(const QString& lexicon, const QString& word,
