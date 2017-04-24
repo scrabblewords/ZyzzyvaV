@@ -1012,7 +1012,8 @@ WordEngine::search(const QString& lexicon, const SearchSpec& spec, bool
     }
 
     if (!resultList.isEmpty()) {
-        clearCache(lexicon);
+        // JGM testing... Why should the cache be cleared at every wordEngine::search() call??  Test relevant timings with and without.
+        //clearCache(lexicon);
         addToCache(lexicon, resultList);
     }
 
