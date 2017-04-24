@@ -101,6 +101,7 @@ WordTableView::WordTableView(WordEngine* e, QWidget* parent)
 void
 WordTableView::resizeItemsRecursively()
 {
+    MainSettings::getWordListShowOneSensePerLine() ? setUniformRowHeights(false) : setUniformRowHeights(true);
     setColumnsVisibility();
     resizeItemsToContents();
     QListIterator<WordVariationDialog*> it(wordVariationDialogs);
@@ -1013,7 +1014,7 @@ WordTableView::hookToolTipText(const QString& word, const QString& hooks,
             text += "\n\n";
 
         text += hookWord + symbols + " : " +
-            wordEngine->getDefinition(lexicon, hookWord);
+            wordEngine->getDefinition(lexicon, hookWord, MainSettings::getWordListShowOneSensePerLine());
 
         offset += regex.cap(0).length();
     }

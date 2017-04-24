@@ -81,7 +81,7 @@ DefinitionDialog::DefinitionDialog(WordEngine* e, const QString& lexicon,
 
     setWindowTitle(DIALOG_CAPTION_PREFIX + wordAcceptable);
 
-    QString definition = engine->getDefinition(lexicon, word);
+    QString definition = engine->getDefinition(lexicon, word, MainSettings::getWordListShowOneSensePerLine());
     if (definition.isEmpty()) {
         definition = acceptable ? EMPTY_DEFINITION :
             QString("<font color=\"red\">Unacceptable</font>");

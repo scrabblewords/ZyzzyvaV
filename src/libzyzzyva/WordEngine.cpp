@@ -198,7 +198,7 @@ WordEngine::importTextFile(const QString& lexicon, const QString& filename,
         graph->addWord(word);
         if (loadDefinitions) {
             QString definition = line.section(' ', 1);
-            addDefinition(lexicon, word, definition);
+            addDefinition(lexicon, word, definition, false);
         }
         ++imported;
     }
@@ -317,7 +317,7 @@ WordEngine::importBinaryFile(const QString& lexicon, const QString& filename,
         graph->addWord(word);
         if (loadDefinitions) {
             QString definition = line.section(' ', 1);
-            addDefinition(lexicon, word, definition);
+            addDefinition(lexicon, word, definition, false);
         }
         ++imported;
     }

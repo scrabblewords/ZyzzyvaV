@@ -501,7 +501,7 @@ WordTableModel::data(const QModelIndex& index, int role) const
 
                 case DEFINITION_COLUMN:
                 return MainSettings::getWordListShowDefinitions() ?
-                            wordEngine->getDefinition(lexicon, wordUpper) :
+                            wordEngine->getDefinition(lexicon, wordUpper, MainSettings::getWordListShowOneSensePerLine()) :
                             QString();
 
                 default:

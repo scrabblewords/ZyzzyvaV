@@ -121,7 +121,7 @@ class WordEngine : public QObject
     QString getLexiconFile(const QString& lexicon) const;
     WordInfo getWordInfo(const QString& lexicon, const QString& word) const;
     QString getDefinition(const QString& lexicon, const QString& word,
-                          bool multilineDefs = MainSettings::getWordListShowOneSensePerLine()) const;
+                          bool multilineDefs = false) const;
     QString getFrontHookLetters(const QString& lexicon, const QString& word)
         const;
     QString getBackHookLetters(const QString& lexicon, const QString& word)
@@ -169,7 +169,7 @@ class WordEngine : public QObject
     QStringList nonGraphSearch(const QString& lexicon,
                                const SearchSpec& spec) const;
     void addDefinition(const QString& lexicon, const QString& word, const QString& definition,
-                       bool multilineDefs = MainSettings::getWordListShowOneSensePerLine());
+                       bool multilineDefs = false);
     QStringList databaseSearch(const QString& lexicon, const SearchSpec&
                                optimizedSpec, const QStringList* wordList = 0)
                                const;
