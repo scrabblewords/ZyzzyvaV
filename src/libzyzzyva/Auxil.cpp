@@ -26,6 +26,7 @@
 #include "Auxil.h"
 #include "MainSettings.h"
 #include "Defs.h"
+//#include "../sqlite-amalgamation/sqlite3.h"
 #include <QApplication>
 #include <QDir>
 #include <QFile>
@@ -464,6 +465,34 @@ Auxil::getDatabaseFilename(const QString& lexicon)
     dir.mkpath(dbPath);
     return (dbPath + "/" + lexicon + ".db");
 }
+
+////---------------------------------------------------------------------------
+////  sqlite_regexp
+////
+////! C function for providing basic regular expression handling to sqlite3,
+////! via function pointer in sqlite3_create_function_v2.
+////
+////! @param context
+////! @param argc
+////! @param argv
+////---------------------------------------------------------------------------
+//static void
+//Auxil::sqlite_regexp(sqlite3_context *context, int argc, sqlite3_value **argv) {
+//    int numberOfMatches = 0;
+//    if (argc == 2) {
+//        const unsigned char *pattern = (const unsigned char *)sqlite3_value_text(argv[0]);
+//        const unsigned char *value   = (const unsigned char *)sqlite3_value_text(argv[1]);
+
+//        if (pattern != nil && value != nil) {
+//            NSError *error = nil;
+//            // Assumes that it is case sensitive. If you need case insensitivity, then prefix your regex with (?i)
+//            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:kNilOptions error:&error];
+//            if (regex != nil)
+//                numberOfMatches = [regex numberOfMatchesInString:value options:0 range:NSMakeRange(0, [value length])];
+//        }
+//    }
+//    sqlite3_result_int(context, numberOfMatches);
+//}
 
 //---------------------------------------------------------------------------
 //  dialogWordWrap
