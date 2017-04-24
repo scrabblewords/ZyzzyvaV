@@ -2142,10 +2142,12 @@ WordEngine::addDefinition(const QString& lexicon, const QString& word,
     QRegExp posRegex (QString("\\[(\\w+)"));
     QStringList defs;
     QMultiMap<QString, QString> defMap;
+
     if (multilineDefs)
         defs = definition.split(" / ");
     else
         defs = (QStringList() << definition);
+
     foreach (const QString& def, defs) {
         QString pos;
         if (posRegex.indexIn(def, 0) >= 0) {
