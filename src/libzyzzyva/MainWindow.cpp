@@ -83,7 +83,7 @@ const QString SETTINGS_GEOMETRY_HEIGHT = "/height";
 
 const int DETAILS_FONT_MIN_POINTS = 6;
 
-const QColor SPLASH_MESSAGE_COLOR = Qt::white;
+const QColor SPLASH_MESSAGE_COLOR = QColor("#fff7fa09");
 
 using namespace Defs;
 
