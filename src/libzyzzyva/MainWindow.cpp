@@ -1621,21 +1621,22 @@ MainWindow::rescheduleCardbox(const QStringList& words,
 void
 MainWindow::closeEvent(QCloseEvent* event)
 {
+    QMessageBox* msgBox = new QMessageBox(QMessageBox::Question, QCoreApplication::applicationName(), tr("Really exit?\n"),
+                                          QMessageBox::StandardButton::NoButton, this);
+    Q_CHECK_PTR(msgBox);
+    QCheckBox* neverShowCbox = new QCheckBox("Don't show this again");
+    Q_CHECK_PTR(neverShowCbox);
+    msgBox->setCheckBox(neverShowCbox);
+    QPushButton* yesButton = msgBox->addButton(tr("Yes"), QMessageBox::YesRole);
+    Q_CHECK_PTR(yesButton);
+    QPushButton* noButton = msgBox->addButton(tr("No"), QMessageBox::NoRole);
+    Q_CHECK_PTR(noButton);
+    QPushButton* cancelButton = msgBox->addButton(tr("Cancel"), QMessageBox::RejectRole);
+    Q_CHECK_PTR(cancelButton);
+    msgBox->setDefaultButton(cancelButton);
+    msgBox->setEscapeButton(cancelButton);
+
     if (MainSettings::getConfirmExit()) {
-        QMessageBox* msgBox = new QMessageBox(QMessageBox::Question, QCoreApplication::applicationName(), tr("Really exit?\n"),
-                                              QMessageBox::StandardButton::NoButton, this);
-        Q_CHECK_PTR(msgBox);
-        QCheckBox* neverShowCbox = new QCheckBox("Don't show this again");
-        Q_CHECK_PTR(neverShowCbox);
-        msgBox->setCheckBox(neverShowCbox);
-        QPushButton* yesButton = msgBox->addButton(tr("Yes"), QMessageBox::YesRole);
-        Q_CHECK_PTR(yesButton);
-        QPushButton* noButton = msgBox->addButton(tr("No"), QMessageBox::NoRole);
-        Q_CHECK_PTR(noButton);
-        QPushButton* cancelButton = msgBox->addButton(tr("Cancel"), QMessageBox::RejectRole);
-        Q_CHECK_PTR(cancelButton);
-        msgBox->setDefaultButton(cancelButton);
-        msgBox->setEscapeButton(cancelButton);
         msgBox->exec();
         if (msgBox->clickedButton() == yesButton || msgBox->clickedButton() == noButton)
             if (neverShowCbox->isChecked())
@@ -1659,11 +1660,13 @@ MainWindow::closeEvent(QCloseEvent* event)
                 bool ok = quizForm->promptToSaveChanges();
                 if (!ok) {
                     event->ignore();
+                    delete msgBox;
                     return;
                 }
             }
         }
     }
+
     writeSettings();
 }
 
