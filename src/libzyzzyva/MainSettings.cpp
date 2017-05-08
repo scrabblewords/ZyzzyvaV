@@ -53,6 +53,7 @@ const QString SETTINGS_IMPORT_LEXICONS = "autoimport_lexicons";
 const QString SETTINGS_DEFAULT_LEXICON = "default_lexicon";
 const QString SETTINGS_IMPORT_FILE = "autoimport_file";
 const QString SETTINGS_DISPLAY_WELCOME = "display_welcome";
+const QString SETTINGS_CONFIRM_EXIT = "confirm_exit";
 const QString SETTINGS_USER_DATA_DIR = "user_data_dir";
 const QString SETTINGS_FONT_MAIN = "font";
 const QString SETTINGS_FONT_WORD_LISTS = "font_word_lists";
@@ -109,6 +110,7 @@ const QString SETTINGS_JUDGE_SAVE_LOG = "judge_save_log";
 const bool    DEFAULT_AUTO_IMPORT = true;
 const QString DEFAULT_DEFAULT_LEXICON = Defs::LEXICON_CSW15;
 const bool    DEFAULT_DISPLAY_WELCOME = true;
+const bool    DEFAULT_CONFIRM_EXIT = true;
 const QString DEFAULT_USER_DATA_DIR = Auxil::getHomeDir() + "/.collinszyzzyva";
 const bool    DEFAULT_USE_TILE_THEME = true;
 const QString DEFAULT_TILE_THEME = "tan-with-border";
@@ -225,6 +227,10 @@ MainSettings::readSettings()
     instance->displayWelcome
         = settings.value(SETTINGS_DISPLAY_WELCOME,
                          DEFAULT_DISPLAY_WELCOME).toBool();
+
+    instance->confirmExit
+        = settings.value(SETTINGS_CONFIRM_EXIT,
+                         DEFAULT_CONFIRM_EXIT).toBool();
 
     instance->userDataDir = QDir::cleanPath(
         settings.value(SETTINGS_USER_DATA_DIR,
@@ -384,6 +390,7 @@ MainSettings::writeSettings()
     settings.setValue(SETTINGS_DEFAULT_LEXICON, instance->defaultLexicon);
     settings.setValue(SETTINGS_IMPORT_FILE, instance->autoImportFile);
     settings.setValue(SETTINGS_DISPLAY_WELCOME, instance->displayWelcome);
+    settings.setValue(SETTINGS_CONFIRM_EXIT, instance->confirmExit);
     settings.setValue(SETTINGS_USER_DATA_DIR, instance->userDataDir);
     settings.setValue(SETTINGS_USE_TILE_THEME, instance->useTileTheme);
     settings.setValue(SETTINGS_TILE_THEME, instance->tileTheme);
@@ -502,6 +509,7 @@ MainSettings::restoreDefaults(const QString& group)
         instance->autoImportLexicons = QStringList(DEFAULT_DEFAULT_LEXICON);
         instance->autoImportFile = QString();
         instance->displayWelcome = DEFAULT_DISPLAY_WELCOME;
+        instance->confirmExit = DEFAULT_CONFIRM_EXIT;
         instance->userDataDir = DEFAULT_USER_DATA_DIR;
     }
 
