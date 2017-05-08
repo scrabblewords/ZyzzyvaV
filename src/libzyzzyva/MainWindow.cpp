@@ -141,12 +141,12 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
 
     fileMenu->addSeparator();
 
-    // New Introduction
-    QAction* newIntroAction = new QAction("&Welcome", this);
-    Q_CHECK_PTR(newIntroAction);
-    newIntroAction->setIcon(QIcon(":/help-icon"));
-    connect(newIntroAction, SIGNAL(triggered()), SLOT(newIntroForm()));
-    fileMenu->addAction(newIntroAction);
+    // New Search
+    QAction* newSearchAction = new QAction("&Search", this);
+    Q_CHECK_PTR(newSearchAction);
+    newSearchAction->setIcon(QIcon(":/search-icon"));
+    connect(newSearchAction, SIGNAL(triggered()), SLOT(newSearchForm()));
+    fileMenu->addAction(newSearchAction);
 
     // New Quiz
     QAction* newQuizAction = new QAction("Qui&z...", this);
@@ -154,13 +154,6 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
     newQuizAction->setIcon(QIcon(":/quiz-icon"));
     connect(newQuizAction, SIGNAL(triggered()), SLOT(newQuizFormInteractive()));
     fileMenu->addAction(newQuizAction);
-
-    // New Search
-    QAction* newSearchAction = new QAction("&Search", this);
-    Q_CHECK_PTR(newSearchAction);
-    newSearchAction->setIcon(QIcon(":/search-icon"));
-    connect(newSearchAction, SIGNAL(triggered()), SLOT(newSearchForm()));
-    fileMenu->addAction(newSearchAction);
 
     // New Cardbox
     QAction* newCardboxAction = new QAction("&Cardbox", this);
@@ -217,17 +210,6 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
     Q_CHECK_PTR(quitAction);
     connect(quitAction, SIGNAL(triggered()), SLOT(close()));
     fileMenu->addAction(quitAction);
-
-    // Edit Menu
-    QMenu* editMenu = menuBar()->addMenu("&Edit");
-    Q_CHECK_PTR(editMenu);
-
-    // Preferences
-    QAction* editPrefsAction = new QAction("&Preferences", this);
-    Q_CHECK_PTR(editPrefsAction);
-    editPrefsAction->setIcon(QIcon(":/preferences-icon"));
-    connect(editPrefsAction, SIGNAL(triggered()), SLOT(editSettings()));
-    editMenu->addAction(editPrefsAction);
 
     // Word Menu
     QMenu* wordMenu = menuBar()->addMenu("&Word");
@@ -325,6 +307,13 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
             SLOT(rescheduleCardboxRequested()));
     toolsMenu->addAction(rescheduleCardboxAction);
 
+    // Preferences
+    QAction* editPrefsAction = new QAction("&Preferences", this);
+    Q_CHECK_PTR(editPrefsAction);
+    editPrefsAction->setIcon(QIcon(":/preferences-icon"));
+    connect(editPrefsAction, SIGNAL(triggered()), SLOT(editSettings()));
+    toolsMenu->addAction(editPrefsAction);
+
     // Help Menu
     QMenu* helpMenu = menuBar()->addMenu("&Help");
     Q_CHECK_PTR(helpMenu);
@@ -357,14 +346,14 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
     connect(toolbarSaveAsAction, SIGNAL(triggered()), SLOT(doSaveAction()));
     toolbar->addAction(toolbarSaveAsAction);
     toolbar->addSeparator();
-    QAction* toolbarQuizAction = new QAction("Quiz", this);
-    copyQActionPartial(newQuizAction, toolbarQuizAction);
-    connect(toolbarQuizAction, SIGNAL(triggered()), SLOT(newQuizFormInteractive()));
-    toolbar->addAction(toolbarQuizAction);
     QAction* toolbarSearchAction = new QAction("Search", this);
     copyQActionPartial(newSearchAction, toolbarSearchAction);
     connect(toolbarSearchAction, SIGNAL(triggered()), SLOT(newSearchForm()));
     toolbar->addAction(toolbarSearchAction);
+    QAction* toolbarQuizAction = new QAction("Quiz", this);
+    copyQActionPartial(newQuizAction, toolbarQuizAction);
+    connect(toolbarQuizAction, SIGNAL(triggered()), SLOT(newQuizFormInteractive()));
+    toolbar->addAction(toolbarQuizAction);
     QAction* toolbarCardboxAction = new QAction("Cardbox", this);
     copyQActionPartial(newCardboxAction, toolbarCardboxAction);
     connect(toolbarCardboxAction, SIGNAL(triggered()), SLOT(newCardboxForm()));
@@ -387,6 +376,7 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
     copyQActionPartial(editPrefsAction, toolbarEditPrefsAction);
     connect(toolbarEditPrefsAction, SIGNAL(triggered()), SLOT(editSettings()));
     toolbar->addAction(toolbarEditPrefsAction);
+    toolbar->addSeparator();
     QAction* toolbarHelpAction = new QAction("Help", this);
     copyQActionPartial(helpAction, toolbarHelpAction);
     // Start using "Welcome" dialog solely for providing help!
