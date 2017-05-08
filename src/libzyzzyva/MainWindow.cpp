@@ -201,13 +201,15 @@ MainWindow::MainWindow(QWidget* parent, QSplashScreen* splash, Qt::WindowFlags f
     closeTabAction = new QAction("&Close Tab", this);
     Q_CHECK_PTR(closeTabAction);
     closeTabAction->setEnabled(false);
-    closeTabAction->setShortcut(tr("Ctrl+W"));
+    closeTabAction->setShortcut(QString("Ctrl+W"));
     connect(closeTabAction, SIGNAL(triggered()), SLOT(closeCurrentTab()));
     fileMenu->addAction(closeTabAction);
 
     // Quit
     QAction* quitAction = new QAction("&Exit", this);
     Q_CHECK_PTR(quitAction);
+    quitAction->setEnabled(true);
+    quitAction->setShortcut(QString("Ctrl+Q"));
     connect(quitAction, SIGNAL(triggered()), SLOT(close()));
     fileMenu->addAction(quitAction);
 
@@ -1633,7 +1635,7 @@ MainWindow::closeEvent(QCloseEvent* event)
     Q_CHECK_PTR(noButton);
     QPushButton* cancelButton = msgBox->addButton(tr("Cancel"), QMessageBox::RejectRole);
     Q_CHECK_PTR(cancelButton);
-    msgBox->setDefaultButton(cancelButton);
+    msgBox->setDefaultButton(yesButton);
     msgBox->setEscapeButton(cancelButton);
 
     if (MainSettings::getConfirmExit()) {
