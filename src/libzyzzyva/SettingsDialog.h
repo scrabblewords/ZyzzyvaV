@@ -98,6 +98,7 @@ class SettingsDialog : public QDialog
     QWidget*     autoImportCustomWidget;
     QLineEdit*   autoImportCustomLine;
     QCheckBox*   displayWelcomeCbox;
+    QCheckBox*   confirmExitCbox ;
     QLineEdit*   userDataDirLine;
     QCheckBox*   userDataDirMoveCbox;
     QCheckBox*   themeCbox;

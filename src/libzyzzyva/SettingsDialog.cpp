@@ -215,19 +215,13 @@ SettingsDialog::SettingsDialog(QWidget* parent, Qt::WindowFlags f)
     // directory!
     userDataDirMoveCbox->hide();
 
-    QGroupBox* displayWelcomeGbox = new QGroupBox("Welcome");
-    Q_CHECK_PTR(displayWelcomeGbox);
-    generalPrefVlay->addWidget(displayWelcomeGbox);
-    generalPrefVlay->setStretchFactor(displayWelcomeGbox, 1);
-
-    QVBoxLayout* displayWelcomeVlay = new QVBoxLayout(displayWelcomeGbox);
-    Q_CHECK_PTR(displayWelcomeVlay);
-    displayWelcomeVlay->setMargin(MARGIN);
-    displayWelcomeVlay->setSpacing(SPACING);
-
     displayWelcomeCbox = new QCheckBox("Display Welcome on startup");
     Q_CHECK_PTR(displayWelcomeCbox);
-    displayWelcomeVlay->addWidget(displayWelcomeCbox);
+    generalPrefVlay->addWidget(displayWelcomeCbox);
+
+    confirmExitCbox = new QCheckBox("Confirm application exit");
+    Q_CHECK_PTR(confirmExitCbox);
+    generalPrefVlay->addWidget(confirmExitCbox);
 
     generalPrefVlay->addStretch(2);
 
@@ -913,6 +907,7 @@ SettingsDialog::refreshSettings()
     userDataDirLine->setText(origUserDataDir);
 
     displayWelcomeCbox->setChecked(MainSettings::getDisplayWelcome());
+    confirmExitCbox->setChecked(MainSettings::getConfirmExit());
 
     fillThemeCombo();
     bool useTileTheme = MainSettings::getUseTileTheme();
@@ -1069,6 +1064,7 @@ SettingsDialog::writeSettings()
     MainSettings::setDefaultLexicon(defaultLexicon);
     MainSettings::setAutoImportFile(autoImportCustomLine->text());
     MainSettings::setDisplayWelcome(displayWelcomeCbox->isChecked());
+    MainSettings::setConfirmExit(confirmExitCbox->isChecked());
     MainSettings::setUserDataDir(userDataDirLine->text());
     MainSettings::setUseTileTheme(themeCbox->isChecked());
     MainSettings::setTileTheme(themeCombo->currentText());

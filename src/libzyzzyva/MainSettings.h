@@ -74,6 +74,8 @@ class MainSettings
         instance->defaultLexicon = s; }
     static bool getDisplayWelcome() { return instance->displayWelcome; }
     static void setDisplayWelcome(bool b) { instance->displayWelcome = b; }
+    static bool getConfirmExit() { return instance->confirmExit; }
+    static void setConfirmExit(bool b) { instance->confirmExit = b; }
     static QString getUserDataDir() { return instance->userDataDir; }
     static void setUserDataDir(const QString& str) {
         instance->userDataDir = str; }
@@ -272,6 +274,7 @@ class MainSettings
     QString autoImportFile;
     QString defaultLexicon;
     bool displayWelcome;
+    bool confirmExit;
     QString userDataDir;
     bool useTileTheme;
     QString tileTheme;
