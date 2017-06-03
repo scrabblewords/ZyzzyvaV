@@ -139,6 +139,7 @@ HEADERS = \
     LexiconSelectDialog.h \
     LexiconSelectWidget.h \
     LexiconStyleDialog.h \
+    MainSettings.h \
     LexiconStyleWidget.h \
     MainWindow.h \
     NewQuizDialog.h \

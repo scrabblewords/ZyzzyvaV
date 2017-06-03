@@ -29,8 +29,10 @@
 #include "WordAttribute.h"
 #include "WordListFormat.h"
 #include "WordVariationDialog.h"
+#include <QPrinter>
 #include <QString>
 #include <QTreeView>
+#include <QWebEnginePage>
 
 class WordEngine;
 
@@ -76,13 +78,15 @@ class WordTableView : public QTreeView
                       int cardbox = 0) const;
     bool removeFromCardbox(const QStringList& words, const QString& lexicon,
                            const QString& quizType) const;
-
     QString hookToolTipText(const QString& word, const QString& hooks,
                             bool front) const;
+    void pagePrinted(bool result);
 
     private:
     WordEngine* wordEngine;
     QList<WordVariationDialog*> wordVariationDialogs;
+    QPrinter* printer;
+    QWebEnginePage* page;
 
     static const int ITEM_XPADDING = 5;
     static const int ITEM_YPADDING = 0;

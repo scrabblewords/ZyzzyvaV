@@ -49,11 +49,15 @@
 #include <QPrinter>
 #include <QPushButton>
 #include <QSignalMapper>
+#include <QTemporaryFile>
+#include <QTextBrowser>
 #include <QTextDocument>
 #include <QTextStream>
 #include <QToolTip>
 #include <QDebug>
 #include <QFont>
+#include <QWebEnginePage>
+//#include <QWebEngineView>
 
 using namespace std;
 
@@ -323,12 +327,11 @@ WordTableView::exportRequested()
 void
 WordTableView::printRequested()
 {
-    QString html;
-    QString htmlAlignment;
+    QString *html = new QString();
+    QString htmlHorizAlignment;
     QString alignment;
     int wordType;
     bool shading = false;
-    //bool ZWSPs;
     bool nbHyphens;
     bool isDefCol;
     qint8 padding = 0;
@@ -340,8 +343,10 @@ WordTableView::printRequested()
     bool fontItalic;
     bool fontUnderline;
     bool fontOverline;
+    QString style = QString();
     QString tdStyle = QString();
-    QString unformattedData, data;
+    QString unformattedData;
+    QString data;
 
     printingFontStr = MainSettings::getPrintingFont();
     if (!printingFontStr.isEmpty()) {
@@ -352,65 +357,66 @@ WordTableView::printRequested()
         fontItalic = font.italic();
         fontUnderline = font.underline();
         fontOverline = font.overline();
-        tdStyle += (QString("<style> td {font-family:") + fontFamily + ";font-size:" + QString("%1").arg(fontSize) + "pt");
+        tdStyle += (QString("<style> td {font-family:") + fontFamily + ";font-size:" + QString("%1").arg(fontSize) + "pt;");
         if (fontBold)
-            tdStyle += (";font-weight:bold");
+            tdStyle += ("font-weight:bold;");
         else
-            tdStyle += (";font-weight:normal");
+            tdStyle += ("font-weight:normal;");
         if (fontItalic)
-            tdStyle += (";font-style:italic");
+            tdStyle += ("font-style:italic;");
         else
-            tdStyle += (";font-style:normal");
+            tdStyle += ("font-style:normal;");
         if (fontUnderline)
-            tdStyle += (";text-decoration:underline");
+            tdStyle += ("text-decoration:underline;");
         else if (fontOverline)
-            tdStyle += (";text-decoration:overline");
+            tdStyle += ("text-decoration:overline;");
         else
-            tdStyle += (";text-decoration:none");
+            tdStyle += ("text-decoration:none;");
         tdStyle += "} </style>";
     }
 
-    html = "<html><body>" + tdStyle + "<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+    //style = "@media print {body {display:table;table-layout:fixed;padding-top:2.5cm;padding-bottom:1.0cm;height:auto;} } @page { margin: 0cm 0 }";
+    //style = "@page { margin: 3cm 3 }";
+    *html += ("<html><head><style> " + style + "</style></head><body>" + tdStyle + "<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
+    //*html += ("<html><head><style> " + style + "</style></head><body>" + tdStyle + "<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" style=\"vertical-align:middle;\">");
     for (int row = 0; row < model()->rowCount(); row++) {
-        html += "<tr>";
-        //html += "<tr valign=\"middle\">";
+        wordType = (model()->data(model()->index(row, 0), WordTableModel::WordTypeRole)).toInt();
+        switch (wordType) {
+            case WordTableModel::WordNormal:
+                shading = false;
+            break;
+            case WordTableModel::WordNormalAlternate:
+                shading = true;
+            break;
+        }
+        //*html += "<tr style=\"page-break-inside: avoid;\">";
+        *html += "<tr>";
+        //*html += (shading ? "<tr bgcolor=\"rgb(228,229,230)\">" : "<tr bgcolor=\"rgb(255,255,255)\">");
         for (int column = 0; column < model()->columnCount(); column++) {
-            wordType = (model()->data(model()->index(row, column), WordTableModel::WordTypeRole)).toInt();
-            switch (wordType) {
-                case WordTableModel::WordNormal:
-                    shading = false;
-                break;
-                case WordTableModel::WordNormalAlternate:
-                    shading = true;
-            }
-            //ZWSPs = false;
             nbHyphens = false;
             isDefCol = false;
             alignment = (model()->data(model()->index(row, column), Qt::TextAlignmentRole)).toString();
             switch(alignment.toInt() - 128) {
                 case Qt::AlignLeft:
-                    htmlAlignment = "\"left\"";
+                    htmlHorizAlignment = "\"left\"";
                 break;
                 case Qt::AlignCenter:
-                    htmlAlignment = "\"center\"";
+                    htmlHorizAlignment = "\"center\"";
                 break;
                 case Qt::AlignRight:
-                    htmlAlignment = "\"right\"";
+                    htmlHorizAlignment = "\"right\"";
+                break;
             }
             unformattedData = model()->data(model()->index(row, column), Qt::DisplayRole).toString();
             if (column == WordTableModel::FRONT_HOOK_COLUMN) {
                 padding = 8;
-                //ZWSPs = true;
-                //nbHyphens = true;
             }
             else if (column == WordTableModel::WORD_COLUMN) {
                 unformattedData.replace(' ', "&nbsp;");
                 padding = 15;
-                //nbHyphens = true;
             }
             else if (column == WordTableModel::BACK_HOOK_COLUMN) {
                 padding = 25;
-                //ZWSPs = true;
                 nbHyphens = true;
             }
             else if (column == WordTableModel::DEFINITION_COLUMN) {
@@ -422,49 +428,114 @@ WordTableView::printRequested()
                 padding = 25;
             if (!unformattedData.isNull()) {
                 data = (nbHyphens ? unformattedData.replace(QRegExp("-"), "&#8209;") : unformattedData);
-                html += "<td align=" + htmlAlignment + " style=\""
-                    // TODO (JGM):  Trying to get long lists of hook letters not to break prematurely after '+'
-                    // character, for example (see PA in list of anagrams of "A?").  But using ZWSPs causes the hook cells
-                    // to be placed slightly lower!  And soft hyphen leaves a hyphen character; and valign doesn't help.
-                    // Is there anything in CSS to accomplish this?
-                    // REFER TO:  http://doc.qt.io/qt-5/richtext-html-subset.html
-                    //
-                    //+ "px 0 0 px;\">" + (ZWSPs ? data.replace(QRegExp("([ -~])"), "\\1&#8203;") : data) + "</td>";
-                    //+ (ZWSPs ? ("valign=\"top\">" + data.replace(QRegExp("([ -~])"), "\\1&#8203;")) : (">" + data)) + "</td>";
-                    //+ (ZWSPs ? (">" + data.replace(QRegExp("([ -~])"), "\\1&shy;")) : (">" + data)) + "</td>";
-                    + (shading ? "background-color:rgb(228, 229, 230);" : "")
-                    + "padding:0px " + QString::number(padding) + "px 0px 0px;"
-                    + (isDefCol ? "white-space:pre-wrap;padding-left:16px;text-indent:-16px" : "")
-                    //+ (isDefCol ? "white-space:pre-wrap;" : "")
-                    //+ "\""
-                    //+ (shading ? " bgcolor=\"#E4E5E6\">" : ">")
-                    //+ "\">" + (isDefCol ? data.replace(QRegExp("/"), "/\n") : data)
-                    + "\">" + data
-                    + "</td>";
-                    //+ (nbHyphens ? data.replace(QRegExp("-"), "&#8209;") : data) + "</td>";
-            } else
-                html += QString("<td") + (shading ? " style=\"background-color:rgb(228, 229, 230);\"" : "") + "></td>";
+                *html += ("<td align=" + htmlHorizAlignment + " style=\""
+                          //+ "border-style:solid;"
+
+                          //TODO (JGM) "vertical-align:middle" causes page breaks to happen in the middle of multi-row items!!!!!
+                          //+ "vertical-align:middle;"
+                          //+ (isDefCol ? "" : "vertical-align:middle;")
+
+                          + (shading ? "background-color:rgb(228, 229, 230);" : "")
+                          //+ (shading ? "background-color:rgb(228, 229, 230);" : "background-color:rgb(100, 100, 100);")
+                          + "padding:0px " + QString::number(padding) + "px 0px 0px;"
+                          //+ "margin-top:0px;margin-bottom:0px;"
+                          + (isDefCol ? "white-space:pre-wrap;padding-left:16px;text-indent:-16px;" : "")
+                          + "\">"
+                          //+ "<div style=\"page-break-inside: avoid !important;margin: 4px 0 4px 0;vertical-align:middle;\">"
+                          + data
+                          //+ "</div>"
+                          + "</td>");
+            }
+            else
+                *html += (QString("<td") + (shading ? " style=\"background-color:rgb(228, 229, 230);\"" : "") + "></td>");
+                //*html += (QString("<td") + (shading ? " style=\"background-color:rgb(228, 229, 230);\"" : "background-color:rgb(100, 100, 100);") + "></td>");
         }
-        html += "</tr>";
+        *html += "</tr>";
     }
-    html += "</table></body></html>";
+    *html += "</table></body></html>";
 
     QPrinter printer;
     //printer.setOutputFormat(QPrinter::NativeFormat);
     QPrintDialog *dialog = new QPrintDialog(&printer);
     if (dialog->exec() == QDialog::Accepted) {
-        //QWebView document;
         QTextDocument document;
+        //QTextBrowser browser;
         //document.setDocumentMargin(6.0);
         //printer.setFullPage(true);
-        document.setHtml(html);
-        //document.setHtml(document.toPlainText());
+        document.setHtml(*html);
+        //browser.setHtml(*html);
         //printer.setOutputFileName("test.pdf");
         //printer.setOutputFormat(QPrinter::PdfFormat);
-        //printer.setPageMargins(QMarginsF(10.0, 10.0, 10.0, 5.0));
+        printer.setPageMargins(QMarginsF(0.0, 0.0, 0.0, 0.0));
+        //printer.setPageSize(QPageSize(QPageSize::Letter));
         document.print(&printer);
+        //browser.print(&printer);
     }
+
+    //    page = new QWebEnginePage();
+    //    //page->setHtml(*html);
+    //    QTemporaryFile tempFile;
+    //    if (!tempFile.open())
+    //        return;
+    //    QString tempFileName = tempFile.fileName();
+    //    QTextStream stream(&tempFile);
+    //    stream << *html;
+
+    //    page->load(QUrl::fromLocalFile(tempFileName));
+
+    //    //Prevents print dialog from appearing before the page is finished loading.
+    //    QEventLoop loop;
+    //    connect(page, SIGNAL(loadFinished(bool)), &loop, SLOT(quit()));
+    //    loop.exec();
+
+    //    tempFile.close();
+
+    //    printer = new QPrinter();
+    //    printer->setPageMargins(QMarginsF(20.0, 20.0, 20.0, 20.0));
+    //    //printer->setPageLayout(QPageLayout(QPageSize(QPageSize::Letter), QPageLayout::Portrait, QMarginsF(20.0, 20.0, 20.0, 20.0)));
+    //    QPrintDialog *dialog = new QPrintDialog(printer);
+    //    if (dialog->exec() != QDialog::Accepted) {
+    //        pagePrinted(false);
+    //        return;
+    //    }
+
+    //    // TODO (JGM) Many gigabytes of memory usage here when printing large files - leak??
+    //    page->print(printer, [this] (const bool result) { pagePrinted(result); });
+    //    //QThread::sleep(40);
+
+    //    // TODO (JGM) Do not indent first line of second+ definitions of the same word!!
+    //    // TODO (JGM) Fix long word lists being printed as one empty page!!!
+    //    // TODO (JGM) The problem, from QWebEnginePage::setHtml:  "Warning: The content will be percent encoded before being sent to the renderer via IPC. This may increase its size. The maximum size of the percent encoded content is 2 megabytes minus 30 bytes."
+    //    // TODO (JGM)   The problem seems to be at:  page->setHtml(*html);  .....  page size limit?  table size limit?
+    //    // TODO (JGM)   Split automatically at page breaks somehow?
+    //    // TODO (JGM)   Abandon table for divs, etc.?
+    //    // TODO (JGM) Print to pdf first instead, then print pdf in-memory, so as to be able to add page numbers. (?)
+    //    // TODO (JGM) (5.8) Spin or wait here until pagePrinted() has been called, so as not to possibly corrupt page, printer on long print jobs! (?)
+
+    //    //    const QString fileName = QFileDialog::getSaveFileName(0, tr("Save pdf"), ".", tr("PDF Files (*.pdf)"));
+    //    //    if (fileName.isEmpty())
+    //    //        return;
+    //    //    view->page()->printToPdf(fileName, QPageLayout(QPageSize(QPageSize::Letter), QPageLayout::Portrait, QMarginsF(20.0, 20.0, 20.0, 20.0)));
+
+    delete html;
+    delete dialog;
 }
+
+////---------------------------------------------------------------------------
+////  pagePrinted
+////
+////! Callback function at completion of a printRequestedQWebEnginePage()
+////! print operation.
+////---------------------------------------------------------------------------
+//void WordTableView::pagePrinted(bool result)
+//{
+//    Q_UNUSED(result);
+
+//    delete printer;
+//    printer = nullptr;
+//    delete page;
+//    page = nullptr;
+//}
 
 //---------------------------------------------------------------------------
 //  createQuizRequested
