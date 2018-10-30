@@ -53,6 +53,7 @@ const QString SETTINGS_IMPORT_LEXICONS = "autoimport_lexicons";
 const QString SETTINGS_DEFAULT_LEXICON = "default_lexicon";
 const QString SETTINGS_IMPORT_FILE = "autoimport_file";
 const QString SETTINGS_DISPLAY_WELCOME = "display_welcome";
+const QString SETTINGS_CONFIRM_EXIT = "confirm_exit";
 const QString SETTINGS_USER_DATA_DIR = "user_data_dir";
 const QString SETTINGS_FONT_MAIN = "font";
 const QString SETTINGS_FONT_WORD_LISTS = "font_word_lists";
@@ -73,6 +74,7 @@ const QString SETTINGS_SHOW_HOOK_PARENTS = "wordlist_show_hook_parents";
 const QString SETTINGS_USE_HOOK_PARENT_HYPHENS
     = "wordlist_use_hook_parent_hyphens";
 const QString SETTINGS_SHOW_DEFINITIONS = "wordlist_show_definitions";
+const QString SETTINGS_SHOW_ONE_SENSE_PER_LINE = "wordlist_show_one_sense_per_line";
 const QString SETTINGS_LOWER_CASE_WILDCARDS = "wordlist_lower_case_wildcards";
 const QString SETTINGS_USE_LEXICON_STYLES = "wordlist_use_lexicon_styles";
 const QString SETTINGS_LEXICON_STYLES = "wordlist_lexicon_styles";
@@ -108,6 +110,7 @@ const QString SETTINGS_JUDGE_SAVE_LOG = "judge_save_log";
 const bool    DEFAULT_AUTO_IMPORT = true;
 const QString DEFAULT_DEFAULT_LEXICON = Defs::LEXICON_CSW15;
 const bool    DEFAULT_DISPLAY_WELCOME = true;
+const bool    DEFAULT_CONFIRM_EXIT = true;
 const QString DEFAULT_USER_DATA_DIR = Auxil::getHomeDir() + "/.collinszyzzyva";
 const bool    DEFAULT_USE_TILE_THEME = true;
 const QString DEFAULT_TILE_THEME = "tan-with-border";
@@ -140,6 +143,7 @@ const bool    DEFAULT_SHOW_HOOKS = true;
 const bool    DEFAULT_SHOW_HOOK_PARENTS = true;
 const bool    DEFAULT_USE_HOOK_PARENT_HYPHENS = false;
 const bool    DEFAULT_SHOW_DEFINITIONS = true;
+const bool    DEFAULT_SHOW_ONE_SENSE_PER_LINE = false;
 const bool    DEFAULT_LOWER_CASE_WILDCARDS = false;
 const bool    DEFAULT_USE_LEXICON_STYLES = true;
 const QString DEFAULT_LEXICON_STYLES = QString(
@@ -223,6 +227,10 @@ MainSettings::readSettings()
     instance->displayWelcome
         = settings.value(SETTINGS_DISPLAY_WELCOME,
                          DEFAULT_DISPLAY_WELCOME).toBool();
+
+    instance->confirmExit
+        = settings.value(SETTINGS_CONFIRM_EXIT,
+                         DEFAULT_CONFIRM_EXIT).toBool();
 
     instance->userDataDir = QDir::cleanPath(
         settings.value(SETTINGS_USER_DATA_DIR,
@@ -342,6 +350,9 @@ MainSettings::readSettings()
     instance->wordListShowDefinitions
         = settings.value(SETTINGS_SHOW_DEFINITIONS,
                          DEFAULT_SHOW_DEFINITIONS).toBool();
+    instance->wordListShowOneSensePerLine
+        = settings.value(SETTINGS_SHOW_ONE_SENSE_PER_LINE,
+                         DEFAULT_SHOW_ONE_SENSE_PER_LINE).toBool();
     instance->wordListLowerCaseWildcards
         = settings.value(SETTINGS_LOWER_CASE_WILDCARDS,
                          DEFAULT_LOWER_CASE_WILDCARDS).toBool();
@@ -379,6 +390,7 @@ MainSettings::writeSettings()
     settings.setValue(SETTINGS_DEFAULT_LEXICON, instance->defaultLexicon);
     settings.setValue(SETTINGS_IMPORT_FILE, instance->autoImportFile);
     settings.setValue(SETTINGS_DISPLAY_WELCOME, instance->displayWelcome);
+    settings.setValue(SETTINGS_CONFIRM_EXIT, instance->confirmExit);
     settings.setValue(SETTINGS_USER_DATA_DIR, instance->userDataDir);
     settings.setValue(SETTINGS_USE_TILE_THEME, instance->useTileTheme);
     settings.setValue(SETTINGS_TILE_THEME, instance->tileTheme);
@@ -457,6 +469,8 @@ MainSettings::writeSettings()
                       instance->wordListUseHookParentHyphens);
     settings.setValue(SETTINGS_SHOW_DEFINITIONS,
                       instance->wordListShowDefinitions);
+    settings.setValue(SETTINGS_SHOW_ONE_SENSE_PER_LINE,
+                      instance->wordListShowOneSensePerLine);
     settings.setValue(SETTINGS_LOWER_CASE_WILDCARDS,
                       instance->wordListLowerCaseWildcards);
     settings.setValue(SETTINGS_USE_LEXICON_STYLES,
@@ -495,6 +509,7 @@ MainSettings::restoreDefaults(const QString& group)
         instance->autoImportLexicons = QStringList(DEFAULT_DEFAULT_LEXICON);
         instance->autoImportFile = QString();
         instance->displayWelcome = DEFAULT_DISPLAY_WELCOME;
+        instance->confirmExit = DEFAULT_CONFIRM_EXIT;
         instance->userDataDir = DEFAULT_USER_DATA_DIR;
     }
 
@@ -564,6 +579,7 @@ MainSettings::restoreDefaults(const QString& group)
         instance->wordListUseHookParentHyphens =
             DEFAULT_USE_HOOK_PARENT_HYPHENS;
         instance->wordListShowDefinitions = DEFAULT_SHOW_DEFINITIONS;
+        instance->wordListShowOneSensePerLine = DEFAULT_SHOW_ONE_SENSE_PER_LINE;
         instance->wordListLowerCaseWildcards = DEFAULT_LOWER_CASE_WILDCARDS;
         instance->wordListUseLexiconStyles = DEFAULT_USE_LEXICON_STYLES;
         instance->setWordListLexiconStyles(DEFAULT_LEXICON_STYLES);

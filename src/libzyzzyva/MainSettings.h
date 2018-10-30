@@ -74,6 +74,8 @@ class MainSettings
         instance->defaultLexicon = s; }
     static bool getDisplayWelcome() { return instance->displayWelcome; }
     static void setDisplayWelcome(bool b) { instance->displayWelcome = b; }
+    static bool getConfirmExit() { return instance->confirmExit; }
+    static void setConfirmExit(bool b) { instance->confirmExit = b; }
     static QString getUserDataDir() { return instance->userDataDir; }
     static void setUserDataDir(const QString& str) {
         instance->userDataDir = str; }
@@ -217,6 +219,10 @@ class MainSettings
         return instance->wordListShowDefinitions; }
     static void setWordListShowDefinitions(bool b) {
         instance->wordListShowDefinitions = b; }
+    static bool getWordListShowOneSensePerLine() {
+        return instance->wordListShowOneSensePerLine; }
+    static void setWordListShowOneSensePerLine(bool b) {
+        instance->wordListShowOneSensePerLine = b; }
     static bool getWordListLowerCaseWildcards() {
         return instance->wordListLowerCaseWildcards; }
     static void setWordListLowerCaseWildcards(bool b) {
@@ -268,6 +274,7 @@ class MainSettings
     QString autoImportFile;
     QString defaultLexicon;
     bool displayWelcome;
+    bool confirmExit;
     QString userDataDir;
     bool useTileTheme;
     QString tileTheme;
@@ -308,6 +315,7 @@ class MainSettings
     bool wordListShowHookParents;
     bool wordListUseHookParentHyphens;
     bool wordListShowDefinitions;
+    bool wordListShowOneSensePerLine;
     bool wordListLowerCaseWildcards;
     bool wordListUseLexiconStyles;
     QList<LexiconStyle> wordListLexiconStyles;

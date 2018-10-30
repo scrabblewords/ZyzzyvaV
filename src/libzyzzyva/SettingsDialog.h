@@ -98,6 +98,7 @@ class SettingsDialog : public QDialog
     QWidget*     autoImportCustomWidget;
     QLineEdit*   autoImportCustomLine;
     QCheckBox*   displayWelcomeCbox;
+    QCheckBox*   confirmExitCbox ;
     QLineEdit*   userDataDirLine;
     QCheckBox*   userDataDirMoveCbox;
     QCheckBox*   themeCbox;
@@ -139,6 +140,7 @@ class SettingsDialog : public QDialog
     QCheckBox*   useHookParentHyphensCbox;
     QCheckBox*   showHooksCbox;
     QCheckBox*   showDefinitionCbox;
+    QCheckBox*   showOneSensePerLineCbox;
     QCheckBox*   lowerCaseWildcardsCbox;
     QCheckBox*   lexiconStyleCbox;
     QLabel*      lexiconStyleLabel;

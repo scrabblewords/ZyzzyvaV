@@ -101,6 +101,7 @@ WordTableView::WordTableView(WordEngine* e, QWidget* parent)
 void
 WordTableView::resizeItemsRecursively()
 {
+    MainSettings::getWordListShowOneSensePerLine() ? setUniformRowHeights(false) : setUniformRowHeights(true);
     setColumnsVisibility();
     resizeItemsToContents();
     QListIterator<WordVariationDialog*> it(wordVariationDialogs);
@@ -174,7 +175,7 @@ WordTableView::viewDefinition()
     QString word = wordModel->data(index, Qt::EditRole).toString();
     QString lexicon = wordModel->getLexicon();
     DefinitionDialog* dialog = new DefinitionDialog(wordEngine, lexicon, word,
-                                                    this);
+                                                    MainWindow::getInstance());
     Q_CHECK_PTR(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->show();
@@ -197,7 +198,7 @@ WordTableView::viewVariation(int variation)
     QString lexicon = wordModel->getLexicon();
     WordVariationType type = static_cast<WordVariationType>(variation);
     WordVariationDialog* dialog = new WordVariationDialog(wordEngine, lexicon,
-                                                          word, type, this);
+                                                          word, type, MainWindow::getInstance());
     Q_CHECK_PTR(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     wordVariationDialogs.insert(wordVariationDialogs.size(), dialog);
@@ -1013,7 +1014,7 @@ WordTableView::hookToolTipText(const QString& word, const QString& hooks,
             text += "\n\n";
 
         text += hookWord + symbols + " : " +
-            wordEngine->getDefinition(lexicon, hookWord);
+            wordEngine->getDefinition(lexicon, hookWord, MainSettings::getWordListShowOneSensePerLine());
 
         offset += regex.cap(0).length();
     }

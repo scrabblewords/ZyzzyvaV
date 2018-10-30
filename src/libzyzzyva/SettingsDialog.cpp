@@ -215,19 +215,13 @@ SettingsDialog::SettingsDialog(QWidget* parent, Qt::WindowFlags f)
     // directory!
     userDataDirMoveCbox->hide();
 
-    QGroupBox* displayWelcomeGbox = new QGroupBox("Welcome");
-    Q_CHECK_PTR(displayWelcomeGbox);
-    generalPrefVlay->addWidget(displayWelcomeGbox);
-    generalPrefVlay->setStretchFactor(displayWelcomeGbox, 1);
-
-    QVBoxLayout* displayWelcomeVlay = new QVBoxLayout(displayWelcomeGbox);
-    Q_CHECK_PTR(displayWelcomeVlay);
-    displayWelcomeVlay->setMargin(MARGIN);
-    displayWelcomeVlay->setSpacing(SPACING);
-
     displayWelcomeCbox = new QCheckBox("Display Welcome on startup");
     Q_CHECK_PTR(displayWelcomeCbox);
-    displayWelcomeVlay->addWidget(displayWelcomeCbox);
+    generalPrefVlay->addWidget(displayWelcomeCbox);
+
+    confirmExitCbox = new QCheckBox("Confirm application exit");
+    Q_CHECK_PTR(confirmExitCbox);
+    generalPrefVlay->addWidget(confirmExitCbox);
 
     generalPrefVlay->addStretch(2);
 
@@ -779,6 +773,10 @@ SettingsDialog::SettingsDialog(QWidget* parent, Qt::WindowFlags f)
     Q_CHECK_PTR(showDefinitionCbox);
     wordListDisplayVlay->addWidget(showDefinitionCbox);
 
+    showOneSensePerLineCbox = new QCheckBox("Show each definition sense on a separate line");
+    Q_CHECK_PTR(showOneSensePerLineCbox);
+    wordListDisplayVlay->addWidget(showOneSensePerLineCbox);
+
     lowerCaseWildcardsCbox =
         new QCheckBox("Use lower-case for wildcard matches");
     Q_CHECK_PTR(lowerCaseWildcardsCbox);
@@ -909,6 +907,7 @@ SettingsDialog::refreshSettings()
     userDataDirLine->setText(origUserDataDir);
 
     displayWelcomeCbox->setChecked(MainSettings::getDisplayWelcome());
+    confirmExitCbox->setChecked(MainSettings::getConfirmExit());
 
     fillThemeCombo();
     bool useTileTheme = MainSettings::getUseTileTheme();
@@ -1034,6 +1033,7 @@ SettingsDialog::refreshSettings()
     useHookParentHyphensCbox->setChecked(
         MainSettings::getWordListUseHookParentHyphens());
     showDefinitionCbox->setChecked(MainSettings::getWordListShowDefinitions());
+    showOneSensePerLineCbox->setChecked(MainSettings::getWordListShowOneSensePerLine());
     lowerCaseWildcardsCbox->setChecked(
         MainSettings::getWordListLowerCaseWildcards());
     showHookParentsCboxToggled(showHookParents);
@@ -1064,6 +1064,7 @@ SettingsDialog::writeSettings()
     MainSettings::setDefaultLexicon(defaultLexicon);
     MainSettings::setAutoImportFile(autoImportCustomLine->text());
     MainSettings::setDisplayWelcome(displayWelcomeCbox->isChecked());
+    MainSettings::setConfirmExit(confirmExitCbox->isChecked());
     MainSettings::setUserDataDir(userDataDirLine->text());
     MainSettings::setUseTileTheme(themeCbox->isChecked());
     MainSettings::setTileTheme(themeCombo->currentText());
@@ -1124,6 +1125,7 @@ SettingsDialog::writeSettings()
     MainSettings::setWordListUseHookParentHyphens(
         useHookParentHyphensCbox->isChecked());
     MainSettings::setWordListShowDefinitions(showDefinitionCbox->isChecked());
+    MainSettings::setWordListShowOneSensePerLine(showOneSensePerLineCbox->isChecked());
     MainSettings::setWordListLowerCaseWildcards(
         lowerCaseWildcardsCbox->isChecked());
     MainSettings::setWordListUseLexiconStyles(lexiconStyleCbox->isChecked());

@@ -148,6 +148,7 @@ QuizEngine::newQuiz(const QuizSpec& spec)
                 unsigned int seed2 = spec.getRandomSeed2();
                 if (!seed2)
                     seed2 = Auxil::getPid();
+//                    seed2 = Rand::W0_INIT;
                 rng.setAlgorithm(spec.getRandomAlgorithm());
                 rng.srand(seed, seed2);
                 quizSpec.setRandomSeed(seed);

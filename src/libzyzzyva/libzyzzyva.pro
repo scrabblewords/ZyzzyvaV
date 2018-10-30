@@ -24,9 +24,13 @@
 #---------------------------------------------------------------------------
 
 TEMPLATE = lib
-TARGET = zyzzyva
+TARGET = zyzzyva5
 CONFIG += qt thread warn_on assistant
+win32-msvc2015:CONFIG += staticlib
 QT += sql xml network widgets gui printsupport
+win32-msvc2015|linux|macx {
+    QT += webenginewidgets
+}
 
 ROOT = ../..
 DESTDIR = $$ROOT/bin
@@ -37,12 +41,12 @@ DEPENDPATH += build/moc
 
 #include($$ROOT/zyzzyva.pri)
 
-unix {
-    VERSION = $$system(cat $$ROOT/VERSION)
-}
-win32 {
-    VERSION = $$system(type ..\..\VERSION)
-}
+#unix {
+#    VERSION = $$system(cat $$ROOT/VERSION)
+#}
+#win32 {
+#    VERSION = $$system(type ..\..\VERSION)
+#}
 
 # Source files
 SOURCES = \

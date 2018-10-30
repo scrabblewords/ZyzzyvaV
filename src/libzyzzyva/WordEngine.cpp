@@ -76,6 +76,7 @@ WordEngine::connectToDatabase(const QString& lexicon, const QString& filename,
 
     Rand rng;
     rng.srand(QDateTime::currentDateTime().toTime_t(), Auxil::getPid());
+//    rng.srand(QDateTime::currentDateTime().toTime_t());
     unsigned int r = rng.rand();
     QString dbConnectionName = "WordEngine_" + lexicon + "_" +
         QString::number(r);
@@ -198,7 +199,7 @@ WordEngine::importTextFile(const QString& lexicon, const QString& filename,
         graph->addWord(word);
         if (loadDefinitions) {
             QString definition = line.section(' ', 1);
-            addDefinition(lexicon, word, definition);
+            addDefinition(lexicon, word, definition, false);
         }
         ++imported;
     }
@@ -317,7 +318,7 @@ WordEngine::importBinaryFile(const QString& lexicon, const QString& filename,
         graph->addWord(word);
         if (loadDefinitions) {
             QString definition = line.section(' ', 1);
-            addDefinition(lexicon, word, definition);
+            addDefinition(lexicon, word, definition, false);
         }
         ++imported;
     }
@@ -488,13 +489,13 @@ WordEngine::databaseSearch(const QString& lexicon, const SearchSpec&
                 if (condition.type == SearchCondition::PartOfSpeech) {
                     whereSecondStr = conjStr +
                         " words.definition" + notStr +
-                        " LIKE '\%[" + str + "]\%' ESCAPE '\\'";
+                        " LIKE '%[" + str + "]%' ESCAPE '\\'";
                     str = "[" + str + " ";
                 }
 
                 whereStr +=
                     " words.definition" + notStr +
-                    " LIKE '\%" + str + "\%' ESCAPE '\\'" + whereSecondStr;
+                    " LIKE '%" + str + "%' ESCAPE '\\'" + whereSecondStr;
             }
             break;
 
@@ -1011,7 +1012,8 @@ WordEngine::search(const QString& lexicon, const SearchSpec& spec, bool
     }
 
     if (!resultList.isEmpty()) {
-        clearCache(lexicon);
+        // JGM testing... Why should the cache be cleared at every wordEngine::search() call??  Test relevant timings with and without.
+        //clearCache(lexicon);
         addToCache(lexicon, resultList);
     }
 
@@ -1143,12 +1145,12 @@ WordEngine::getLexiconFile(const QString& lexicon) const
 //
 //! @param lexicon the name of the lexicon
 //! @param word the word whose definition to look up
-//! @param replaceLinks whether to resolve links to other definitions
+//! @param multilineDefs whether to show one definition sense per line
 //! @return the definition, or empty String if no definition
 //---------------------------------------------------------------------------
 QString
 WordEngine::getDefinition(const QString& lexicon, const QString& word,
-                          bool replaceLinks) const
+                          bool multilineDefs) const
 {
     if (!lexiconData.contains(lexicon))
         return QString();
@@ -1178,9 +1180,10 @@ WordEngine::getDefinition(const QString& lexicon, const QString& word,
     //           probOrder.minProbabilityOrder, probOrder.maxProbabilityOrder);
     //}
 
+    //qDebug(multilineDefs ? "true" : "false");
     QString definition;
     if (info.isValid()) {
-        if (replaceLinks) {
+        if (multilineDefs) {
             QStringList defs = info.definition.split(" / ");
             definition = QString();
             foreach (const QString& def, defs) {
@@ -1191,6 +1194,7 @@ WordEngine::getDefinition(const QString& lexicon, const QString& word,
             return definition;
         }
         else {
+            //qDebug() << info.definition;
             return info.definition;
         }
     }
@@ -1202,17 +1206,30 @@ WordEngine::getDefinition(const QString& lexicon, const QString& word,
         const QMultiMap<QString, QString>& mmap =
             lexiconData[lexicon]->definitions.value(word);
         QMapIterator<QString, QString> it (mmap);
-        while (it.hasNext()) {
-            it.next();
-            if (!definition.isEmpty()) {
-                if (replaceLinks)
+//        while (it.hasNext()) {
+//            it.next();
+//            if (!definition.isEmpty()) {
+//                if (multilineDefs)
+//                    definition += "\n";
+//                else
+//                    definition += " / ";
+//            }
+//            definition += it.value();
+//        }
+        it.next();
+        if (multilineDefs) {
+            QStringList defs = it.value().split(" / ");
+            definition = QString();
+            foreach (const QString& def, defs) {
+                if (!definition.isEmpty())
                     definition += "\n";
-                else
-                    definition += " / ";
+                definition += def;
             }
-            definition += it.value();
+            return definition;
         }
-        return definition;
+        else {
+            return it.value();
+        }
     }
 }
 
@@ -2111,7 +2128,7 @@ WordEngine::nonGraphSearch(const QString& lexicon, const SearchSpec& spec) const
     return finalWordSet.toList();
 }
 
-//---------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------
 //  addDefinition
 //
 //! Add a word with its definition.  Parse the definition and separate its
@@ -2120,20 +2137,27 @@ WordEngine::nonGraphSearch(const QString& lexicon, const SearchSpec& spec) const
 //! @param lexicon the name of the lexicon
 //! @param word the word
 //! @param definition the definition
-//---------------------------------------------------------------------------
+//! @param multilineDefs whether or not separate parts of speech should be placed on separate lines
+//----------------------------------------------------------------------------------------------------
 void
 WordEngine::addDefinition(const QString& lexicon, const QString& word,
-                          const QString& definition)
+                          const QString& definition, const bool multilineDefs)
 {
     if (word.isEmpty() || definition.isEmpty() ||
-        !lexiconData.contains(lexicon))
+            !lexiconData.contains(lexicon))
     {
         return;
     }
 
     QRegExp posRegex (QString("\\[(\\w+)"));
+    QStringList defs;
     QMultiMap<QString, QString> defMap;
-    QStringList defs = definition.split(" / ");
+
+    if (multilineDefs)
+        defs = definition.split(" / ");
+    else
+        defs = (QStringList() << definition);
+
     foreach (const QString& def, defs) {
         QString pos;
         if (posRegex.indexIn(def, 0) >= 0) {

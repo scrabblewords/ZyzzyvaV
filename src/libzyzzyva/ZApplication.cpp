@@ -28,7 +28,7 @@
 
 #include <QMessageBox>
 
-#if not defined Z_LINUX
+#ifndef Z_LINUX
 
 //---------------------------------------------------------------------------
 //  keyPressEvent

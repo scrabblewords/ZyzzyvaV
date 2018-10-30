@@ -725,7 +725,7 @@ CreateDatabaseThread::updateDefinitionLinks(QSqlDatabase& db, int& stepNum)
         QString newDefinition;
         foreach (const QString& def, defs) {
             if (!newDefinition.isEmpty())
-                newDefinition += "\n";
+                newDefinition += " / ";
 
             alreadyReplaced.clear();
             alreadyReplaced.insert(word.toUpper());
@@ -830,8 +830,11 @@ CreateDatabaseThread::replaceDefinitionLinks(const QString& definition,
         matchedRegex = &replaceRegex;
     }
 
-    if (index < 0)
+    if (index < 0) {
+        if (createdSet)
+            delete alreadyReplaced;
         return definition;
+    }
 
     QString modified (definition);
     QString word = matchedRegex->cap(1);

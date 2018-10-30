@@ -133,7 +133,7 @@ QuizForm::QuizForm(WordEngine* we, QWidget* parent, Qt::WindowFlags f)
     unsavedChanges(false), cardboxQuiz(false),
     questionMarkedStatus(QuestionNotMarked), db(0),
     // FIXME: This dialog should be nonmodal!
-    analyzeDialog(new AnalyzeQuizDialog(quizEngine, we, this,
+    analyzeDialog(new AnalyzeQuizDialog(quizEngine, we, MainWindow::getInstance(),
                                         Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint))
 {
     QFont titleFont = qApp->font();

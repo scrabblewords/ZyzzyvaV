@@ -270,7 +270,7 @@ DefineForm::displayInfo(bool allInfo)
         resultStr += "<br>";
         if (allInfo)
             resultStr += "<b>Definition:</b> ";
-        definition = engine->getDefinition(lexicon, word);
+        definition = engine->getDefinition(lexicon, word, MainSettings::getWordListShowOneSensePerLine());
         if (definition.isEmpty())
             definition = EMPTY_DEFINITION;
         resultStr += definition;
