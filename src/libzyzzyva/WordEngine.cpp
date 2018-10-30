@@ -1479,7 +1479,15 @@ WordEngine::isSetMember(const QString& lexicon, const QString& word,
 
     static QString typeTwoChars = "AAADEEEEGIIILNNOORRSSTTU";
     static int typeTwoCharsLen = typeTwoChars.length();
-    static LetterBag letterBag("A:9 B:2 C:2 D:4 E:12 F:2 G:3 H:2 I:9 J:1 "
+    static LetterBag letterBag;
+
+    if (lexicon == LEXICON_CUSTOM)
+        letterBag = LetterBag("A:9 Ą:1 B:2 C:3 Ć:1 D:3 E:7 Ę:1 F:1 "
+                                   "G:2 H:2 I:7 J:2 K:3 L:3 Ł:2 M:3 N:5 "
+                                   "Ń:1 O:6 Ó:1 P:3 R:4 S:4 Ś:1 T:3 U:2 "
+                                   "W:4 Y:4 Z:5 Ż:1 Ź:1 _:2");
+    else
+        letterBag = LetterBag("A:9 B:2 C:2 D:4 E:12 F:2 G:3 H:2 I:9 J:1 "
                                "K:1 L:4 M:2 N:6 O:8 P:2 Q:1 R:6 S:4 T:6 "
                                "U:4 V:2 W:2 X:1 Y:2 Z:1 _:2");
 
