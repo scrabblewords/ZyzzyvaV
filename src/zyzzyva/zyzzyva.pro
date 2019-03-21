@@ -50,7 +50,7 @@ macx {
 }
 
 unix {
-    LIBS = -lzyzzyva -L$$ROOT/bin
+    LIBS = -lzyzzyva5 -L$$ROOT/bin
 }
 win32 {
     LIBS = -lzyzzyva5 -L$$ROOT/bin
