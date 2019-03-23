@@ -437,6 +437,7 @@ Auxil::getLexiconPrefix(const QString& lexicon)
         pmap[LEXICON_VOLOST] = "/Antarctic/Volost";
         pmap[LEXICON_CSW12] = "/British/CSW12";
         pmap[LEXICON_CSW15] = "/British/CSW15";
+        pmap[LEXICON_CSW19] = "/British/CSW19";
     }
     return pmap.value(lexicon);
 }
@@ -1359,6 +1360,8 @@ Auxil::lexiconToOrigin(const QString& lexicon)
         return "<a href=\"http://www.collinsdictionary.com/scrabble/scrabble-tools#terms\">British (© HarperCollins 2015, see T&Cs)</a>";
     if (lexicon == LEXICON_CSW15)
         return "<a href=\"http://www.collinsdictionary.com/scrabble/scrabble-tools#terms\">British (© HarperCollins 2015, see T&Cs)</a>";
+    if (lexicon == LEXICON_CSW19)
+        return "<a href=\"http://www.collinsdictionary.com/scrabble/scrabble-tools#terms\">British (© HarperCollins 2019, see T&Cs)</a>";
     if (lexicon == LEXICON_VOLOST)
         return "Antarctic";
     return QString();
@@ -1379,6 +1382,8 @@ Auxil::lexiconToDate(const QString& lexicon)
         return QDate(2012, 1, 1);
     if (lexicon == LEXICON_CSW15)
         return QDate(2015, 9, 1);
+    if (lexicon == LEXICON_CSW15)
+        return QDate(2019, 5, 1);
     if (lexicon == LEXICON_VOLOST)
         return QDate(2007, 4, 1);
     return QDate();
@@ -1402,6 +1407,10 @@ Auxil::lexiconToDetails(const QString& lexicon)
     if (lexicon == LEXICON_CSW15) {
         return "<a href=\"http://www.collinsdictionary.com/scrabble/scrabble-tools#terms\">The © HarperCollins 2015 word list (CSW15) "
             "is copyright of HarperCollins 2015 and used with permission.</a>";
+    }
+    if (lexicon == LEXICON_CSW19) {
+        return "<a href=\"http://www.collinsdictionary.com/scrabble/scrabble-tools#terms\">The © HarperCollins 2019 word list (CSW19) "
+            "is copyright of HarperCollins 2019 and used with permission.</a>";
     }
     return QString();
 }
@@ -1433,6 +1442,7 @@ Auxil::getUpdatedLexiconName(const QString& oldLexiconName)
     else */if ((oldLexiconName == LEXICON_CUSTOM) ||
              (oldLexiconName == LEXICON_CSW12) ||
              (oldLexiconName == LEXICON_CSW15) ||
+             (oldLexiconName == LEXICON_CSW19) ||
              (oldLexiconName == LEXICON_VOLOST))
     {
         return oldLexiconName;
