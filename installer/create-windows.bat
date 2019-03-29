@@ -28,8 +28,8 @@ setlocal
 
 cd ..
 
-set QTVER=Qt5.5.0\5.5\mingw492_32
-set QTDIR=E:\Qt\%QTVER%
+set QTVER=5.12.0\mingw73_64
+set QTDIR=C:\Qt\%QTVER%
 set INSTDIR=installer
 set PLATFORM=windows
 set OUTDIR=%INSTDIR%\%PLATFORM%
