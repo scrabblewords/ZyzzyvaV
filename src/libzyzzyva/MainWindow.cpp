@@ -2257,7 +2257,7 @@ MainWindow::importLexicon(const QString& lexicon)
             importFile =        prefix + ".dwg";
             reverseImportFile = prefix + "-R.dwg";
             checksumFile =      prefix + "-Checksums.txt";
-            playabilityFile =   prefix + ((lexicon == LEXICON_CSW15 || lexicon == LEXICON_CSW15) ? "-Playability.bin" : "-Playability.txt");
+            playabilityFile =   prefix + ((lexicon == LEXICON_CSW15 || lexicon == LEXICON_CSW19) ? "-Playability.bin" : "-Playability.txt");
         }
     }
 
