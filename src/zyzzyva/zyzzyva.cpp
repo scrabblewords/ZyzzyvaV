@@ -56,9 +56,6 @@ int main(int argc, char** argv)
     window->tryAutoImport();
     window->tryConnectToDatabases();
 
-    // TODO (JGM) Setting state to maximized causes shrink->expand startup window display problem for OSX, according to Anand.
-    // FIXED: Showing window last seems to solve the problem.
-    window->setWindowState(Qt::WindowMaximized);
     splash->finish(window);
     delete splash;
     window->show();
