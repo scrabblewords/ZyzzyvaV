@@ -420,7 +420,7 @@ SearchForm::updateResultTotal(int num, int numGroups, bool grouped)
     QString wordStr = QString::number(num) + " word";
     if (num != 1)
         wordStr += "s";
-    statusString = "Search found " + wordStr;
+    statusString = wordStr;
     if (grouped) {
         QString groupStr = QString::number(numGroups) + " anagram group";
         if (numGroups != 1)
