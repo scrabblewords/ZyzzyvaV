@@ -1145,7 +1145,7 @@ WordEngine::getLexiconFile(const QString& lexicon) const
 //
 //! @param lexicon the name of the lexicon
 //! @param word the word whose definition to look up
-//! @param multilineDefs whether to show one definition sense per line
+//! @param multilineDefs whether to show one definition  sense per line
 //! @return the definition, or empty String if no definition
 //---------------------------------------------------------------------------
 QString
