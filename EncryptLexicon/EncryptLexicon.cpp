@@ -2,7 +2,7 @@
 // EncryptLexicon.cpp
 // Jim Miller (JGM)
 //
-// A class for putting light encryption on a lexicon file.
+// A short utility for putting light encryption on a lexicon file.
 //
 // Usage:
 // Set plaintext file at Qt Creator/Projects/Run/Run/Command line arguments
@@ -74,7 +74,7 @@ qint32 encryptLexiconFile(const QString& filename)
         return 1;
     }
 
-    if (cipherFileHeader.isEmpty())
+    if (!cipherFileHeader.isEmpty())
         ciphertextFile.write(cipherFileHeader.toUtf8().data());
     ciphertextFile.write(*ciphertextData);
 
