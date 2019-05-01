@@ -3,7 +3,7 @@ rem create-windows.sh
 rem
 rem Create a Windows directory for the installer to use.
 rem
-rem Copyright 2015-2016 Twilight Century Computing.
+rem Copyright 2015-2019 Twilight Century Computing.
 rem Copyright 2006-2012 North American SCRABBLE Players Association.
 rem
 rem This file is part of Zyzzyva.
@@ -28,15 +28,17 @@ setlocal
 
 cd ..
 
-set QTVER=5.12.0\mingw73_64
-set QTDIR=C:\Qt\%QTVER%
-set INSTDIR=installer
+set QTVER=5.12.2\5.12.3\mingw73_64
+set QTDIR=E:\Qt\%QTVER%
+set INSTDIR=installer\staging_CZ5.1.0
 set PLATFORM=windows
 set OUTDIR=%INSTDIR%\%PLATFORM%
+set BUILDDIR=F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\build-zyzzyva-Desktop_Qt_5_12_3_MinGW_64_bit2-Release
 
 qmake
 CALL mingw32-make
 
+mkdir %INSTDIR%
 mkdir %OUTDIR%
 
 rem Copy Qt libraries
@@ -47,7 +49,6 @@ rem copy %QTDIR%\bin\QtGui4.dll %OUTDIR%
 rem copy %QTDIR%\bin\QtNetwork4.dll %OUTDIR%
 rem copy %QTDIR%\bin\QtSql4.dll %OUTDIR%
 rem copy %QTDIR%\bin\QtXml4.dll %OUTDIR%
-rem copy %QTDIR%\bin\mingwm10.dll %OUTDIR%
 rem copy %QTDIR%\bin\QtAssistantClient5.dll %OUTDIR%
 copy %QTDIR%\bin\Qt5Core.dll %OUTDIR%
 copy %QTDIR%\bin\Qt5Gui.dll %OUTDIR%
@@ -82,12 +83,12 @@ copy %QTDIR%\bin\Qt5Script.dll %OUTDIR%
 copy %QTDIR%\bin\Qt5ScriptTools.dll %OUTDIR%
 copy %QTDIR%\bin\Qt5WinExtras.dll %OUTDIR%
 copy %QTDIR%\bin\Qt5XmlPatterns.dll %OUTDIR%
+
 rem copy %QTDIR%\bin\mingwm10.dll %OUTDIR%
 copy %QTDIR%\bin\libgcc_s_dw2-1.dll %OUTDIR%
-
 xcopy /I /E /H /R /Y %QTDIR%\bin\libstdc++-6.dll %OUTDIR%
-
 copy %QTDIR%\bin\libwinpthread-1.dll %OUTDIR%
+copy %QTDIR%\bin\libgcc_s_seh-1.dll %OUTDIR%
 
 copy %QTDIR%\bin\icuuc54.dll %OUTDIR%
 copy %QTDIR%\bin\icuin54.dll %OUTDIR%
@@ -108,8 +109,8 @@ mkdir %OUTDIR%\images
 copy images\Zyzzyva.ico %OUTDIR%\images
 
 rem Copy Zyzzyva stuff
-copy bin\zyzzyva.exe %OUTDIR%
-copy bin\zyzzyva5.dll %OUTDIR%
+copy %BUILDDIR%\bin\zyzzyva.exe %OUTDIR%
+copy %BUILDDIR%\bin\zyzzyva5.dll %OUTDIR%
 copy zyzzyva.top %OUTDIR%
 copy AUTHORS %OUTDIR%\AUTHORS.txt
 copy CHANGES %OUTDIR%\CHANGES.txt
