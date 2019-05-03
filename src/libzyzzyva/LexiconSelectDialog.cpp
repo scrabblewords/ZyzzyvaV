@@ -84,7 +84,7 @@ LexiconSelectDialog::LexiconSelectDialog(QWidget* parent, Qt::WindowFlags f)
 
     QLabel* dateHeaderLabel = new QLabel;
     Q_CHECK_PTR(dateHeaderLabel);
-    dateHeaderLabel->setText("Date");
+    dateHeaderLabel->setText("Valid Date");
     mainGlay->addWidget(dateHeaderLabel, 0, 4, Qt::AlignHCenter);
 
     QStringList validLexicons;

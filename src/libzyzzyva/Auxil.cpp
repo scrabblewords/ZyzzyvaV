@@ -1382,8 +1382,8 @@ Auxil::lexiconToDate(const QString& lexicon)
         return QDate(2012, 1, 1);
     if (lexicon == LEXICON_CSW15)
         return QDate(2015, 9, 1);
-    if (lexicon == LEXICON_CSW15)
-        return QDate(2019, 5, 1);
+    if (lexicon == LEXICON_CSW19)
+        return QDate(2019, 7, 1);
     if (lexicon == LEXICON_VOLOST)
         return QDate(2007, 4, 1);
     return QDate();
