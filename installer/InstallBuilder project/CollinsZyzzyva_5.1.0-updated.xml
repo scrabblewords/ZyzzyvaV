@@ -145,9 +145,6 @@
                     <platforms>windows</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging_CZ5.1.0/windows/assistant.exe</origin>
-                        </distributionFile>
-                        <distributionFile>
                             <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging_CZ5.1.0/windows/AUTHORS.txt</origin>
                         </distributionFile>
                         <distributionFile>
@@ -276,6 +273,56 @@
                     </distributionFileList>
                 </folder>
             </folderList>
+            <postInstallationActionList>
+                <deleteFile>
+                    <abortOnError>0</abortOnError>
+                    <path>${env(USERPROFILE)}\.collinszyzzyva\lexicons\CSW15.db</path>
+                    <show>0</show>
+                    <showMessageOnError>0</showMessageOnError>
+                </deleteFile>
+                <deleteFile>
+                    <abortOnError>0</abortOnError>
+                    <path>${env(USERPROFILE)}\.collinszyzzyva\lexicons\CSW19.db</path>
+                    <show>0</show>
+                    <showMessageOnError>0</showMessageOnError>
+                </deleteFile>
+                <registryDelete>
+                    <abortOnError>0</abortOnError>
+                    <key>HKEY_CURRENT_USER\Software\Twilight Century Computing\Collins Zyzzyva\Collins Zyzzyva</key>
+                    <name>autoimport_lexicons</name>
+                    <show>0</show>
+                    <showMessageOnError>0</showMessageOnError>
+                </registryDelete>
+                <registryDelete>
+                    <abortOnError>0</abortOnError>
+                    <key>HKEY_CURRENT_USER\Software\Twilight Century Computing\Collins Zyzzyva\Collins Zyzzyva</key>
+                    <name>default_lexicon</name>
+                    <show>0</show>
+                    <showMessageOnError>0</showMessageOnError>
+                </registryDelete>
+            </postInstallationActionList>
+            <postUninstallationActionList>
+                <addDirectoriesToUninstaller>
+                    <abortOnError>0</abortOnError>
+                    <addContents>1</addContents>
+                    <files>${installdir}</files>
+                    <matchHiddenFiles>1</matchHiddenFiles>
+                    <show>0</show>
+                    <showMessageOnError>0</showMessageOnError>
+                </addDirectoriesToUninstaller>
+                <deleteFile>
+                    <abortOnError>0</abortOnError>
+                    <path>${env(USERPROFILE)}\.collinszyzzyva\lexicons\CSW15.db</path>
+                    <show>0</show>
+                    <showMessageOnError>0</showMessageOnError>
+                </deleteFile>
+                <deleteFile>
+                    <abortOnError>0</abortOnError>
+                    <path>${env(USERPROFILE)}\.collinszyzzyva\lexicons\CSW19.db</path>
+                    <show>0</show>
+                    <showMessageOnError>0</showMessageOnError>
+                </deleteFile>
+            </postUninstallationActionList>
             <startMenuShortcutList>
                 <startMenuShortcut>
                     <comment>Uninstall Collins Zyzzyva ${product_version}</comment>

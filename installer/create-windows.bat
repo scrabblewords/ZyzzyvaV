@@ -38,11 +38,12 @@ set BUILDDIR=F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\build-
 qmake
 CALL mingw32-make
 
+rmdir /S /Q %INSTDIR%
 mkdir %INSTDIR%
 mkdir %OUTDIR%
 
 rem Copy Qt libraries
-copy %QTDIR%\bin\assistant.exe %OUTDIR%
+rem copy %QTDIR%\bin\assistant.exe %OUTDIR%
 rem copy %QTDIR%\bin\QtAssistantClient4.dll %OUTDIR%
 rem copy %QTDIR%\bin\QtCore4.dll %OUTDIR%
 rem copy %QTDIR%\bin\QtGui4.dll %OUTDIR%
@@ -71,7 +72,7 @@ copy %QTDIR%\bin\Qt5MultimediaWidgets.dll %OUTDIR%
 copy %QTDIR%\bin\Qt5Sensors.dll %OUTDIR%
 copy %QTDIR%\bin\Qt5WebChannel.dll %OUTDIR%
 
-rem ** Following Qt5 .dlls added preemptively.  They may not be necessary. (JGM)
+rem TODO ** Following Qt5 .dlls added preemptively.  They may not be necessary. Use Dependency Walker.  (JGM)
 copy %QTDIR%\bin\Qt5Concurrent.dll %OUTDIR%
 copy %QTDIR%\bin\Qt5DBus.dll %OUTDIR%
 copy %QTDIR%\bin\Qt5Declarative.dll %OUTDIR%
