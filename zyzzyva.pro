@@ -27,6 +27,3 @@ TEMPLATE = subdirs
 SUBDIRS = src
 CONFIG += qt thread warn_on assistant
 QT += sql xml network widgets gui printsupport
-win32-msvc*|linux|macx {
-    QT += webenginewidgets
-}

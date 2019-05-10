@@ -28,9 +28,6 @@ TARGET = test_zyzzyva
 CONFIG += qt thread warn_on
 QT += sql xml gui testlib
 QT += network widgets printsupport
-win32-msvc*|linux|macx {
-    QT += webenginewidgets
-}
 
 ROOT = ../..
 DESTDIR = $$ROOT/bin

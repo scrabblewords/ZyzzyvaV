@@ -28,9 +28,6 @@ TARGET = zyzzyva
 CONFIG += qt thread warn_on assistant
 QT += sql xml network widgets gui printsupport
 #win32-msvc*:CONFIG += staticlib
-win32-msvc*|linux|macx {
-    QT += webenginewidgets
-}
 #CONFIG += qt thread warn_on assistant
 #QT += xml gui
 
