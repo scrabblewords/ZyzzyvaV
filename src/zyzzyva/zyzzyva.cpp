@@ -23,10 +23,8 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //---------------------------------------------------------------------------
 
-#include "MainSettings.h"
 #include "MainWindow.h"
 #include "ZApplication.h"
-#include <QDesktopWidget>
 #include <QFile>
 #include <QObject>
 #include <QPixmap>
@@ -57,17 +55,6 @@ int main(int argc, char** argv)
 
     window->tryAutoImport();
     window->tryConnectToDatabases();
-
-#if defined(Q_OS_WIN)
-    QRect srect = qApp->desktop()->availableGeometry();
-    if ((MainSettings::getMainWindowPos().x() < 0) || (MainSettings::getMainWindowPos().y() < 0) ||
-        (MainSettings::getMainWindowPos().x() > srect.width()) ||
-        (MainSettings::getMainWindowPos().y() > srect.height()) ||
-        (MainSettings::getMainWindowSize().width() < 0) || (MainSettings::getMainWindowSize().height() < 0) ||
-        (MainSettings::getMainWindowSize().width() > srect.width()) ||
-        (MainSettings::getMainWindowSize().height() > srect.height()))
-        window->setWindowState(Qt::WindowMaximized);
-#endif
 
     splash->finish(window);
     delete splash;
