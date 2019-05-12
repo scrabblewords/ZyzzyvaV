@@ -35,7 +35,12 @@ Makefile*
 /installer/windows/
 /installer/windows-no-sse2/
 /installer/linux*
+/installer/staging/
 /src/*/build/
 /src/*/debug/
 /src/*/release/
+/ReverseWords/ReverseWords.sln.DotSettings.user
+/ReverseWords/.vs/
+/ReverseWords/ReverseWords/bin/
+/ReverseWords/ReverseWords/obj/
 *.bak
