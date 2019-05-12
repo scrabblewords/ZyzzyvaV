@@ -170,11 +170,12 @@ MainSettings::readSettings()
     // Get desktop geometry and validate position, size settings to make sure
     // the window will appear on-screen
     // XXX: This may have problems with virtual desktops, need to test
-    QRect srect = qApp->desktop()->availableGeometry();
     QPoint pos = settings.value(SETTINGS_MAIN_WINDOW_POS, defaultPos).toPoint();
     QSize size = settings.value(SETTINGS_MAIN_WINDOW_SIZE, defaultSize).toSize();
 
+#if !defined(Q_OS_WIN)
     // Validate and correct window position
+    QRect srect = qApp->desktop()->availableGeometry();
     if ((pos.x() < 0) || (pos.y() < 0) ||
         (pos.x() > srect.width()) || (pos.y() > srect.height()))
     {
@@ -187,6 +188,7 @@ MainSettings::readSettings()
     {
         size = defaultSize;
     }
+#endif
 
     instance->mainWindowPos = pos;
     instance->mainWindowSize = size;
