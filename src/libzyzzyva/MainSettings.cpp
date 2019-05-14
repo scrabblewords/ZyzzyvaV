@@ -97,6 +97,7 @@ const QString SETTINGS_QUIZ_MARK_MISSED_AFTER_INCORRECT
 const QString SETTINGS_QUIZ_MARK_MISSED_AFTER_TIMER_EXPIRES
     = "quiz_mark_missed_after_timer_expires";
 const QString SETTINGS_QUIZ_CYCLE_ANSWERS = "quiz_cycle_answers";
+const QString SETTINGS_QUIZ_CYCLE_ANSWERS_PERIOD_MSECS = "quiz_cycle_answers_period_msecs";
 const QString SETTINGS_QUIZ_TIMEOUT_DISABLE_INPUT = "quiz_timeout_disable_input";
 const QString SETTINGS_QUIZ_TIMEOUT_DISABLE_INPUT_MSECS
     = "quiz_timeout_disable_input_msecs";
@@ -127,6 +128,7 @@ const bool    DEFAULT_QUIZ_AUTO_END_AFTER_INCORRECT = false;
 const bool    DEFAULT_QUIZ_MARK_MISSED_AFTER_INCORRECT = true;
 const bool    DEFAULT_QUIZ_MARK_MISSED_AFTER_TIMER_EXPIRES = false;
 const bool    DEFAULT_QUIZ_CYCLE_ANSWERS = true;
+const int     DEFAULT_QUIZ_CYCLE_ANSWERS_PERIOD_MSECS = 2000;
 const bool    DEFAULT_QUIZ_TIMEOUT_DISABLE_INPUT = true;
 const int     DEFAULT_QUIZ_TIMEOUT_DISABLE_INPUT_MSECS = 750;
 const bool    DEFAULT_QUIZ_RECORD_STATS = true;
@@ -286,6 +288,9 @@ MainSettings::readSettings()
     instance->quizCycleAnswers
         = settings.value(SETTINGS_QUIZ_CYCLE_ANSWERS,
                          DEFAULT_QUIZ_CYCLE_ANSWERS).toBool();
+    instance->quizCycleAnswersPeriodMillisecs
+        = settings.value(SETTINGS_QUIZ_CYCLE_ANSWERS_PERIOD_MSECS,
+                         DEFAULT_QUIZ_CYCLE_ANSWERS_PERIOD_MSECS).toInt();
     instance->quizTimeoutDisableInput
         = settings.value(SETTINGS_QUIZ_TIMEOUT_DISABLE_INPUT,
                          DEFAULT_QUIZ_TIMEOUT_DISABLE_INPUT).toBool();
@@ -421,6 +426,8 @@ MainSettings::writeSettings()
                       instance->quizMarkMissedAfterTimerExpires);
     settings.setValue(SETTINGS_QUIZ_CYCLE_ANSWERS,
                       instance->quizCycleAnswers);
+    settings.setValue(SETTINGS_QUIZ_CYCLE_ANSWERS_PERIOD_MSECS,
+                      instance->quizCycleAnswersPeriodMillisecs);
     settings.setValue(SETTINGS_QUIZ_TIMEOUT_DISABLE_INPUT,
                       instance->quizTimeoutDisableInput);
     settings.setValue(SETTINGS_QUIZ_TIMEOUT_DISABLE_INPUT_MSECS,
@@ -538,6 +545,8 @@ MainSettings::restoreDefaults(const QString& group)
         instance->quizMarkMissedAfterTimerExpires =
             DEFAULT_QUIZ_MARK_MISSED_AFTER_TIMER_EXPIRES;
         instance->quizCycleAnswers = DEFAULT_QUIZ_CYCLE_ANSWERS;
+        instance->quizCycleAnswersPeriodMillisecs =
+            DEFAULT_QUIZ_CYCLE_ANSWERS_PERIOD_MSECS;
         instance->quizTimeoutDisableInput =
             DEFAULT_QUIZ_TIMEOUT_DISABLE_INPUT;
         instance->quizTimeoutDisableInputMillisecs =

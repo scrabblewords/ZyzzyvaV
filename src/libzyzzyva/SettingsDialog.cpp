@@ -378,10 +378,24 @@ SettingsDialog::SettingsDialog(QWidget* parent, Qt::WindowFlags f)
     Q_CHECK_PTR(quizMarkMissedAfterTimerCbox);
     quizBehaviorVlay->addWidget(quizMarkMissedAfterTimerCbox);
 
+    QHBoxLayout* cycleAnswersInputHlay = new QHBoxLayout;
+    Q_CHECK_PTR(cycleAnswersInputHlay);
+    cycleAnswersInputHlay->setMargin(0);
+    quizBehaviorVlay->addLayout(cycleAnswersInputHlay);
+
     quizCycleAnswersCbox =
-        new QCheckBox("Cycle answers after ending a question");
+        new QCheckBox("Cycle answers after ending a question every:");
     Q_CHECK_PTR(quizCycleAnswersCbox);
-    quizBehaviorVlay->addWidget(quizCycleAnswersCbox);
+    connect(quizCycleAnswersCbox, SIGNAL(toggled(bool)),
+            SLOT(cycleAnswersInputCboxToggled(bool)));
+    cycleAnswersInputHlay->addWidget(quizCycleAnswersCbox);
+
+    quizCycleAnswersPeriodSbox = new QSpinBox;
+    Q_CHECK_PTR(quizCycleAnswersPeriodSbox);
+    quizCycleAnswersPeriodSbox->setMinimum(500);
+    quizCycleAnswersPeriodSbox->setMaximum(10000);
+    quizCycleAnswersPeriodSbox->setSuffix(" milliseconds");
+    cycleAnswersInputHlay->addWidget(quizCycleAnswersPeriodSbox);
 
     QHBoxLayout* timeoutDisableInputHlay = new QHBoxLayout;
     Q_CHECK_PTR(timeoutDisableInputHlay);
@@ -960,6 +974,7 @@ SettingsDialog::refreshSettings()
     quizMarkMissedAfterTimerCbox->setChecked(
         MainSettings::getQuizMarkMissedAfterTimerExpires());
     quizCycleAnswersCbox->setChecked(MainSettings::getQuizCycleAnswers());
+    quizCycleAnswersPeriodSbox->setValue(MainSettings::getQuizCycleAnswersPeriodMillisecs());
     quizTimeoutDisableInputCbox->setChecked(
         MainSettings::getQuizTimeoutDisableInput());
     quizTimeoutDisableInputSbox->setValue(
@@ -1088,6 +1103,7 @@ SettingsDialog::writeSettings()
     MainSettings::setQuizMarkMissedAfterTimerExpires(
         quizMarkMissedAfterTimerCbox->isChecked());
     MainSettings::setQuizCycleAnswers(quizCycleAnswersCbox->isChecked());
+    MainSettings::setQuizCycleAnswersPeriodMillisecs(quizCycleAnswersPeriodSbox->value());
     MainSettings::setQuizTimeoutDisableInput(
         quizTimeoutDisableInputCbox->isChecked());
     MainSettings::setQuizTimeoutDisableInputMillisecs(
@@ -1390,6 +1406,20 @@ SettingsDialog::chooseQuizBackgroundColorButtonClicked()
         quizBackgroundColorLine->setPalette(palette);
         quizBackgroundColor = color;
     }
+}
+
+//---------------------------------------------------------------------------
+//  cycleAnswersInputCboxToggled
+//
+//! Slot called when the Cycle Answers check box is
+//! toggled.  Enable or disable the duration spin box.
+//
+//! @param on true if the check box is on, false if it is off
+//---------------------------------------------------------------------------
+void
+SettingsDialog::cycleAnswersInputCboxToggled(bool on)
+{
+    quizCycleAnswersPeriodSbox->setEnabled(on);
 }
 
 //---------------------------------------------------------------------------
