@@ -384,7 +384,7 @@ SettingsDialog::SettingsDialog(QWidget* parent, Qt::WindowFlags f)
     quizBehaviorVlay->addLayout(cycleAnswersInputHlay);
 
     quizCycleAnswersCbox =
-        new QCheckBox("Cycle answers after ending a question every:");
+        new QCheckBox("After ending a question, cycle answers every:");
     Q_CHECK_PTR(quizCycleAnswersCbox);
     connect(quizCycleAnswersCbox, SIGNAL(toggled(bool)),
             SLOT(cycleAnswersInputCboxToggled(bool)));
