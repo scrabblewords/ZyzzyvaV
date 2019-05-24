@@ -228,7 +228,7 @@
                 </deleteFile>
                 <deleteFile>
                     <abortOnError>0</abortOnError>
-                    <path>${env(USERPROFILE)}\.collinszyzzyva\lexicons\CSW15.db</path>
+                    <path>${env(USERPROFILE)}\.collinszyzzyva\lexicons\CSW12.db</path>
                     <show>0</show>
                     <showMessageOnError>0</showMessageOnError>
                 </deleteFile>
