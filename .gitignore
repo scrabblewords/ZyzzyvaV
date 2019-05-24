@@ -36,6 +36,7 @@ Makefile*
 /installer/windows-no-sse2/
 /installer/linux*
 /installer/staging/
+/installer/InstallBuilder project/*.xml.backup
 /src/*/build/
 /src/*/debug/
 /src/*/release/
