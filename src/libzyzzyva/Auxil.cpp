@@ -31,6 +31,7 @@
 #include <QDir>
 #include <QFile>
 //#include <unistd.h>
+//#include <QDebug>
 
 const QString SET_UNKNOWN_STRING = "Unknown";
 const QString SET_HOOK_WORDS_STRING = "Hook Words";
@@ -465,6 +466,24 @@ Auxil::getDatabaseFilename(const QString& lexicon)
     QDir dir;
     dir.mkpath(dbPath);
     return (dbPath + "/" + lexicon + ".db");
+}
+
+//---------------------------------------------------------------------------
+//  getCryptHash
+//
+//! Return the cryptographic hash used for lexicon, etc., encryption.
+//
+//! @return the hash
+//---------------------------------------------------------------------------
+qulonglong
+Auxil::getCryptHash()
+{
+    qulonglong cryptHash =
+    {
+#include "../../PRIVATE/crypthash"
+    };
+
+    return cryptHash;
 }
 
 ////---------------------------------------------------------------------------

@@ -50,6 +50,7 @@ namespace Auxil {
     QString getUserWordsDir();
     QString getUserDir();
     QString getUserConfigDir();
+    qulonglong getCryptHash();
     QString getLexiconPrefix(const QString& lexicon);
     QString getDatabaseFilename(const QString& lexicon);
     QString dialogWordWrap(const QString& str);

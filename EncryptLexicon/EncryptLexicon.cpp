@@ -43,11 +43,16 @@
 static const QString cipherFileName = "CSW19.bin";
 // Set to empty string to have no header written.  A header must start with '#' character.
 static const QString cipherFileHeader = "# The (C) HarperCollins 2019 word list (CSW19) is copyright of HarperCollins 2019 and used with permission.\r\n";
-static const unsigned long long int cryptHash = Q_UINT64_C(0x56414a415a7a4c45);
 
 
 qint32 encryptLexiconFile(const QString& filename)
 {
+    // Get cryptographic hash.
+    qulonglong cryptHash =
+    {
+#include "../PRIVATE/crypthash"
+    };
+
     SimpleCrypt crypto(cryptHash);
     crypto.setCompressionMode(SimpleCrypt::CompressionAlways);
     crypto.setIntegrityProtectionMode(SimpleCrypt::ProtectionHash);
