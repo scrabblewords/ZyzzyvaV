@@ -26,5 +26,6 @@
 TEMPLATE = subdirs
 SUBDIRS = libzyzzyva zyzzyva tests
 zyzzyva.depends = libzyzzyva
+tests.depends = libzyzzyva
 CONFIG += qt thread warn_on assistant
 QT += sql xml network widgets gui printsupport
