@@ -27,3 +27,9 @@ TEMPLATE = subdirs
 SUBDIRS = src
 CONFIG += qt thread warn_on assistant
 QT += sql xml network widgets gui printsupport
+
+copydata.commands = $(COPY_DIR) $$PWD/data $$OUT_PWD/bin
+first.depends = $(first) copydata
+export(first.depends)
+export(copydata.commands)
+QMAKE_EXTRA_TARGETS += first copydata
