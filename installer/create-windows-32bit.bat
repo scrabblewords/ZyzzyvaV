@@ -67,11 +67,11 @@ mkdir %OUTDIR%\images
 copy images\Zyzzyva.ico %OUTDIR%\images
 
 rem Copy more Zyzzyva stuff
-copy AUTHORS %OUTDIR%\AUTHORS.txt
-copy CHANGES %OUTDIR%\CHANGES.txt
-copy COPYING %OUTDIR%\COPYING.txt
-copy LICENSE %OUTDIR%\LICENSE.txt
-copy README %OUTDIR%\README.txt
+copy AUTHORS %OUTDIR%
+copy CHANGES %OUTDIR%
+copy COPYING %OUTDIR%
+copy LICENSE %OUTDIR%
+copy README %OUTDIR%
 
 rem Copy Zyzzyva data directory
 xcopy /I /E /H /R /Y data %OUTDIR%\data
