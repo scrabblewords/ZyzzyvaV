@@ -24,7 +24,7 @@ rem Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 rem -------------------------------------------------------------------------
 
 
-cd ..
+pushd ..
 
 rem *** Update these vars as necessary, mainly the first 3 ***
 set QTVER=5.12.2\5.12.3\mingw73_32
@@ -75,3 +75,5 @@ copy README %OUTDIR%
 
 rem Copy Zyzzyva data directory
 xcopy /I /E /H /R /Y data %OUTDIR%\data
+
+popd
