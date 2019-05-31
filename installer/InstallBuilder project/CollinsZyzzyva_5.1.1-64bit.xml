@@ -145,70 +145,70 @@
                     <platforms>windows</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/zyzzyva5.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/zyzzyva5.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/AUTHORS.txt</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/AUTHORS.txt</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/CHANGES.txt</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/CHANGES.txt</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/COPYING.txt</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/COPYING.txt</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/libgcc_s_seh-1.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/libgcc_s_seh-1.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/libstdc++-6.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/libstdc++-6.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/libwinpthread-1.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/libwinpthread-1.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/LICENSE.txt</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/LICENSE.txt</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/Qt5Core.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/Qt5Core.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/Qt5Gui.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/Qt5Gui.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/Qt5Network.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/Qt5Network.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/Qt5PrintSupport.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/Qt5PrintSupport.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/Qt5Sql.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/Qt5Sql.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/Qt5Widgets.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/Qt5Widgets.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/Qt5Xml.dll</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/Qt5Xml.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/README.txt</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/README.txt</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/zyzzyva.exe</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/zyzzyva.exe</origin>
                         </distributionFile>
                         <distributionDirectory>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/data</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/data</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/images</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/images</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/platforms</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/platforms</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/printsupport</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/printsupport</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.0/windows-64bit/sqldrivers</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-64bit/sqldrivers</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
