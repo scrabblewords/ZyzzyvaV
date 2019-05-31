@@ -40,9 +40,10 @@
 #include <QStringList>
 
 
-static const QString cipherFileName = "CSW19.bin";
+static const QString plaintextFileName = "F:\\Programming_projects\\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\\boshvark-zyzzyva-pc-9ddd4ac\\PRIVATE\\CSW19-Playability.txt";
 // Set to empty string to have no header written.  A header must start with '#' character.
 static const QString cipherFileHeader = "# The (C) HarperCollins 2019 word list (CSW19) is copyright of HarperCollins 2019 and used with permission.\r\n";
+static const QString cipherFileSuffix = ".bin";
 
 
 qint32 encryptLexiconFile(const QString& filename)
@@ -73,7 +74,9 @@ qint32 encryptLexiconFile(const QString& filename)
 //        return;
 //    }
 
-    QFile ciphertextFile(cipherFileName);
+    QFileInfo plaintextFileInfo(plaintextFileName);
+
+    QFile ciphertextFile(plaintextFileInfo.completeBaseName() + cipherFileSuffix);
     if (!ciphertextFile.open(QIODevice::WriteOnly)) {
         delete ciphertextData;
         return 1;
@@ -95,7 +98,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    encryptLexiconFile(QString(argv[1]));
+    encryptLexiconFile(plaintextFileName);
 
     return a.exec();
 }
