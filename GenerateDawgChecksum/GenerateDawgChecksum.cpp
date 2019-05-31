@@ -30,6 +30,9 @@
 #include <QString>
 #include <QStringList>
 
+
+static const QString dawgFileName = "F:\\jim\\Documents\\My Documents\\GAMES\\SCRABBLE\\CSW15\\Collins Zyzzyva development\\word files\\CSW19.dwg";
+
 qint32 importDawgFile(const QString& filename)
 {
     QFile file (filename);
@@ -60,7 +63,7 @@ int main(int argc, char *argv[])
     qint32 checksum;
     QCoreApplication a(argc, argv);
 
-    checksum = importDawgFile(QString(argv[1]));
+    checksum = importDawgFile(dawgFileName);
     printf("%d\n", checksum);
 
     return a.exec();
