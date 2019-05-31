@@ -113,7 +113,7 @@ CreateDatabaseThread::createTables(QSqlDatabase& db)
     QSqlQuery query (db);
 
     query.exec("CREATE TABLE words (word text, length integer, "
-        "playability integer, playability_order integer, "
+        "playability float, playability_order integer, "
         "min_playability_order integer, max_playability_order integer, "
         "combinations0 integer, probability_order0 integer, "
         "min_probability_order0 integer, max_probability_order0 integer, "
@@ -244,7 +244,7 @@ CreateDatabaseThread::insertWords(QSqlDatabase& db, int& stepNum)
         }
     }
 
-    QMap<QString, qint64> playabilityMap;
+    QMap<QString, double> playabilityMap;
     QString playabilityFile = Auxil::getWordsDir() +
         Auxil::getLexiconPrefix(lexiconName) + ((lexiconName == LEXICON_CSW15 || lexiconName == LEXICON_CSW19) ? "-Playability.bin" : "-Playability.txt");
     importPlayability(playabilityFile, playabilityMap);
@@ -271,7 +271,7 @@ CreateDatabaseThread::insertWords(QSqlDatabase& db, int& stepNum)
 
         // Insert words with length, combinations, hooks
         foreach (const QString& word, words) {
-            qint64 playability = playabilityMap.value(word);
+            double playability = playabilityMap.value(word);
             double combinations0 = letterBag.getNumCombinations(word, 0);
             double combinations1 = letterBag.getNumCombinations(word, 1);
             double combinations2 = letterBag.getNumCombinations(word, 2);
@@ -930,7 +930,7 @@ CreateDatabaseThread::getSubDefinition(const QString& word, const QString&
 //---------------------------------------------------------------------------
 int
 CreateDatabaseThread::importPlayability(const QString& filename,
-    QMap<QString, qint64>& playabilityMap) const
+    QMap<QString, double>& playabilityMap) const
 {
     playabilityMap.clear();
 
@@ -989,7 +989,7 @@ CreateDatabaseThread::importPlayability(const QString& filename,
               continue;
           }
           bool ok = false;
-          qint64 playability = line.section(' ', 0, 0).toLongLong(&ok);
+          double playability = line.section(' ', 0, 0).toDouble(&ok);
           if (!ok) {
               continue;
           }
@@ -1030,7 +1030,7 @@ CreateDatabaseThread::importPlayability(const QString& filename,
             if (line.isEmpty() || (line.at(0) == '#'))
                 continue;
             bool ok = false;
-            qint64 playability = line.section(' ', 0, 0).toLongLong(&ok);
+            double playability = line.section(' ', 0, 0).toDouble(&ok);
             if (!ok)
                 continue;
             QString word = line.section(' ', 1, 1);

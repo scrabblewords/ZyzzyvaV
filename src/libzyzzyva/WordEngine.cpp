@@ -863,10 +863,10 @@ WordEngine::applyPostConditions(const QString& lexicon,
 
                 while (query.next()) {
                     QString word = origCase[query.value(0).toString()];
-                    qint64 playability = query.value(1).toLongLong();
+                    double playability = query.value(1).toDouble();
                     QString radix;
                     QString wordUpper = word.toUpper();
-                    radix.sprintf("%018lld", 999999999999999999LL - playability);
+                    radix.sprintf("%0.7f", 999999999999999999 - playability);
                     radix += Auxil::getAlphagram(wordUpper) + ":";
                     radix += wordUpper;
                     playValueMap.insert(radix, word);
@@ -1391,7 +1391,7 @@ WordEngine::addToCache(const QString& lexicon, const QStringList& words) const
         info.isBackHook           = query.value(placeNum++).toBool();
         info.lexiconSymbols       = query.value(placeNum++).toString();
         info.definition           = query.value(placeNum++).toString();
-        info.playability          = query.value(placeNum++).toLongLong();
+        info.playability          = query.value(placeNum++).toDouble();
 
         ValueOrder playOrder;
         playOrder.valueOrder    = query.value(placeNum++).toInt();
@@ -1699,7 +1699,7 @@ WordEngine::getNumAnagrams(const QString& lexicon, const QString& word) const
 //! @param word the word
 //! @return the playability value
 //---------------------------------------------------------------------------
-qint64
+double
 WordEngine::getPlayabilityValue(const QString& lexicon, const QString& word)
     const
 {

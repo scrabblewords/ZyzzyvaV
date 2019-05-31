@@ -347,7 +347,7 @@ SearchForm::search()
                 wordItem.setProbabilityOrder(probOrder);
             }
             else if (hasPlayabilityCondition) {
-                qint64 playValue = wordEngine->getPlayabilityValue(
+                double playValue = wordEngine->getPlayabilityValue(
                     lexicon, wordUpper);
                 int playOrder = wordEngine->getPlayabilityOrder(
                     lexicon, wordUpper);
