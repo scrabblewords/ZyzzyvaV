@@ -26,13 +26,13 @@ rem -------------------------------------------------------------------------
 
 cd ..
 
-rem *** Update these vars as necessary ***
+rem *** Update these vars as necessary, mainly the first 3 ***
 set QTVER=5.12.2\5.12.3\mingw73_64
+set BUILDDIR=F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\build-zyzzyva-Desktop_Qt_5_12_3_MinGW_64_bit2-Release
+set INSTDIR=installer\staging\CZ5.1.1
 set QTDIR=E:\Qt\%QTVER%
-set INSTDIR=installer\staging\CZ5.1.0
 set PLATFORM=windows
 set OUTDIR=%INSTDIR%\%PLATFORM%-64bit
-set BUILDDIR=F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\build-zyzzyva-Desktop_Qt_5_12_3_MinGW_64_bit2-Release
 
 rmdir /S /Q %OUTDIR%
 mkdir %INSTDIR%
