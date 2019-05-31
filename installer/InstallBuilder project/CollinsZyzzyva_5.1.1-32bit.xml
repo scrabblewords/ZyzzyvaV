@@ -148,13 +148,13 @@
                             <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-32bit/zyzzyva5.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-32bit/AUTHORS.txt</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-32bit/AUTHORS</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-32bit/CHANGES.txt</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-32bit/CHANGES</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-32bit/COPYING.txt</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-32bit/COPYING</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-32bit/libgcc_s_dw2-1.dll</origin>
@@ -166,7 +166,7 @@
                             <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-32bit/libwinpthread-1.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-32bit/LICENSE.txt</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-32bit/LICENSE</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-32bit/Qt5Core.dll</origin>
@@ -190,7 +190,7 @@
                             <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-32bit/Qt5Xml.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-32bit/README.txt</origin>
+                            <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-32bit/README</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>F:/Programming_projects/boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac/boshvark-zyzzyva-pc-9ddd4ac/installer/staging/CZ5.1.1/windows-32bit/zyzzyva.exe</origin>
