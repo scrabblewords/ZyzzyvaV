@@ -27,8 +27,8 @@ rem -------------------------------------------------------------------------
 pushd ..
 
 rem *** Update these vars as necessary, mainly the first 3 ***
-set QTVER=5.12.2\5.12.3\mingw73_32
-set BUILDDIR=F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\build-zyzzyva-Desktop_Qt_5_12_3_MinGW_32_bit2-Release
+set QTVER=5.12.2\5.13.0\mingw73_32
+set BUILDDIR=F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\build-zyzzyva-Desktop_Qt_5_13_0_MinGW_32_bit-Release
 set INSTDIR=installer\staging\CZ5.1.1
 set QTDIR=E:\Qt\%QTVER%
 set PLATFORM=windows-32bit
