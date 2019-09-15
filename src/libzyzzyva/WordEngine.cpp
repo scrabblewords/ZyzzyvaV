@@ -827,8 +827,8 @@ WordEngine::applyPostConditions(const QString& lexicon,
                         // Legacy probability order limits are sorted
                         // alphabetically, not by alphagram
                         if (!legacyProbCondition)
-                            radix += Auxil::getAlphagram(wordUpper) + ":";
-                        radix += wordUpper;
+                            radix += (":" + Auxil::getAlphagram(wordUpper));
+                        radix += (":" + wordUpper);
                         valueMap.insert(radix, word);
                     }
                 }
@@ -853,7 +853,7 @@ WordEngine::applyPostConditions(const QString& lexicon,
                     origCase[word.toUpper()] = word;
                     if (i)
                         qstr += ", ";
-                    qstr += "'" + word.toUpper() + "'";
+                    qstr += ("'" + word.toUpper() + "'");
                 }
                 qstr += ")";
 
@@ -866,9 +866,10 @@ WordEngine::applyPostConditions(const QString& lexicon,
                     double playability = query.value(1).toDouble();
                     QString radix;
                     QString wordUpper = word.toUpper();
-                    radix.sprintf("%0.7f", 999999999999999999 - playability);
-                    radix += Auxil::getAlphagram(wordUpper) + ":";
-                    radix += wordUpper;
+                    //radix.sprintf("%0.7f", 999999999999999999 - playability);
+                    radix = QString::number(9999999999.0000000 - playability, 'f', 7);
+                    radix += (":" + Auxil::getAlphagram(wordUpper));
+                    radix += ("+" + wordUpper);
                     playValueMap.insert(radix, word);
                 }
             }
@@ -879,18 +880,18 @@ WordEngine::applyPostConditions(const QString& lexicon,
 
             // Allow Lax matches only up to hard Min limit
             QString minRadix = keys[min];
-            QString minValue = minRadix.left(18);
+            QString minValue = minRadix.section(':', 0, 0);
             while ((min > 0) && (min > limitMin)) {
-                if (minValue != keys[min - 1].left(18))
+                if (minValue != keys[min - 1].section(':', 0, 0))
                     break;
                 --min;
             }
 
             // Allow Lax matches only up to hard Max limit
             QString maxRadix = keys[max];
-            QString maxValue = maxRadix.left(18);
+            QString maxValue = maxRadix.section(':', 0, 0);
             while ((max < keys.size() - 1) && (max < limitMax)) {
-                if (maxValue != keys[max + 1].left(18))
+                if (maxValue != keys[max + 1].section(':', 0, 0))
                     break;
                 ++max;
             }
