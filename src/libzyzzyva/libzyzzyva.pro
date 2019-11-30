@@ -26,11 +26,8 @@
 TEMPLATE = lib
 TARGET = zyzzyva5
 CONFIG += qt thread warn_on assistant
-win32-msvc2015:CONFIG += staticlib
+#win32-msvc*:CONFIG += staticlib
 QT += sql xml network widgets gui printsupport
-win32-msvc2015|linux|macx {
-    QT += webenginewidgets
-}
 
 ROOT = ../..
 DESTDIR = $$ROOT/bin

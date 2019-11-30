@@ -130,6 +130,10 @@ class MainSettings
         return instance->quizCycleAnswers; }
     static void setQuizCycleAnswers(bool b) {
         instance->quizCycleAnswers = b; }
+    static int getQuizCycleAnswersPeriodMillisecs() {
+        return instance->quizCycleAnswersPeriodMillisecs; }
+    static void setQuizCycleAnswersPeriodMillisecs(int i) {
+        instance->quizCycleAnswersPeriodMillisecs = i; }
     static bool getQuizTimeoutDisableInput() {
         return instance->quizTimeoutDisableInput; }
     static void setQuizTimeoutDisableInput(bool b) {
@@ -291,6 +295,7 @@ class MainSettings
     bool quizMarkMissedAfterIncorrect;
     bool quizMarkMissedAfterTimerExpires;
     bool quizCycleAnswers;
+    int quizCycleAnswersPeriodMillisecs;
     bool quizTimeoutDisableInput;
     int quizTimeoutDisableInputMillisecs;
     bool quizRecordStats;

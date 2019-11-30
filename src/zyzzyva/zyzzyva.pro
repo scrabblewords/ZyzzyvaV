@@ -27,10 +27,7 @@ TEMPLATE = app
 TARGET = zyzzyva
 CONFIG += qt thread warn_on assistant
 QT += sql xml network widgets gui printsupport
-#win32-msvc2015:CONFIG += staticlib
-win32-msvc2015|linux|macx {
-    QT += webenginewidgets
-}
+#win32-msvc*:CONFIG += staticlib
 #CONFIG += qt thread warn_on assistant
 #QT += xml gui
 
@@ -50,15 +47,15 @@ macx {
 }
 
 unix {
-    LIBS = -lzyzzyva -L$$ROOT/bin
+    LIBS = -lzyzzyva5 -L$$ROOT/bin
 }
 win32 {
     LIBS = -lzyzzyva5 -L$$ROOT/bin
     RC_ICONS += $$ROOT/images/Zyzzyva.ico
 }
 
-win32-msvc2015:LIBS += $$ROOT/bin/zyzzyva5.lib
-win32-msvc2015:POST_TARGETDEPS += $$ROOT/bin/zyzzyva5.lib
+win32-msvc*:LIBS += $$ROOT/bin/zyzzyva5.lib
+win32-msvc*:POST_TARGETDEPS += $$ROOT/bin/zyzzyva5.lib
 
 # Source files
 SOURCES = \

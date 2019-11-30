@@ -65,6 +65,7 @@ class SettingsDialog : public QDialog
     void showHookParentsCboxToggled(bool on);
     void chooseFontButtonClicked(int button);
     void chooseQuizBackgroundColorButtonClicked();
+    void cycleAnswersInputCboxToggled(bool on);
     void timeoutDisableInputCboxToggled(bool on);
     void lexiconStyleCboxToggled(bool on);
     void chooseLexiconStyleClicked();
@@ -117,6 +118,7 @@ class SettingsDialog : public QDialog
     QCheckBox*   quizMarkMissedAfterIncorrectCbox;
     QCheckBox*   quizMarkMissedAfterTimerCbox;
     QCheckBox*   quizCycleAnswersCbox;
+    QSpinBox*    quizCycleAnswersPeriodSbox;
     QCheckBox*   quizTimeoutDisableInputCbox;
     QSpinBox*    quizTimeoutDisableInputSbox;
     QSpinBox*    probBlanksSbox;

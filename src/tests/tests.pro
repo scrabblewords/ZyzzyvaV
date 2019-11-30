@@ -1,5 +1,5 @@
 #---------------------------------------------------------------------------
-# testts.pro
+# tests.pro
 #
 # Build configuration file for Zyzzyva tests using qmake.
 #
@@ -28,9 +28,6 @@ TARGET = test_zyzzyva
 CONFIG += qt thread warn_on
 QT += sql xml gui testlib
 QT += network widgets printsupport
-win32-msvc2015|linux|macx {
-    QT += webenginewidgets
-}
 
 ROOT = ../..
 DESTDIR = $$ROOT/bin
@@ -42,7 +39,7 @@ DEPENDPATH += build/moc
 #include($$ROOT/zyzzyva.pri)
 
 unix {
-    LIBS = -lzyzzyva -L$$ROOT/bin
+    LIBS = -lzyzzyva5 -L$$ROOT/bin
 }
 win32 {
     LIBS = -lzyzzyva5 -L$$ROOT/bin

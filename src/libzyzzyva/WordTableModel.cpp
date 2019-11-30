@@ -70,8 +70,8 @@ lessThan(const WordTableModel::WordItem& a,
          const WordTableModel::WordItem& b)
 {
     if (MainSettings::getWordListSortByPlayabilityOrder()) {
-        qint64 aPlayValue = a.getPlayabilityValue();
-        qint64 bPlayValue = b.getPlayabilityValue();
+        double aPlayValue = a.getPlayabilityValue();
+        double bPlayValue = b.getPlayabilityValue();
 
         // High playability values compare as less
         if (bPlayValue < aPlayValue)
@@ -310,7 +310,7 @@ WordTableModel::data(const QModelIndex& index, int role) const
         case PlayabilityValueRole:
             if (!wordItem.playabilityOrderIsValid()) {
                 QString wordUpper = wordItem.getWord().toUpper();
-                qint64 pv = wordEngine->getPlayabilityValue(lexicon, wordUpper);
+                double pv = wordEngine->getPlayabilityValue(lexicon, wordUpper);
                 if (pv)
                     wordItem.setPlayabilityValue(pv);
                 int po = wordEngine->getPlayabilityOrder(lexicon, wordUpper);
@@ -423,7 +423,7 @@ WordTableModel::data(const QModelIndex& index, int role) const
                     }
 
                     if (!wordItem.playabilityOrderIsValid()) {
-                        qint64 pv = wordEngine->getPlayabilityValue(
+                        double pv = wordEngine->getPlayabilityValue(
                                     lexicon, wordUpper);
                         if (pv)
                             wordItem.setPlayabilityValue(pv);
@@ -701,7 +701,7 @@ WordTableModel::setData(const QModelIndex& index, const QVariant& value, int
         return true;
     }
     else if (index.isValid() && (role == PlayabilityValueRole)) {
-        wordList[index.row()].setPlayabilityValue(value.toLongLong());
+        wordList[index.row()].setPlayabilityValue(value.toDouble());
         emit dataChanged(index, index);
         return true;
     }
@@ -892,7 +892,7 @@ WordTableModel::WordItem::init()
     frontParentHook = false;
     backParentHook = false;
     probabilityOrder = 0;
-    playabilityValue = 0;
+    playabilityValue = 0.0;
     playabilityOrder = 0;
 }
 
@@ -918,7 +918,7 @@ WordTableModel::WordItem::setProbabilityOrder(int p)
 //! @param p the playability value
 //---------------------------------------------------------------------------
 void
-WordTableModel::WordItem::setPlayabilityValue(qint64 p)
+WordTableModel::WordItem::setPlayabilityValue(double p)
 {
     playabilityValue = p;
 }

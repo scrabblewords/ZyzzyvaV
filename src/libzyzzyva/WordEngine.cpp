@@ -259,8 +259,7 @@ WordEngine::importBinaryFile(const QString& lexicon, const QString& filename,
     if (lexicon != LEXICON_CUSTOM)
         fileBlob->remove(0, fileBlob->indexOf('\n') + 1);
 
-    //TODO (JGM) Comment out decryption key when copying to published source zip.
-    SimpleCrypt crypto(Q_UINT64_C(0x56414a415a7a4c45));
+    SimpleCrypt crypto(Auxil::getCryptHash());
     QByteArray *plaintextBlob = new QByteArray(crypto.decryptToByteArray(*fileBlob));
     delete fileBlob;
 //    if (!crypto.lastError() == SimpleCrypt::ErrorNoError) {
@@ -828,8 +827,8 @@ WordEngine::applyPostConditions(const QString& lexicon,
                         // Legacy probability order limits are sorted
                         // alphabetically, not by alphagram
                         if (!legacyProbCondition)
-                            radix += Auxil::getAlphagram(wordUpper) + ":";
-                        radix += wordUpper;
+                            radix += (":" + Auxil::getAlphagram(wordUpper));
+                        radix += (":" + wordUpper);
                         valueMap.insert(radix, word);
                     }
                 }
@@ -854,7 +853,7 @@ WordEngine::applyPostConditions(const QString& lexicon,
                     origCase[word.toUpper()] = word;
                     if (i)
                         qstr += ", ";
-                    qstr += "'" + word.toUpper() + "'";
+                    qstr += ("'" + word.toUpper() + "'");
                 }
                 qstr += ")";
 
@@ -864,12 +863,13 @@ WordEngine::applyPostConditions(const QString& lexicon,
 
                 while (query.next()) {
                     QString word = origCase[query.value(0).toString()];
-                    qint64 playability = query.value(1).toLongLong();
+                    double playability = query.value(1).toDouble();
                     QString radix;
                     QString wordUpper = word.toUpper();
-                    radix.sprintf("%018lld", 999999999999999999LL - playability);
-                    radix += Auxil::getAlphagram(wordUpper) + ":";
-                    radix += wordUpper;
+                    //radix.sprintf("%0.7f", 999999999999999999 - playability);
+                    radix = QString::number(9999999999.0000000 - playability, 'f', 7);
+                    radix += (":" + Auxil::getAlphagram(wordUpper));
+                    radix += ("+" + wordUpper);
                     playValueMap.insert(radix, word);
                 }
             }
@@ -880,18 +880,18 @@ WordEngine::applyPostConditions(const QString& lexicon,
 
             // Allow Lax matches only up to hard Min limit
             QString minRadix = keys[min];
-            QString minValue = minRadix.left(18);
+            QString minValue = minRadix.section(':', 0, 0);
             while ((min > 0) && (min > limitMin)) {
-                if (minValue != keys[min - 1].left(18))
+                if (minValue != keys[min - 1].section(':', 0, 0))
                     break;
                 --min;
             }
 
             // Allow Lax matches only up to hard Max limit
             QString maxRadix = keys[max];
-            QString maxValue = maxRadix.left(18);
+            QString maxValue = maxRadix.section(':', 0, 0);
             while ((max < keys.size() - 1) && (max < limitMax)) {
-                if (maxValue != keys[max + 1].left(18))
+                if (maxValue != keys[max + 1].section(':', 0, 0))
                     break;
                 ++max;
             }
@@ -1145,7 +1145,7 @@ WordEngine::getLexiconFile(const QString& lexicon) const
 //
 //! @param lexicon the name of the lexicon
 //! @param word the word whose definition to look up
-//! @param multilineDefs whether to show one definition sense per line
+//! @param multilineDefs whether to show one definition  sense per line
 //! @return the definition, or empty String if no definition
 //---------------------------------------------------------------------------
 QString
@@ -1392,7 +1392,7 @@ WordEngine::addToCache(const QString& lexicon, const QStringList& words) const
         info.isBackHook           = query.value(placeNum++).toBool();
         info.lexiconSymbols       = query.value(placeNum++).toString();
         info.definition           = query.value(placeNum++).toString();
-        info.playability          = query.value(placeNum++).toLongLong();
+        info.playability          = query.value(placeNum++).toDouble();
 
         ValueOrder playOrder;
         playOrder.valueOrder    = query.value(placeNum++).toInt();
@@ -1708,7 +1708,7 @@ WordEngine::getNumAnagrams(const QString& lexicon, const QString& word) const
 //! @param word the word
 //! @return the playability value
 //---------------------------------------------------------------------------
-qint64
+double
 WordEngine::getPlayabilityValue(const QString& lexicon, const QString& word)
     const
 {

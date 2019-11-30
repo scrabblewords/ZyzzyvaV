@@ -347,7 +347,7 @@ SearchForm::search()
                 wordItem.setProbabilityOrder(probOrder);
             }
             else if (hasPlayabilityCondition) {
-                qint64 playValue = wordEngine->getPlayabilityValue(
+                double playValue = wordEngine->getPlayabilityValue(
                     lexicon, wordUpper);
                 int playOrder = wordEngine->getPlayabilityOrder(
                     lexicon, wordUpper);
@@ -420,7 +420,7 @@ SearchForm::updateResultTotal(int num, int numGroups, bool grouped)
     QString wordStr = QString::number(num) + " word";
     if (num != 1)
         wordStr += "s";
-    statusString = "Search found " + wordStr;
+    statusString = wordStr;
     if (grouped) {
         QString groupStr = QString::number(numGroups) + " anagram group";
         if (numGroups != 1)

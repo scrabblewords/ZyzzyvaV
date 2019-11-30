@@ -210,7 +210,7 @@ QuizEngine::newQuiz(const QuizSpec& spec)
                         bestValue = bestPlayValue.value(question);
                     }
 
-                    int value = wordEngine->getPlayabilityValue(lexicon, word);
+                    double value = wordEngine->getPlayabilityValue(lexicon, word);
                     if (!bestValue || (value > bestValue)) {
                         valueQuestions[bestValue].remove(question);
                         if (valueQuestions[bestValue].isEmpty())

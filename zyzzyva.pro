@@ -27,6 +27,14 @@ TEMPLATE = subdirs
 SUBDIRS = src
 CONFIG += qt thread warn_on assistant
 QT += sql xml network widgets gui printsupport
-win32-msvc2015|linux|macx {
-    QT += webenginewidgets
+
+win32|unix {
+    copydata.commands = $(COPY_DIR) $$PWD/data $$OUT_PWD/bin
 }
+macx {
+    copydata.commands = $(COPY_DIR) $$PWD/data $$OUT_PWD/bin/Zyzzyva.app/Contents/MacOS
+}
+first.depends = $(first) copydata
+export(first.depends)
+export(copydata.commands)
+QMAKE_EXTRA_TARGETS += first copydata

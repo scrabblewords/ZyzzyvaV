@@ -1649,7 +1649,7 @@ QuizForm::startDisplayingCorrectAnswers()
     currentDisplayAnswer = -1;
     displayNextCorrectAnswer();
     if (responseModel->rowCount() > 1)
-        displayAnswerTimer->start(5000);
+        displayAnswerTimer->start(MainSettings::getQuizCycleAnswersPeriodMillisecs());
 }
 
 //---------------------------------------------------------------------------
