@@ -439,6 +439,7 @@ Auxil::getLexiconPrefix(const QString& lexicon)
         pmap[LEXICON_CSW12] = "/British/CSW12";
         pmap[LEXICON_CSW15] = "/British/CSW15";
         pmap[LEXICON_CSW19] = "/British/CSW19";
+        pmap[LEXICON_OSPS] = "/Polish/OSPS";
     }
     return pmap.value(lexicon);
 }
@@ -1381,6 +1382,8 @@ Auxil::lexiconToOrigin(const QString& lexicon)
         return "<a href=\"http://www.collinsdictionary.com/scrabble/scrabble-tools#terms\">British (© HarperCollins 2015, see T&Cs)</a>";
     if (lexicon == LEXICON_CSW19)
         return "<a href=\"http://www.collinsdictionary.com/scrabble/scrabble-tools#terms\">British (© HarperCollins 2019, see T&Cs)</a>";
+    if (lexicon == LEXICON_OSPS)
+        return "<a href=\"http://pfs.org.pl\">Polish</a>";
     if (lexicon == LEXICON_VOLOST)
         return "Antarctic";
     return QString();
@@ -1403,6 +1406,8 @@ Auxil::lexiconToDate(const QString& lexicon)
         return QDate(2015, 9, 1);
     if (lexicon == LEXICON_CSW19)
         return QDate(2019, 7, 1);
+    if (lexicon == LEXICON_OSPS)
+        return QDate(2019, 1, 1);
     if (lexicon == LEXICON_VOLOST)
         return QDate(2007, 4, 1);
     return QDate();
@@ -1462,6 +1467,7 @@ Auxil::getUpdatedLexiconName(const QString& oldLexiconName)
              (oldLexiconName == LEXICON_CSW12) ||
              (oldLexiconName == LEXICON_CSW15) ||
              (oldLexiconName == LEXICON_CSW19) ||
+             (oldLexiconName == LEXICON_OSPS)  ||
              (oldLexiconName == LEXICON_VOLOST))
     {
         return oldLexiconName;

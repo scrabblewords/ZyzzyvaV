@@ -92,6 +92,7 @@ LexiconSelectDialog::LexiconSelectDialog(QWidget* parent, Qt::WindowFlags f)
     validLexicons.append(LEXICON_CSW15);
     validLexicons.append(LEXICON_CSW19);
     validLexicons.append(LEXICON_VOLOST);
+    validLexicons.append(LEXICON_OSPS);
     validLexicons.append(LEXICON_CUSTOM);
 
     QStringListIterator it (validLexicons);

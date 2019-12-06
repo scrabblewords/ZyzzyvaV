@@ -50,6 +50,7 @@ namespace Defs {
     const QString LEXICON_CSW12 = "CSW12";
     const QString LEXICON_CSW15 = "CSW15";
     const QString LEXICON_CSW19 = "CSW19";
+    const QString LEXICON_OSPS = "OSPS";
     const QString LEXICON_CUSTOM = "Custom";
     const QString LEXICON_VOLOST = "Volost";
     const QString LEXICON_OLD_SOWPODS = "SOWPODS";
