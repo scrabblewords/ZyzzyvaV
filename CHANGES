@@ -1,26 +1,4 @@
 *************
-Version:  5.2.0 "Almota"
-Released:  December 2021
-Framework:  Qt 5.15.2
-
-Official builds:
-Link:  http://www.collinsdictionary.com/scrabble/scrabble-tools
-Windows 64-bit:  MinGW 8.1.0
-                 Built by JG Miller
-macOS:
-                 Built by Anand Buddhdev
-
- NEW:  Lexicon update to CSW21.
- NEW:  All prior CSW lexicons removed due to word expurgations.
-
- Fixed:  Limit By Playability Order search. (083bc0a8)
-
- Tweak:  New splash.
-
- Developer:  Repo made public, sensitive data removed, source links now point there.
-
-
-*************
 Version 5.1.1, Qt 5.12.3
 Released starting May 31, 2019
 For Windows (32 and 64 bits) and OSX

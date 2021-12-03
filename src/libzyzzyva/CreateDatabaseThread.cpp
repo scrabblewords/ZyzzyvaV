@@ -246,7 +246,7 @@ CreateDatabaseThread::insertWords(QSqlDatabase& db, int& stepNum)
 
     QMap<QString, double> playabilityMap;
     QString playabilityFile = Auxil::getWordsDir() +
-        Auxil::getLexiconPrefix(lexiconName) + (lexiconName == LEXICON_CSW21 ? "-Playability.bin" : "-Playability.txt");
+        Auxil::getLexiconPrefix(lexiconName) + ((lexiconName == LEXICON_CSW15 || lexiconName == LEXICON_CSW19) ? "-Playability.bin" : "-Playability.txt");
     importPlayability(playabilityFile, playabilityMap);
 
     QSqlQuery transactionQuery ("BEGIN TRANSACTION", db);
@@ -529,7 +529,7 @@ CreateDatabaseThread::updateDefinitions(QSqlDatabase& db, int& stepNum)
 //    QFile debugFile (definitionFilename + "-debug.txt");
 //    debugFile.open(QIODevice::WriteOnly);
 
-    if (lexiconName == LEXICON_CSW21) {   // (JGM) definitionFile is encrypted.
+    if (lexiconName == LEXICON_CSW15 || lexiconName == LEXICON_CSW19) {   // (JGM) definitionFile is encrypted.
         if (!definitionFile.open(QIODevice::ReadOnly)) {
             return;
         }
@@ -936,7 +936,7 @@ CreateDatabaseThread::importPlayability(const QString& filename,
 
     QFile file (filename);
 
-    if (lexiconName == LEXICON_CSW21) {   // (JGM) Playability file is encrypted.
+    if (lexiconName == LEXICON_CSW15 || lexiconName == LEXICON_CSW19) {   // (JGM) Playability file is encrypted.
         if (!file.open(QIODevice::ReadOnly)) {
             return 0;
         }

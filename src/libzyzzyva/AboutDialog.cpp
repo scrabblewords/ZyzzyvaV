@@ -68,7 +68,7 @@ AboutDialog::AboutDialog(QWidget* parent, Qt::WindowFlags f)
     aboutLabel->setText(Auxil::getAboutString());
     aboutLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     aboutLabel->setOpenExternalLinks(true);
-    tabStack->addTab(aboutLabel, "Collins Zyzzyva 5.2.0  \"Almota\"");
+    tabStack->addTab(aboutLabel, "Collins Zyzzyva 5.1.2-a1");
 
     QLabel* thanksLabel = new QLabel;
     Q_CHECK_PTR(thanksLabel);
