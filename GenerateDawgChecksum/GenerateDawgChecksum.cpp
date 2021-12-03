@@ -31,7 +31,7 @@
 #include <QStringList>
 
 
-static const QString dawgFileName = "F:\\jim\\Documents\\My Documents\\GAMES\\SCRABBLE\\CSW15\\Collins Zyzzyva development\\word files\\CSW19.dwg";
+static const QString dawgFileName = "J:\\VM_guests_shared\\Kubuntu 64-bit (development)\\Zyzzyva\\CSW21-R.dwg";
 
 qint32 importDawgFile(const QString& filename)
 {

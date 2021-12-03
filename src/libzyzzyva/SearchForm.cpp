@@ -383,6 +383,9 @@ SearchForm::search()
     emit saveEnabledChanged(!wordList.empty());
     emit printEnabledChanged(!wordList.empty());
 
+    resultView->scrollTo(resultModel->sibling(
+                             resultModel->getLastAddedIndex(), 0, QModelIndex()), QAbstractItemView::PositionAtBottom);
+
     QWidget* focusWidget = QApplication::focusWidget();
     QLineEdit* lineEdit = dynamic_cast<QLineEdit*>(focusWidget);
     if (lineEdit && MainSettings::getSearchSelectInput()) {
