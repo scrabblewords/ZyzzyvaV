@@ -23,11 +23,11 @@ VS_VERSION_INFO VERSIONINFO
 			BEGIN
 				VALUE "CompanyName", "\0"
 				VALUE "FileDescription", "\0"
-				VALUE "FileVersion", "5.2.0\0"
+				VALUE "FileVersion", "5.1.2-a1\0"
 				VALUE "LegalCopyright", "\0"
 				VALUE "OriginalFilename", "zyzzyva5.dll\0"
 				VALUE "ProductName", "zyzzyva\0"
-				VALUE "ProductVersion", "5.2.0\0"
+				VALUE "ProductVersion", "5.1.2-a1\0"
 			END
 		END
 		BLOCK "VarFileInfo"
