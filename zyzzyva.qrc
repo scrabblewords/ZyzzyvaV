@@ -7,7 +7,6 @@
         <file alias="judge-unacceptable">images/judge-unacceptable.png</file>
         <file alias="plus-icon">images/plus-icon-small.png</file>
         <file alias="minus-icon">images/minus-icon-small.png</file>
-        <file alias="zyzzyva-splash">images/zyzzyva-splash.png</file>
         <file alias="cardbox-icon">images/cardbox-icon-large.png</file>
         <file alias="define-icon">images/define-icon-large.png</file>
         <file alias="help-icon">images/help-icon-large.png</file>
@@ -20,5 +19,6 @@
         <file alias="print-icon">images/print-icon-large.png</file>
         <file alias="zyzzyva-128x128">images/zyzzyva-128x128-red.png</file>
         <file alias="zyzzyva-32x32">images/zyzzyva-32x32-red.png</file>
+        <file alias="zyzzyva-splash">images/zyzzyva-splash.png</file>
     </qresource>
 </RCC>

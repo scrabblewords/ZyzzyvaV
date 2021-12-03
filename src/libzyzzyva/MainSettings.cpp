@@ -109,7 +109,7 @@ const QString SETTINGS_LETTER_DISTRIBUTION = "letter_distribution";
 const QString SETTINGS_JUDGE_SAVE_LOG = "judge_save_log";
 
 const bool    DEFAULT_AUTO_IMPORT = true;
-const QString DEFAULT_DEFAULT_LEXICON = Defs::LEXICON_CSW19;
+const QString DEFAULT_DEFAULT_LEXICON = Defs::LEXICON_CSW21;
 const bool    DEFAULT_DISPLAY_WELCOME = true;
 const bool    DEFAULT_CONFIRM_EXIT = true;
 const QString DEFAULT_USER_DATA_DIR = Auxil::getHomeDir() + "/.collinszyzzyva";
@@ -149,8 +149,7 @@ const bool    DEFAULT_SHOW_ONE_SENSE_PER_LINE = true;
 const bool    DEFAULT_LOWER_CASE_WILDCARDS = false;
 const bool    DEFAULT_USE_LEXICON_STYLES = true;
 const QString DEFAULT_LEXICON_STYLES = QString(
-    "%1 and not %2: symbol +")
-    .arg(Defs::LEXICON_CSW19).arg(Defs::LEXICON_CSW15);
+    "%1 and not %2: symbol +").arg(Defs::LEXICON_CSW21).arg(Defs::LEXICON_CUSTOM);
 const QString DEFAULT_LETTER_DISTRIBUTION = "A:9 B:2 C:2 D:4 E:12 F:2 G:3 "
     "H:2 I:9 J:1 K:1 L:4 M:2 N:6 O:8 P:2 Q:1 R:6 S:4 T:6 U:4 V:2 W:2 X:1 "
     "Y:2 Z:1 _:2";
