@@ -69,7 +69,7 @@
 
 MainWindow* MainWindow::instance = 0;
 
-const QString APPLICATION_TITLE = "Collins Zyzzyva 5.1.2-a1";
+const QString APPLICATION_TITLE = "Collins Zyzzyva 5.2.0";
 
 const QString IMPORT_FAILURE_TITLE = "Load Failed";
 const QString IMPORT_COMPLETE_TITLE = "Load Complete";
@@ -1083,7 +1083,7 @@ MainWindow::displayHelp()
     args << QLatin1String("-collectionFile")
         << (Auxil::getHelpDir() + QLatin1String("/zyzzyva.qhc"))
         << QLatin1String("-showUrl")
-        << QLatin1String("qthelp://twilightcenturycomputing.com/5.1.2-a1/index.html")
+        << QLatin1String("qthelp://twilightcenturycomputing.com/5.2.0/index.html")
         << QLatin1String("-enableRemoteControl");
     process->start(QLatin1String("assistant"), args);
     if (!process->waitForStarted())
@@ -1467,7 +1467,7 @@ MainWindow::rebuildDatabase(const QString& lexicon)
     }
     else {
         definitionFilename = Auxil::getWordsDir() +
-            Auxil::getLexiconPrefix(lexicon) + ((lexicon == LEXICON_CSW15 || lexicon == LEXICON_CSW19) ? ".bin" : ".txt");
+            Auxil::getLexiconPrefix(lexicon) + (lexicon == LEXICON_CSW21 ? ".bin" : ".txt");
     }
 
     QFileInfo fileInfo (dbFilename);
@@ -2064,17 +2064,17 @@ MainWindow::updateSettings()
     if (prevVersion == currVersion)
         return;
 
-    // Add default CSW19 lexicon styles in 2.1.3
-    if (Auxil::lessThanVersion(prevVersion, "2.1.3") &&
-       ((currVersion == "2.1.3") ||
-        Auxil::lessThanVersion("2.1.3", currVersion)))
+    // Add default CSW21 lexicon styles in 2.2.0
+    if (Auxil::lessThanVersion(prevVersion, "2.2.0") &&
+       ((currVersion == "2.2.0") ||
+        Auxil::lessThanVersion("2.2.0", currVersion)))
     {
         QList<LexiconStyle> styles = MainSettings::getWordListLexiconStyles();
         LexiconStyle addStyle;
         QList<LexiconStyle> addStyles;
 
-        addStyle.lexicon = Defs::LEXICON_CSW19;
-        addStyle.compareLexicon = Defs::LEXICON_CSW15;
+        addStyle.lexicon = Defs::LEXICON_CSW21;
+        addStyle.compareLexicon = Defs::LEXICON_CUSTOM;
         addStyle.inCompareLexicon = false;
         addStyle.symbol = "+";
         addStyles.append(addStyle);
@@ -2247,17 +2247,14 @@ MainWindow::importLexicon(const QString& lexicon)
             return true;
 
         QMap<QString, QString> prefixMap;
-        prefixMap[LEXICON_VOLOST] = "/Antarctic/Volost";
-        prefixMap[LEXICON_CSW12] = "/British/CSW12";
-        prefixMap[LEXICON_CSW15] = "/British/CSW15";
-        prefixMap[LEXICON_CSW19] = "/British/CSW19";
+        prefixMap[LEXICON_CSW21] = "/British/CSW21";
 
         if (prefixMap.contains(lexicon)) {
             QString prefix = Auxil::getWordsDir() + prefixMap.value(lexicon);
             importFile =        prefix + ".dwg";
             reverseImportFile = prefix + "-R.dwg";
             checksumFile =      prefix + "-Checksums.txt";
-            playabilityFile =   prefix + ((lexicon == LEXICON_CSW15 || lexicon == LEXICON_CSW19) ? "-Playability.bin" : "-Playability.txt");
+            playabilityFile =   prefix + (lexicon == LEXICON_CSW21 ? "-Playability.bin" : "-Playability.txt");
         }
     }
 
@@ -2320,7 +2317,7 @@ MainWindow::importText(const QString& lexicon, const QString& file)
 
     QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 
-    if ((lexicon == LEXICON_CSW15 || lexicon == LEXICON_CSW19))
+    if (lexicon == LEXICON_CSW21)
         imported = wordEngine->importBinaryFile(lexicon, file, true);
     else
         imported = wordEngine->importTextFile(lexicon, file, true);
