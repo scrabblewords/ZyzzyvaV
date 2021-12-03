@@ -40,9 +40,9 @@
 #include <QStringList>
 
 
-static const QString plaintextFileName = "J:\\VM_guests_shared\\Kubuntu 64-bit (development)\\Zyzzyva\\CSW21.txt";
+static const QString plaintextFileName = "F:\\Programming_projects\\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\\boshvark-zyzzyva-pc-9ddd4ac\\PRIVATE\\CSW19-Playability.txt";
 // Set to empty string to have no header written.  A header must start with '#' character.
-static const QString cipherFileHeader = "# Published under license with Collins, an imprint of HarperCollins Publishers Limited.\r\n";
+static const QString cipherFileHeader = "# The (C) HarperCollins 2019 word list (CSW19) is copyright of HarperCollins 2019 and used with permission.\r\n";
 static const QString cipherFileSuffix = ".bin";
 
 

@@ -49,12 +49,12 @@ class WordEngineTest : public QObject
 
 };
 
-QString TEST_LEXICON = Defs::LEXICON_CSW21;
+QString TEST_LEXICON = Defs::LEXICON_CSW19;
 
 //---------------------------------------------------------------------------
 //  tryImport
 //
-//! Try to import CSW21 lexicon into the WordEngine.
+//! Try to import CSW15 lexicon into the WordEngine.
 //---------------------------------------------------------------------------
 void
 WordEngineTest::tryImport()
@@ -63,13 +63,13 @@ WordEngineTest::tryImport()
         return;
 
     bool ok = engine.importDawgFile(Auxil::getWordsDir() +
-                                    "/British/CSW21.dwg",
+                                    "/British/CSW19.dwg",
                                     Defs::LEXICON_CUSTOM, false);
     if (!ok)
         return;
 
     ok = engine.importDawgFile(Auxil::getWordsDir() +
-                               "/British/CSW21-R.dwg",
+                               "/British/CSW19-R.dwg",
                                Defs::LEXICON_CUSTOM, true);
     if (!ok)
         return;
@@ -105,7 +105,7 @@ WordEngineTest::testSearch_data()
     QTest::newRow("subanagram-aeiprs") << "subanagram-aeiprs";
     QTest::newRow("4s-take-A-prefix") << "4s-take-A-prefix";
     QTest::newRow("3s-8s-take-X-suffix") << "3s-8s-take-X-suffix";
-    QTest::newRow("Q-no-U-new-in-CSW21") << "Q-no-U-new-in-CSW21";
+    QTest::newRow("Q-no-U-new-in-CSW19") << "Q-no-U-new-in-CSW19";
     QTest::newRow("8s-with-5-vowels") << "8s-with-5-vowels";
     QTest::newRow("8s-with-7-anagrams") << "8s-with-7-anagrams";
     QTest::newRow("8s-prob-1001-2000") << "8s-prob-1001-2000";
