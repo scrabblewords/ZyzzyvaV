@@ -3,7 +3,7 @@ rem create-windows-32bit.bat
 rem
 rem Create a Windows staging directory for the installer packager to use.
 rem
-rem Copyright 2015-2019 Twilight Century Computing.
+rem Copyright 2015-2021 Twilight Century Computing.
 rem Copyright 2006-2012 North American SCRABBLE Players Association.
 rem
 rem This file is part of Zyzzyva.
@@ -27,9 +27,9 @@ rem -------------------------------------------------------------------------
 pushd ..
 
 rem *** Update these vars as necessary, mainly the first 3 ***
-set QTVER=5.12.2\5.13.0\mingw73_32
-set BUILDDIR=F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\build-zyzzyva-Desktop_Qt_5_13_0_MinGW_32_bit-Release
-set INSTDIR=installer\staging\CZ5.1.1
+set QTVER=5.15.2\mingw81_32
+set BUILDDIR=F:\Programming_projects\boshvark-zyzzyva-pc-2.2.3-0-g9ddd4ac\boshvark-zyzzyva-pc-9ddd4ac\build-zyzzyva-Desktop_Qt_5_15_2_MinGW_32_bit-Debug
+set INSTDIR=installer\staging\CZ5.2.0
 set QTDIR=E:\Qt\%QTVER%
 set PLATFORM=windows-32bit
 set OUTDIR=%INSTDIR%\%PLATFORM%
