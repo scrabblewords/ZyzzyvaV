@@ -10,7 +10,7 @@
 // Run from Qt Creator.
 //
 //
-// Copyright 2015 Twilight Century Computing, LLC.
+// Copyright 2015-2021 Twilight Century Computing, LLC.
 //
 // This file is part of Zyzzyva.
 //
